@@ -1,0 +1,22 @@
+@import '../settings/_settings.scss';
+
+
+* {
+  box-sizing: border-box;
+  max-width: 100%;
+  transition: $transition;
+}
+
+body {
+  background: $bgColor;
+  color: $textColor;
+}
+
+a {
+  color: $linkColor;
+  &:hover {
+    color: $linkHover;
+  }
+}
+
+  

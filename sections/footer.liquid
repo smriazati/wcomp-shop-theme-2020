@@ -1,0 +1,249 @@
+{%- assign social_icons = false -%}
+{%- assign inline_list = false -%}
+{%- assign locale_selector = false -%}
+{%- assign currency_selector = false -%}
+{%- assign show_payment_icons = false -%}
+{%- assign show_selectors = false -%}
+
+{%- if
+  settings.social_twitter_link != blank
+  or settings.social_facebook_link != blank
+  or settings.social_pinterest_link != blank
+  or settings.social_instagram_link != blank
+  or settings.social_tumblr_link != blank
+  or settings.social_snapchat_link != blank
+  or settings.social_youtube_link != blank
+  or settings.social_vimeo_link != blank
+  or request.page_type == 'article'
+  or request.page_type == 'blog'
+-%}
+  {%- assign social_icons = true -%}
+{%- endif -%}
+
+<footer class="site-footer critical-hidden" role="contentinfo" data-section-id="{{ section.id }}" data-section-type="footer-section">
+
+  <div class="page-width">
+    <div class="site-footer__content site-footer__content-row">
+
+
+      <!-- FOOTER LOGO LOOP STARTS HERE-->
+      {%- for block in section.blocks -%}
+      <div class="site-footer__item site-footer__logo"
+            {{ block.shopify_attributes }}>
+        <div class="site-footer__item-inner site-footer__item-inner--{{ block.type }}">
+          {%- case block.type -%}
+            {%- when 'image_picker' -%}
+              {%- assign footer_logo = block.settings.footer_logo -%}
+
+              <a href="{{ routes.root_url }}" class="site-footer__logo-image" data-image-loading-animation>
+              {% capture logo_alt %}{{ footer_logo.alt | default: shop.name }}{% endcapture %}
+              <img class="lazyload js"
+                   src="{{ footer_logo | img_url: '300x300' }}"
+                   data-src="{{ img_url }}"
+                   data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                   data-aspectratio="{{ footer_logo.aspect_ratio }}"
+                   data-sizes="auto"
+                   alt="{{ logo_alt | escape }}"
+                   style="max-width: {{ footer_logo_max_width }}px">
+              <noscript>
+                <img src="{{ footer_logo | img_url: image_size }}"
+                     srcset="{{ footer_logo | img_url: image_size }} 1x, {{ footer_logo | img_url: image_size, scale: 2 }} 2x"
+                     alt="{{ footer_logo.alt | default: shop.name }}"
+                     style="max-width: 200px;">
+              </noscript>
+            </a>
+          {%- endcase -%}
+
+        </div>
+      </div>
+      {%- endfor -%}
+      <!-- FOOTER LOGO LOOP END -->
+
+      <!-- LINK LIST LOOP STARTS HERE-->
+      {%- for block in section.blocks -%}
+        <div class="site-footer__item"
+             {{ block.shopify_attributes }}>
+          <div class="site-footer__item-inner site-footer__item-inner--{{ block.type }}">
+            {%- case block.type -%}
+              {%- when 'link_list' -%}
+                {%- assign footer_linklist = block.settings.menu -%}
+                  <ul class="site-footer__linklist
+                            {% if inline_list %}list--inline{% endif %}">
+                    {%- for link in linklists[footer_linklist].links -%}
+                      <li class="site-footer__linklist-item">
+                        <a href="{{ link.url }}"
+                          {% if link.current %} aria-current="page"{% endif %}
+                        >
+                          {{ link.title | escape }}
+                        </a>
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+
+            {%- endcase -%}
+
+          </div>
+        </div>
+      {%- endfor -%}
+      <!-- LINK LIST LOOP END -->
+
+      <!-- SOCIALS COLUMN START -->
+      {%- assign socials = "Facebook Twitter Pinterest Instagram Tumblr Snapchat YouTube Vimeo" | split: ' ' -%}
+      <div class="site-footer-item site-footer__socials">
+        {%- if social_icons -%}
+          <ul class="list--inline site-footer__social-icons social-icons site-footer__icon-list">
+            {%- for social in socials -%}
+              {%- assign social_link = social | prepend: 'social_' | append: '_link' | downcase -%}
+              {%- if settings[social_link] != blank -%}
+                <li class="social-icons__item">
+                  <a class="social-icons__link" href="{{ settings[social_link] | escape }}" aria-describedby="a11y-external-message">
+                    {{ social }}
+                  </a>
+                </li>
+              {%- endif -%}
+            {%- endfor -%}
+
+            {%- if request.page_type == 'blog' or request.page_type == 'article' -%}
+              <li>
+                <a class="social-icons__link" href="{{ shop.url }}{{ blog.url }}.atom">
+                  RSS
+                </a>
+              </li>
+            {%- endif -%}
+          </ul>
+        {%- endif -%}
+      </div>
+      <!-- SOCIALS COLUMN END -->
+
+      <!-- NEWSLETTER LOOP STARTS -->
+      {%- for block in section.blocks -%}
+      <div class="site-footer__item"
+           {{ block.shopify_attributes }}>
+        <div class="site-footer__item-inner site-footer__item-inner--{{ block.type }}">
+          {%- case block.type -%}
+            {%- when 'newsletter' -%}
+              <div class="site-footer__newsletter">
+
+                {%- if block.settings.title -%}
+                  <p class="h4">{{ block.settings.title | escape }}</p>
+                {%- endif -%}
+                {%- assign formId = 'ContactFooter' -%}
+                {% form 'customer', id: formId, novalidate: 'novalidate' %}
+                  {%- if form.posted_successfully? -%}
+                    <p class="form-message form-message--success" tabindex="-1" data-form-status>
+                      {{ 'general.newsletter_form.confirmation' | t }}
+                    </p>
+                  {%- endif -%}
+                  <input type="hidden" name="contact[tags]" value="newsletter">
+                  <div class="input-group {% if form.errors %} input-group--error{% endif %}">
+                    <input type="email"
+                      name="contact[email]"
+                      id="{{ formId }}-email"
+                      class="input-group__field newsletter__input{% if form.errors %} input--error{% endif %}"
+                      value="{{ form.email }}"
+                      placeholder="{{ 'general.newsletter_form.email_placeholder' | t }}"
+                      aria-label="{{ 'general.newsletter_form.email_placeholder' | t }}"
+                      aria-required="true"
+                      required
+                      autocorrect="off"
+                      autocapitalize="off"
+                      {% if form.errors %}
+                        aria-invalid="true"
+                        aria-describedby="{{ formId }}-email-error"
+                        data-form-status
+                      {% endif %}>
+                    <span class="input-group__btn">
+                      <button type="submit" class="btn newsletter__submit" name="commit" >
+                        <span class="newsletter__submit-text--large">{{ 'general.newsletter_form.submit' | t }}</span>
+                      </button>
+                    </span>
+                  </div>
+                  {% if form.errors contains 'email' %}
+                    <span id="{{ formId }}-email-error" class="input-error-message">
+                      <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
+                      {% include 'icon-error' %}
+                      <span class="site-footer__newsletter-error">{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}.</span>
+                    </span>
+                  {% endif %}
+                {% endform %}
+              </div>
+          {%- endcase -%}
+        </div>
+      </div>
+    {%- endfor -%}
+    <!-- NEWSLETTER LOOP ENDS -->
+   
+    </div>
+    <!-- FOOTER ROW 1 ENDS -->
+
+    <!-- FOOTER ROW 2 STARTS -->
+    <div class="site-footer__content site-footer__content-row">
+      <div class="site-footer-item site-footer-copyright text-center">
+        <small class="site-footer__copyright-content">&copy; {{ 'now' | date: "%Y" }} {{ shop.name | link_to: routes.root_url }}</small>
+        {%- if section.settings.footer_copyright_text -%}
+          {%- if section.settings.footer_copyright_text != blank -%} 
+            <small class="rte">
+              {{ section.settings.footer_copyright_text }}
+            </small>
+          {%- endif -%}
+        {%- endif -%}
+      </div>
+    </div>
+    <!-- FOOTER ROW 2 ENDS -->
+
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "max_blocks": 3,
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "footer_copyright_text",
+      "label": "Footer Copyright Text",
+      "default": "<p>Terms and Conditions</p>"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image_picker",
+      "limit": 1,
+      "name": "Logo",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "footer_logo",
+          "label": "Footer Logo"
+        }
+      ]
+    },
+    {
+      "type": "link_list",
+      "limit": 1,
+      "name": "Menu",
+      "settings": [
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menu"
+        }
+      ]
+    },
+    {
+      "type": "newsletter",
+      "limit": 1,
+      "name": "Newsletter signup",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "info": "Subscribers will be added to your “accepts marketing” [customer list.](/admin/customers?query=&accepts_marketing=1)"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

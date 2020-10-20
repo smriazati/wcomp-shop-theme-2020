@@ -1,0 +1,32 @@
+@import '../settings/_settings.scss';
+
+.site-header__logo-image img {
+    max-width: 200px;
+    width: auto;
+}
+
+/* desktop menu layout */
+.site-header div {
+    display: flex; 
+    justify-content: center;
+}
+
+.site-header div > nav {
+    flex: 0 0 25%;
+}
+
+.site-header div > .site-header__logo {
+    flex: 1;
+}
+
+.site-header div nav ul {
+    display: flex; 
+    justify-content: space-between;
+    align-items: center;
+}
+
+.site-header__logo .site-header__logo-image {
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+}

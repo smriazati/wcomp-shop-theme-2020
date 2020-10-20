@@ -1,0 +1,37 @@
+<div class="page-width our-brands">
+    {% if section.settings.brand != blank %}
+        {{ section.settings.brand }}
+    {% endif %}
+    {% for block in section.blocks %}
+        {{ block.settings }}
+    {% endfor %}
+</div>
+
+
+
+{% schema %}
+{
+  "name": {
+    "en": "Our Brands"
+  },
+  "class": "index-section",
+  "blocks": [
+    {
+      "type": "image_pickre",
+      "name": "Brand",
+      "settings": [
+        { 
+            "type": "image_picker",
+            "id": "brand_logo",
+            "label": "Brand Logo"
+        },
+        { 
+            "type": "text",
+            "id": "brand_name",
+            "label": "Brand Name"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

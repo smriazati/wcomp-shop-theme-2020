@@ -1,0 +1,12 @@
+@import '../settings/_settings.scss';
+
+.site-footer__content-row {
+    display: flex;
+  }
+  .site-footer__content > div {
+    flex: 1
+  }
+  .site-footer__content > .site-footer__logo {
+    flex: 50%;
+  }
+  

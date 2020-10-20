@@ -1,0 +1,71 @@
+<div class="page-width rich-text">
+
+  {%- if section.settings.title -%}
+    {%- if section.settings.title != blank -%} 
+      {{ section.settings.title }}
+    {%- endif -%}
+  {%- endif -%}
+
+  {%- if section.settings.text -%}
+    {%- if section.settings.text != blank -%} 
+      {{ section.settings.text }}
+    {%- endif -%}
+  {%- endif -%}
+  
+  {%- if section.settings.list -%}
+    {%- if section.settings.list != blank -%} 
+      {{ section.settings.list }}
+    {%- endif -%}
+  {%- endif -%}
+
+
+</div>
+
+
+
+{% schema %}
+{
+  "name": "Featured List",
+  "class": "index-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text"
+    },
+    {
+      "type": "richtext",
+      "id": "list",
+      "label": "List"
+    },
+    {
+      "type": "select",
+      "id": "alignment",
+      "label": "List Alignment",
+      "options": [
+        {
+          "group": "Alignment Settings",
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "group": "Alignment Settings",
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "group": "Alignment Settings",
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center"
+   }
+  ]
+}
+{% endschema %}

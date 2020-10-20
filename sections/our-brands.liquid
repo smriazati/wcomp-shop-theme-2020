@@ -1,0 +1,89 @@
+<div class="page-width our-brands">
+    {% if section.settings.brand != blank %}
+        {{ section.settings.brand }}
+    {% endif %}
+    {% for block in section.blocks %}
+        {{ block.settings }}
+    {% endfor %}
+</div>
+
+
+
+{% schema %}
+{
+  "name": {
+    "en": "Our Brands"
+  },
+  "class": "index-section",
+  "blocks": [
+    {
+      "type": "text_block",
+      "name": "Brand",
+      "settings": [
+        { 
+            "type": "text",
+            "id": "brand-name",
+            "label": "Brand Name"
+        },
+        { 
+            "type": "text",
+            "id": "brand-tagline",
+            "label": "Brand Tagline"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": {
+        "cs": "Formát RTF",
+        "da": "RTF",
+        "de": "Rich Text",
+        "en": "Our Brands",
+        "es": "Texto enriquecido",
+        "fi": "Rich text",
+        "fr": "Texte enrichi",
+        "hi": "रिच टेक्स्ट",
+        "it": "Rich text",
+        "ja": "リッチテキスト",
+        "ko": "Rich text",
+        "nb": "Rich text",
+        "nl": "Tekst met opmaak",
+        "pl": "Tekst sformatowany",
+        "pt-BR": "Rich text",
+        "pt-PT": "Texto formatado",
+        "sv": "Rich text",
+        "th": "Rich Text",
+        "tr": "Zengin metin",
+        "vi": "Văn bản đa dạng thức",
+        "zh-CN": "富文本",
+        "zh-TW": "RTF 文字"
+      },
+      "category": {
+        "cs": "Text",
+        "da": "Tekst",
+        "de": "Text",
+        "en": "Text",
+        "es": "Texto",
+        "fi": "Teksti",
+        "fr": "Texte",
+        "hi": "टेक्स्ट",
+        "it": "Testo",
+        "ja": "テキスト",
+        "ko": "텍스트",
+        "nb": "Tekst",
+        "nl": "Tekst",
+        "pl": "Tekst",
+        "pt-BR": "Texto",
+        "pt-PT": "Texto",
+        "sv": "Text",
+        "th": "ข้อความ",
+        "tr": "Metin",
+        "vi": "Văn bản",
+        "zh-CN": "文本",
+        "zh-TW": "文字"
+      }
+    }
+  ]
+}
+{% endschema %}
