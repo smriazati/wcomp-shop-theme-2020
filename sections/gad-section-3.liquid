@@ -1,4 +1,4 @@
-<div class="page-width rich-text">
+<div class="page-width gad-section-3">
 
   {%- if section.settings.title -%}
     {%- if section.settings.title != blank -%} 
@@ -42,30 +42,7 @@
       "type": "richtext",
       "id": "list",
       "label": "List"
-    },
-    {
-      "type": "select",
-      "id": "alignment",
-      "label": "List Alignment",
-      "options": [
-        {
-          "group": "Alignment Settings",
-          "value": "left",
-          "label": "Left"
-        },
-        {
-          "group": "Alignment Settings",
-          "value": "center",
-          "label": "Center"
-        },
-        {
-          "group": "Alignment Settings",
-          "value": "right",
-          "label": "Right"
-        }
-      ],
-      "default": "center"
-   }
+    }
   ]
 }
 {% endschema %}

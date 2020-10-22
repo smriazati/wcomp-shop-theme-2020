@@ -1,0 +1,68 @@
+<div class="page-width co-section-1">
+  {% capture image_layout %}
+    <div class="image-wrapper">
+      {% if section.settings.image != blank %}
+        {% include 'image-feature-row', image: section.settings.image, height: 545, id: section.id %}
+      {% else %}
+        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+      {% endif %}
+    </div>
+  {% endcapture %}
+
+  <div class="feature-row">
+
+    {{ image_layout }}
+
+    <div class="text-wrapper">
+      {% if section.settings.text != blank %}
+        <div class="text">{{ section.settings.text }}</div>
+      {% endif %}
+      {% if section.settings.text_animated_1 != blank %}
+        <div class="text-animation">{{ section.settings.text_animated_1 }}</div>
+      {% endif %}
+      {% if section.settings.text_animated_2 != blank %}
+        <div class="text-animation">{{ section.settings.text_animated_2 }}</div>
+      {% endif %}
+      {% if section.settings.text_animated_3 != blank %}
+        <div class="text-animation">{{ section.settings.text_animated_3 }}</div>
+      {% endif %}
+    </div>
+
+  </div>
+</div>
+
+
+
+{% schema %}
+{
+  "name": "Banner",
+  "class": "index-section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text"
+    },
+    {
+     "type": "text",
+     "id": "text_animated_1",
+     "label": "Animated Text - Phrase 1"
+    },
+    {
+     "type": "text",
+     "id": "text_animated_2",
+     "label": "Animated Text - Phrase 2"
+    },
+    {
+     "type": "text",
+     "id": "text_animated_3",
+     "label": "Animated Text - Phrase 3"
+    }
+  ]
+}
+{% endschema %}

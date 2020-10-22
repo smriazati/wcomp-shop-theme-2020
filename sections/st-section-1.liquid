@@ -1,0 +1,52 @@
+<div class="page-width st-section-1">
+  {% capture image_layout %}
+    <div class="image-wrapper">
+      {% if section.settings.image != blank %}
+        {% include 'image-feature-row', image: section.settings.image, height: 545, id: section.id %}
+      {% else %}
+        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+      {% endif %}
+    </div>
+  {% endcapture %}
+
+  <div class="feature-row">
+
+    {{ image_layout }}
+
+    <div class="text-wrapper">
+      {% if section.settings.title != blank %}
+        <div class="title">{{ section.settings.title }}</div>
+      {% endif %}
+      {% if section.settings.text != blank %}
+        <div class="text">{{ section.settings.text }}</div>
+      {% endif %}
+    </div>
+
+  </div>
+</div>
+
+
+{% schema %}
+{
+  "name": "Banner",
+  "class": "index-section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Our Story"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text"
+    }
+  ]
+}
+{% endschema %}
