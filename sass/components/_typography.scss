@@ -1,0 +1,22 @@
+@import '../settings/_settings.scss';
+
+
+
+.site-nav nav {
+    li {
+        a, button {
+            color: $black;
+            &:hover {
+                color: $slate;
+            }
+        }
+    }
+}
+
+.site-footer {
+    background: $slate;
+    color: $white;
+    a {
+        color: $white;
+    }
+}

@@ -26,6 +26,28 @@
   <link rel="preload" href="{{ 'theme.js' | asset_url }}" as="script">
   <link rel="preload" href="{{ 'lazysizes.js' | asset_url }}" as="script">
 
+  {% comment %}
+    GSAP & ScrollTrigger
+    assets / gsapInit.js
+  {% endcomment %}
+  <!-- <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js" as="script">
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/CSSRulePlugin.min.js" as="script">
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/ScrollTrigger.min.js" as="script">
+  <link rel="preload" href="{{ 'gsapInit.js' | asset_url }}" as="script"> -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/CSSRulePlugin.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/ScrollTrigger.min.js"></script>
+
+
+  {% comment %}
+    barba.js
+  {% endcomment %}
+  <script src="https://unpkg.com/@barba/core"></script>
+
+
+
+
   {%- if canonical_url != blank  -%}
     <link rel="canonical" href="{{ canonical_url }}">
   {%- endif -%}
@@ -177,15 +199,18 @@
     {% include 'cart-popup' %}
   {%- endif -%}
 
+
   {% section 'header' %}
 
-  <div class="page-container drawer-page-content" id="PageContainer">
+    <div class="page-container drawer-page-content" id="PageContainer" data-barba="wrapper">
 
-    <main class="main-content js-focus-hidden" id="MainContent" role="main" tabindex="-1">
-      {{ content_for_layout }}
-    </main>
+      <main class="main-content js-focus-hidden" id="MainContent" role="main" tabindex="-1" data-barba="container">
+        {{ content_for_layout }}
+      </main>
+
 
     {% section 'footer' %}
+
 
     <div id="slideshow-info" class="visually-hidden" aria-hidden="true">
       {{- 'sections.slideshow.navigation_instructions' | t -}}
@@ -193,9 +218,59 @@
 
   </div>
 
+
   <ul hidden>
     <li id="a11y-refresh-page-message">{{ 'general.accessibility.refresh_page' | t }}</li>
     <li id="a11y-selection-message">{{ 'general.accessibility.selection_help' | t }}</li>
   </ul>
+
+
+  {% comment %}
+    home page bg color change
+  {% endcomment %}
+  {% if request.page_type == 'index' %}
+    <script src="{{ 'gsapBgColorChange.js' | asset_url }}"></script>
+  {% endif %}
+
+
+  {% comment %}
+    barba.js
+    assets / barbaInit.js
+  {% endcomment %}
+  {% if request.page_type != 'collection' and request.page_type != 'product' %}
+    <script src="{{ 'barbaInit.js' | asset_url }}"></script>
+    
+    <script>
+      function preventBarbaIntoShop() {
+        const eltest = document.querySelectorAll("a");
+        const els = document.querySelectorAll("a[href^='/collections/']");
+        console.log('preventing barba in shop... ', els);
+        els.forEach(el => el.classList.add('prevent'));
+      }
+      preventBarbaIntoShop();
+    </script>
+
+  {% endif %}
+
+  
+  {% comment %}
+    add prevent class to links w/ collections/ and product/ routes
+    change bg color on shop pages
+  {% endcomment %}
+  {% if request.page_type == 'collection' or request.page_type == 'product' %}
+
+    <script>
+      console.log('its a collection or product page');
+    </script>
+
+    <style>
+      body {
+        background: #a2a2a2;
+      }
+    </style>
+
+<!-- data-barba-prevent -->
+  {% endif %}
+
 </body>
 </html>

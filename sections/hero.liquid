@@ -23,13 +23,13 @@
          data-layout="{{ section.settings.hero_layout }}"
          data-image-loading-animation>
       {%- assign img_url = section.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+      {%- assign img_hover_url = section.settings.image_hover_swap | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
       {%- if section.settings.image.width < max_width -%}
         {%- assign slide_width = section.settings.image.width -%}
       {%- endif -%}
       <div class="hero-fixed-width__content">
         <div class="page-width text-center">
           {%- if section.settings.title != blank -%}
-            hi there! 
             <h2 class="h1 mega-title">{{ section.settings.title | escape }}</h2>
           {%- endif -%}
           {%- if section.settings.product_link_text != blank -%}
@@ -81,6 +81,10 @@
           {% endunless %}
          data-bg="{{ section.settings.image | img_url: '300x300' }}"
          data-bgset="{% include 'bgset', image: section.settings.image %}"
+         {%- if section.settings.image_hover_swap -%}
+         data-bg-base="{{ section.settings.image | img_url: '1920x1080' }}"
+         data-bg-swap="{{ section.settings.image_hover_swap | img_url: '1920x1080' }}"
+         {%- endif -%}
          data-sizes="auto"
          data-parent-fit="cover"
          style="background-position: {{ section.settings.alignment }};"
@@ -150,6 +154,12 @@
   {%- endif -%}
 </div>
 
+{% javascript %}
+
+imageHoverSwapper();
+
+{% endjavascript %}
+
 {% schema %}
 {
   "name":"Image with text overlay",
@@ -159,6 +169,11 @@
         "type":"image_picker",
         "id":"image",
         "label":"Image"
+     },
+     {
+      "type":"image_picker",
+      "id":"image_hover_swap",
+      "label":"Image Hover Swap"
      },
      {
         "type":"text",

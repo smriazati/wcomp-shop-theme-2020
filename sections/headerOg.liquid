@@ -1,9 +1,19 @@
+{% if section.settings.message %}
+  <style>
+    {% if section.settings.logo != blank %}
+      .site-header__logo-image {
+        max-width: {{ section.settings.logo_max_width | escape }}px;
+      }
+    {% endif %}
+  </style>
+{% endif %}
+
 {% include 'search-drawer' %}
 
 <div data-section-id="{{ section.id }}" data-section-type="header-section" data-header-section>
   {% if section.settings.message %}
     {% if section.settings.home_page_only == false or request.page_type == 'index' %}
-      <!-- <style>
+      <style>
         .announcement-bar {
           background-color: {{ section.settings.color_bg }};
         }
@@ -23,7 +33,7 @@
         .announcement-bar__message {
           color: {{ section.settings.color_text }};
         }
-      </style> -->
+      </style>
 
       <div class="announcement-bar" role="region" aria-label="{{ 'sections.header.announcement_bar_label' | t }}">
         {%- unless section.settings.message_link == blank -%}
@@ -40,24 +50,59 @@
 
 {% comment %} START HEADER {% endcomment %}
   <header class="site-header" role="banner">
-    <div class="site-logo">
-      {% if section.settings.logo != blank %}
-        {% include 'site-logo', logo: section.settings.logo %}
-        <h1 class="visually-hidden">w/ compliments</h1>
-      {% else %}
-        <h1 class="visually-hidden">w/ compliments</h1>
-      {% endif %}
-    </div>
-    <div class="site-nav">
-      <nav id="AccessibleNav" class="site-header__primary-links mobile-nav-wrapper" role="navigation">
-        <ul id="MobileNav">
-          {% include 'site-nav-noUL', linklist: section.settings.main_linklist %}
-          {% include 'site-nav-noUL', linklist: section.settings.shop_linklist %}
+    <div class="site-header__mobile-nav">
+
+      {% comment %} START MAIN NAV {% endcomment %}
+      <nav id="AccessibleNav" class="site-header__primary-links" role="navigation">
+        {% include 'site-nav', linklist: section.settings.main_linklist %}
+      </nav>
+      {% comment %} END MAIN NAV {% endcomment %}
+
+      {% comment %} START LOGO {% endcomment %}
+      <div class="site-header__logo">
+          {% if section.settings.logo %}
+            {%- assign img_url = section.settings.logo | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+            <a href="{{ routes.root_url }}" class="site-header__logo-image" data-image-loading-animation>
+              {% capture logo_alt %}{{ section.settings.logo.alt | default: shop.name }}{% endcapture %}
+              <img class="lazyload js"
+                   src="{{ section.settings.logo | img_url: '300x300' }}"
+                   data-src="{{ img_url }}"
+                   data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                   data-aspectratio="{{ section.settings.logo.aspect_ratio }}"
+                   data-sizes="auto"
+                   alt="{{ logo_alt | escape }}"
+                   style="max-width: {{ section.settings.logo_max_width }}px">
+              <noscript>
+                <img src="{{ section.settings.logo | img_url: image_size }}"
+                     srcset="{{ section.settings.logo | img_url: image_size }} 1x, {{ section.settings.logo | img_url: image_size, scale: 2 }} 2x"
+                     alt="{{ section.settings.logo.alt | default: shop.name }}"
+                     style="max-width: 200px;">
+              </noscript>
+            </a>
+          {% else %}
+            <a class="site-header__logo-link" href="{{ routes.root_url }}">{{ shop.name }}</a>
+          {% endif %}
+      </div>
+      {% comment %} END LOGO {% endcomment %}
+
+      <nav class="site-header__secondary-links" role="navigation">
+        <ul class="shop-nav list--inline">
           <li>
+            {% comment %} START SHOP LINK {% endcomment %}
+            <!-- <a href="/collections/all" class="site-header__icon">
+              Shop
+            </a> -->
+            {% include 'site-nav', linklist: section.settings.shop_linklist %}
+
+            {% comment %} END SHOP LINK {% endcomment %}
+          </li>
+          <li>
+            {% comment %} START SEARCH {% endcomment %}
             <button type="button" class="btn--link site-header__icon site-header__search-toggle js-drawer-open-top" data-predictive-search-open-drawer>
               Search
               <span class="icon__fallback-text">{{ 'layout.navigation.search' | t }}</span>
             </button>
+            {% comment %} END SEARCH {% endcomment %}
           </li>
           <li>
             {% comment %} START CART {% endcomment %}
@@ -73,16 +118,46 @@
           </li>
         </ul>
       </nav>
-    </div> <!-- / .site-nav -->
 
-    <div class="mobile-nav-btn">
-      <button type="button" class="btn--link site-header__icon site-header__menu js-mobile-nav-toggle mobile-nav--open" aria-controls="MobileNav"  aria-expanded="false" aria-label="{{ 'layout.navigation.menu' | t }}">
-        {% include 'icon-hamburger' %}
-        {% include 'icon-close' %}
-      </button>
+
+
+
+
+
+          {% unless linklists[section.settings.main_linklist] == blank %}
+            <button type="button" class="btn--link site-header__icon site-header__menu js-mobile-nav-toggle mobile-nav--open" aria-controls="MobileNav"  aria-expanded="false" aria-label="{{ 'layout.navigation.menu' | t }}">
+              {% include 'icon-hamburger' %}
+              {% include 'icon-close' %}
+            </button>
+          {% endunless %}
+        </div>
+
+      </div>
+
     </div>
 
+{% comment %} START MOBILE MENU {% endcomment %}
+<nav class="mobile-nav-wrapper medium-up--hide critical-hidden" role="navigation">
+  <ul id="MobileNav" class="mobile-nav">
+    {% for link in linklists[section.settings.main_linklist].links %}
+      {%- assign outerLoopIndex = forloop.index -%}
+
+      <li class="mobile-nav__item{% unless forloop.last %} border-bottom{% endunless %}">
+          <a href="{{ link.url }}"
+            class="mobile-nav__link{% if link.active %} mobile-nav__link--active{% endif %}"
+            {% if link.current %} aria-current="page"{% endif %}
+          >
+            <span class="mobile-nav__label">{{ link.title | escape }}</span>
+          </a>
+      </li>
+    {% endfor %}
+  </ul>
+</nav>
+{% comment %} START MOBILE MENU {% endcomment %}
+
   </header>
+
+{% comment %} END HEADER {% endcomment %}
 
 </div>
 

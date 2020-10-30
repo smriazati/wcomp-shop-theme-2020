@@ -1,0 +1,16 @@
+{%- capture ariaLabel -%}
+    {{- label -}}
+    {%- if link.type == 'frontpage_link' -%}
+    : {{ 'homepage.general.title' | t -}}
+    {%- elsif link.type == 'catalog_link' -%}
+    : {{ 'collections.catalog.title' | t -}}
+    {%- elsif link.object.title -%}
+    : {{ link.object.title -}}
+    {%- endif -%}
+{%- endcapture -%}
+
+<a href="{{ link }}"
+    class="btn"
+    aria-label="{{ ariaLabel }}">
+    {{- label | escape -}}
+</a>

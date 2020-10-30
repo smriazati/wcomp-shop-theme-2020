@@ -1,0 +1,8 @@
+@import '../settings/_settings.scss';
+
+.product-recommendations__inner {
+    .product-card__title,
+    .price--listing {
+        display: none;
+    }
+}

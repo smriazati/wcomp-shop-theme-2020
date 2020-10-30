@@ -1,32 +1,129 @@
 @import '../settings/_settings.scss';
 
-.site-header__logo-image img {
-    max-width: 200px;
-    width: auto;
+$nav-height: 100px;
+
+@mixin responsiveHeaderGrid($logoWidth) {
+    // hide mobile btn
+    .mobile-nav-btn {
+        display: none;
+    }
+
+    // disable mobile-nav-wrapper js 
+    .site-header__primary-links.mobile-nav-wrapper {
+        display: block;
+        transform: none !important;
+        overflow: visible;
+    }
+
+    // dropdowns
+    .site-nav--has-dropdown {
+        position: relative;
+        .site-nav__dropdown {
+            position: absolute;
+        }
+    }
+
+    header.site-header {
+        max-width: $site-width;
+        display: grid;
+        grid-template-columns: 1fr $logoWidth 1fr;
+        padding: 0;
+        max-width: $site-width;
+        grid-template-rows: $nav-height;
+    
+        .site-logo {
+            position: relative;
+            z-index: 100;
+            grid-column-start: 2;
+            grid-column-end: 3;
+            grid-row-start: 1;
+            grid-row-end: 2;
+            place-self: center;
+        }
+    
+        .site-nav {
+            margin: 0;
+            grid-column-start: 1;
+            grid-column-end: 4;
+            grid-row-start: 1;
+            grid-row-end: 2;   
+        }
+    
+        .site-nav nav > ul {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr $logoWidth 1fr 1fr 1fr;
+            grid-template-rows: $nav-height;
+            > li {
+                width: 100%;
+                text-align: center;
+                place-self: center;
+                &:nth-child(4) {
+                    grid-column-start: 5;
+                    grid-column-end: 6;
+                }
+
+                a, button {
+                    width: 100%;
+                    text-align: center;
+                }
+            }
+        }
+    }
+
+    .site-logo img {
+        max-width: $logoWidth;
+    }
 }
 
-/* desktop menu layout */
-.site-header div {
-    display: flex; 
-    justify-content: center;
+// responsive header grids
+
+@media (min-width: $bp-lg) {
+    @include responsiveHeaderGrid($logo-width-lg);
 }
 
-.site-header div > nav {
-    flex: 0 0 25%;
+@media (min-width: $bp-sm) and (max-width: $bp-lg) {
+    @include responsiveHeaderGrid($logo-width-md);
 }
 
-.site-header div > .site-header__logo {
-    flex: 1;
+// mobile nav
+
+@media (max-width: $bp-sm) {
+    .site-header {
+        position: relative;
+        border: none;
+    }
+    .mobile-nav-btn {
+        display: block;
+        position: absolute;
+        top: $spacer;
+        right: $spacer;
+    }
+    .site-logo {
+        max-width: 200px;
+    }
+    .site-nav {
+        margin: 0;
+    }
+    .site-nav nav ul {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        > * {
+            padding: $spacer;
+        }
+    }
 }
 
-.site-header div nav ul {
-    display: flex; 
-    justify-content: space-between;
-    align-items: center;
+
+
+
+
+/* fixes for shopify */
+
+.site-header__icon {
+    padding: 3px 10px;
 }
 
-.site-header__logo .site-header__logo-image {
-    display: flex; 
-    justify-content: center;
-    align-items: center;
+.site-nav__link .icon-chevron-down {
+    display: none;
 }

@@ -1,12 +1,79 @@
 @import '../settings/_settings.scss';
 
+// general footer  layout 
+
 .site-footer__content-row {
+  display: flex;
+}
+.site-footer__content > div {
+  flex: 1
+}
+.site-footer__content > .site-footer__logo {
+  flex: 50%;
+}
+
+
+.site-footer__item {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+.site-footer__social-icons {
+  padding: 0;
+}
+
+.site-footer__linklist,                   
+.site-footer__social-icons {
+  li {
     display: flex;
+    padding: 0;
+    a {
+      padding: $spacer/2 $spacer;
+    }
   }
-  .site-footer__content > div {
-    flex: 1
+}
+
+.site-footer-copyright {
+  display: flex;
+  justify-content: center;
+  > *:first-child {
+    padding-right: $spacer/2;
   }
-  .site-footer__content > .site-footer__logo {
-    flex: 50%;
+}
+
+// newsletter form
+
+.site-footer form {
+  .input-group {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    .input-group__field[type="email"],
+    .btn {
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid $white;
+    }
+    .input-group__field[type="email"] {
+      flex: 80%;
+      padding: 0;
+    }
+    .input-group__btn {
+      flex: 20%;
+    }
   }
-  
+  button[type="submit"] {
+    span {
+      display: none;
+    }
+    &:after {
+      content: '>';
+      width: 100%;
+    }
+  }
+}
+
+::placeholder {
+  color: $white;
+}

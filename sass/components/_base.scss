@@ -19,4 +19,13 @@ a {
   }
 }
 
+.page-container {
+  transform: none;
+}
   
+@media (max-width: $bp-sm) {
+  .image-wrapper {
+    flex: 1 0 400px;
+    width: 100%;
+  }
+}

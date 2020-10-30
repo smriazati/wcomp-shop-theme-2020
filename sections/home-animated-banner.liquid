@@ -1,0 +1,91 @@
+<div data-section-id="{{ section.id }}" class="animationWrapper">
+
+  <div class="text-banner">
+    {% if section.settings.section_title != blank %}
+      <div class="text-center">
+        <h2 class="h3">{{ section.settings.section_title | escape }}</h2>
+      </div>
+    {% endif %}
+    {% if section.settings.text != blank %}
+      <p class="text-center">{{ section.settings.text }}</p>
+    {% endif %}
+  </div>
+
+  <div class="our-brands">
+    <ul>
+      {% for block in section.blocks %}
+      <li>
+        <h3>{{ block.settings.brand_name }}<h3>
+          <h4>{{ block.settings.brand_tagline }}<h4>
+          </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+
+</div>
+
+{% schema %}
+{
+  "name": "Animated Banner",
+  "class": "index-section animated-banner gsap-bg-color-change",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text_block",
+      "name": "Brand",
+      "settings": [
+        { 
+            "type": "text",
+            "id": "brand_name",
+            "label": "Brand Name"
+        },
+        { 
+            "type": "select",
+            "id": "brand_tagline",
+            "label": "Brand Tagline",
+            "options": [
+              {
+                "group": "tagline",
+                "value": "Handmade",
+                "label": "Handmade"
+              },
+              {
+                "group": "tagline",
+                "value": "USA-Made",
+                "label": "USA-Made"
+              },
+              {
+                "group": "tagline",
+                "value": "Sustainable",
+                "label": "Sustainable"
+              },
+              {
+                "group": "tagline",
+                "value": "women_owned",
+                "label": "Women-Owned"
+              }
+            ]
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Animated Banner",
+      "category": "Text"
+    }
+  ]
+}
+{% endschema %}

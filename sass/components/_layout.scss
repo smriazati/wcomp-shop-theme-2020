@@ -1,3 +1,63 @@
 @import '../settings/_settings.scss';
 
 
+
+.page-width {
+  *zoom: 1;
+}
+
+/* overall page layout */
+
+body {
+  min-height: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  > * {
+    flex: 1;
+  }
+}
+
+body {
+  > * {
+    display: none;
+  }
+  > #shopify-section-header,
+  > #PageContainer,
+  > .shopify-section {
+    display: block;
+  }
+}
+
+#PageContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* section layouts */
+.feature-row {
+    @media (min-width: $bp-sm) {
+        .image-wrapper {
+            flex: 0 1 50%;
+        }
+    }
+}
+
+
+/* home page */
+
+.index-section {
+  &.animated-banner {
+    .animationWrapper {
+      display: flex;
+      flex-direction: column;
+      > * {
+        padding: 15vh 0;
+      }
+    }
+  }
+}
+
+

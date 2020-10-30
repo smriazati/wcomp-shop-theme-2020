@@ -1,0 +1,17 @@
+@import '../settings/_settings.scss';
+
+
+.gsap-bg-color-change {
+    .animationWrapper {
+        display: flex;
+        flex-direction: column;
+        > * {
+          padding: 15vh 0;
+        }
+        & * {
+          transition: none;
+          color: inherit;
+        }
+    }
+}
+

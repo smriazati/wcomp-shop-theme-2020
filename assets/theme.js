@@ -3105,7 +3105,8 @@ theme.MobileNav = (function() {
   }
 
   function openMobileNav() {
-    var translateHeaderHeight = cache.siteHeader.offsetHeight;
+    // var translateHeaderHeight = cache.siteHeader.offsetHeight;
+    var translateHeaderHeight = 0;
 
     theme.Helpers.prepareTransition(cache.mobileNavContainer);
     cache.mobileNavContainer.classList.add(classes.navOpen);
@@ -9166,7 +9167,7 @@ theme.FooterSection = (function() {
 
 document.addEventListener('DOMContentLoaded', function() {
   var sections = new theme.Sections();
-
+  // console.log(sections);
   sections.register('cart-template', theme.Cart);
   sections.register('product', theme.Product);
   sections.register('collection-template', theme.Filters);
@@ -9318,5 +9319,33 @@ function removeImageLoadingAnimation(image) {
 
   if (imageWrapper) {
     imageWrapper.removeAttribute('data-image-loading-animation');
+  }
+}
+
+/* 
+Extend image_hover_swap to other sections:
+1. add image_hover_swap setting to section schema
+2. update image div to include data-bg-hover-swap = <section class="settings image_hover_swap
+3. use the script below, update imgBase to grab url to the original image (background-image or src)
+4. voila! 
+*/
+
+function imageHoverSwapper() {
+  const ref = document.querySelector('div[data-bg-swap]');
+  if (ref) {
+    const imgHoverSwap = ref.dataset.bgSwap; 
+    const imgBase = ref.dataset.bgBase; 
+    console.log('hi images', imgBase, imgHoverSwap);
+  
+    if (ref && imgHoverSwap) {
+      ref.addEventListener("mouseenter", function( event ) {   
+        ref.style.backgroundImage = `url("${imgHoverSwap}")`;
+        console.log('its starting! changing bg to ', imgHoverSwap);  
+      }, false);  
+      ref.addEventListener("mouseleave", function( event ) {   
+        ref.style.backgroundImage = `url("${imgBase}")`;
+        console.log('its starting! changing bg to ', imgBase);  
+      }, false);  
+    }
   }
 }

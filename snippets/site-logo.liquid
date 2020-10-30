@@ -1,0 +1,24 @@
+<div class="site-header__logo">
+    {% if logo %}
+      {%- assign img_url = logo | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+      <a href="{{ routes.root_url }}" class="site-header__logo-image" data-image-loading-animation>
+        {% capture logo_alt %}{{ logo.alt | default: shop.name }}{% endcapture %}
+        <img class="lazyload js"
+             src="{{ logo | img_url: '300x300' }}"
+             data-src="{{ img_url }}"
+             data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+             data-aspectratio="{{ logo.aspect_ratio }}"
+             data-sizes="auto"
+             alt="{{ logo_alt | escape }}"
+             style="max-width: {{ logo_max_width }}px">
+        <noscript>
+          <img src="{{ logo | img_url: image_size }}"
+               srcset="{{ logo | img_url: image_size }} 1x, {{ logo | img_url: image_size, scale: 2 }} 2x"
+               alt="{{ logo.alt | default: shop.name }}"
+               style="max-width: 200px;">
+        </noscript>
+      </a>
+    {% else %}
+      <a class="site-header__logo-link" href="{{ routes.root_url }}">{{ shop.name }}</a>
+    {% endif %}
+</div>
