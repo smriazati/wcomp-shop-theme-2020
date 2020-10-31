@@ -8,6 +8,23 @@
     "theme_support_url": "https:\/\/support.shopify.com\/"
   },
   {
+    "name": "Product Pages",
+    "settings":[
+      {
+        "type":      "text",
+        "id":        "product_cta_text",
+        "label":     "Product Page Call-to-Action Text",
+        "info":      "This will appear as a call-to-action link on all product pages."
+      },
+      {
+        "type":      "url",
+        "id":        "product_cta_url",
+        "label":     "Product Page Call-to-Action URL",
+        "info":      "This will appear as a call-to-action link on all product pages."
+      }
+    ]
+  },
+  {
     "name": {
       "cs": "Barvy",
       "da": "Farver",
