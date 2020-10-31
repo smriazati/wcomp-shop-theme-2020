@@ -32,8 +32,11 @@
           {%- if section.settings.title != blank -%}
             <h2 class="h1 mega-title">{{ section.settings.title | escape }}</h2>
           {%- endif -%}
+          {%- if section.settings.description != blank -%}
+            <div class="rte-setting mega-subtitle">{{ section.settings.description }}</div>
+          {%- endif -%}
           {%- if section.settings.product_link_text != blank -%}
-            <div class="rte-setting mega-subtitle">{{ section.settings.product_link_text }}</div>
+            <div class="rte-setting">{{ section.settings.product_link_text }}</div>
           {%- endif -%}
           {%- if section.settings.button_1_text != blank and section.settings.button_1_link != blank -%}
             <a href="{{ section.settings.button_1_link }}" class="btn hero__btn">
@@ -100,10 +103,12 @@
           {%- if section.settings.title != blank -%}
             <h2 class="h1 mega-title">{{ section.settings.title | escape }}</h2>
           {%- endif -%}
+          {%- if section.settings.description != blank -%}
+            <div class="rte-setting mega-subtitle">{{ section.settings.description }}</div>
+          {%- endif -%}
           {%- if section.settings.product_link_text != blank -%}
             <div class="rte-setting mega-subtitle">{{ section.settings.product_link_text }}</div>
           {%- endif -%}
-          
           {%- if section.settings.button_1_text != blank and section.settings.button_1_link != blank -%}
             {%- capture ariaLabel -%}
               {{- section.settings.button_1_text -}}
@@ -180,6 +185,11 @@ imageHoverSwapper();
         "id":"title",
         "label":"Headline",
         "default":"Elevated goods curated just for you"
+      },
+      {
+        "type":"richtext",
+        "id":"description",
+        "label":"Description"
       },
       {
         "type": "text",
