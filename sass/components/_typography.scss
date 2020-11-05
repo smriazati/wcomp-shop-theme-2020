@@ -1,5 +1,9 @@
 @import '../settings/_settings.scss';
 
+body {
+    @include bodyFontStyle;
+}
+
 
 
 .site-nav nav {
@@ -19,4 +23,59 @@
     a {
         color: $white;
     }
+}
+
+h1, h2, h3, h4 {
+    margin: 0;
+}
+
+h1,
+.h1 {
+    @include h1Style();
+}
+
+h2,
+.h2 {
+    @include h2Style();
+}
+
+h3,
+.h3 {
+    @include h3Style();
+}
+
+h4,
+.h4 {
+    @include h4Style();
+}
+
+ul,
+ol,
+p {
+    @include pStyle();
+}
+
+.rte {
+    h1, h2, h3, h4 {
+        font-weight: 400;
+    }
+}
+
+.site-nav {
+    nav ul li {
+        a, 
+        button,
+        button span {
+            text-decoration: none;
+            @include baseSofia;
+            font-size: 16px;
+            &:hover {
+                color: $gray;
+            }
+        }
+    } 
+}
+
+.search-bar__input { 
+    @include h3Style($black);
 }

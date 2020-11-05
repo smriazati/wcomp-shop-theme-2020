@@ -1,29 +1,6 @@
-{% include 'search-drawer' %}
-
 <div data-section-id="{{ section.id }}" data-section-type="header-section" data-header-section>
   {% if section.settings.message %}
     {% if section.settings.home_page_only == false or request.page_type == 'index' %}
-      <!-- <style>
-        .announcement-bar {
-          background-color: {{ section.settings.color_bg }};
-        }
-
-        .announcement-bar__link:hover {
-          {% assign brightness = section.settings.color_bg | color_brightness %}
-
-          {% if brightness <= 192 %}
-            {% assign lightenAmount = 255 | minus: brightness | divided_by: 255 | times: 16 %}
-            background-color: {{ section.settings.color_bg | color_lighten: lightenAmount }};
-          {% else %}
-            {% assign darkenAmount = 255 | divided_by: brightness | times: 8 %}
-            background-color: {{ section.settings.color_bg | color_darken: darkenAmount }};
-          {% endif %}
-        }
-
-        .announcement-bar__message {
-          color: {{ section.settings.color_text }};
-        }
-      </style> -->
 
       <div class="announcement-bar" role="region" aria-label="{{ 'sections.header.announcement_bar_label' | t }}">
         {%- unless section.settings.message_link == blank -%}
@@ -56,14 +33,12 @@
           <li>
             <button type="button" class="btn--link site-header__icon site-header__search-toggle js-drawer-open-top" data-predictive-search-open-drawer>
               Search
-              <span class="icon__fallback-text">{{ 'layout.navigation.search' | t }}</span>
             </button>
           </li>
           <li>
             {% comment %} START CART {% endcomment %}
             <a href="{{ routes.cart_url }}" class="site-header__icon site-header__cart">
               Cart
-              <span class="icon__fallback-text">{{ 'layout.cart.title' | t }}</span>
               <div id="CartCount" class="site-header__cart-count{% if cart.item_count == 0 %} hide{% endif %} critical-hidden" data-cart-count-bubble>
                 <span data-cart-count>{{ cart.item_count }}</span>
                 <span class="icon__fallback-text medium-up--hide">{{ 'layout.cart.items_count' | t: count: cart.item_count }}</span>
@@ -75,6 +50,9 @@
       </nav>
     </div> <!-- / .site-nav -->
 
+    {% include 'search-drawer' %}
+
+    
     <div class="mobile-nav-btn">
       <button type="button" class="btn--link site-header__icon site-header__menu js-mobile-nav-toggle mobile-nav--open" aria-controls="MobileNav"  aria-expanded="false" aria-label="{{ 'layout.navigation.menu' | t }}">
         {% include 'icon-hamburger' %}
@@ -82,7 +60,10 @@
       </button>
     </div>
 
+
   </header>
+
+
 
 </div>
 
@@ -382,64 +363,6 @@
         "zh-CN": "可选",
         "zh-TW": "(選填)"
       }
-    },
-    {
-      "type": "color",
-      "id": "color_bg",
-      "label": {
-        "cs": "Panel",
-        "da": "Bjælke",
-        "de": "Zeile",
-        "en": "Bar",
-        "es": "Barra",
-        "fi": "Palkki",
-        "fr": "Barre",
-        "hi": "बार",
-        "it": "Barra",
-        "ja": "バー",
-        "ko": "바",
-        "nb": "Felt",
-        "nl": "Balk",
-        "pl": "Pasek",
-        "pt-BR": "Barra",
-        "pt-PT": "Barra",
-        "sv": "Fält",
-        "th": "แถบ",
-        "tr": "Çubuk",
-        "vi": "Thanh",
-        "zh-CN": "栏",
-        "zh-TW": "橫條"
-      },
-      "default": "#3a3a3a"
-    },
-    {
-      "type": "color",
-      "id": "color_text",
-      "label": {
-        "cs": "Text",
-        "da": "Tekst",
-        "de": "Text",
-        "en": "Text",
-        "es": "Texto",
-        "fi": "Teksti",
-        "fr": "Texte",
-        "hi": "टेक्स्ट",
-        "it": "Testo",
-        "ja": "テキスト",
-        "ko": "텍스트",
-        "nb": "Tekst",
-        "nl": "Tekst",
-        "pl": "Tekst",
-        "pt-BR": "Texto",
-        "pt-PT": "Texto",
-        "sv": "Text",
-        "th": "ข้อความ",
-        "tr": "Metin",
-        "vi": "Văn bản",
-        "zh-CN": "文本",
-        "zh-TW": "文字"
-      },
-      "default": "#ffffff"
     }
   ]
 }

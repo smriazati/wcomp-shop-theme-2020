@@ -1,17 +1,14 @@
-<div class="page-width gad-section-1">
-  {% capture image_layout %}
-    <div class="image-wrapper">
-      {% if section.settings.image != blank %}
-        {% include 'image-feature-row', image: section.settings.image, height: 545, id: section.id %}
-      {% else %}
-        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-      {% endif %}
-    </div>
-  {% endcapture %}
+{% capture image_layout %}
+  <div class="image-wrapper">
+    {% if section.settings.image != blank %}
+      {% include 'image-feature-row', image: section.settings.image, height: 545, id: section.id %}
+    {% else %}
+      {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+    {% endif %}
+  </div>
+{% endcapture %}
 
-  <div class="feature-row">
-
-    {{ image_layout }}
+<div class="feature-row gad-section-1">
 
     <div class="text-wrapper">
       {% if section.settings.title != blank %}
@@ -22,7 +19,8 @@
       {% endif %}
     </div>
 
-  </div>
+    {{ image_layout }}
+
 </div>
 
 
@@ -30,7 +28,7 @@
 {% schema %}
 {
   "name": "Banner",
-  "class": "index-section",
+  "class": "gad-section",
   "settings": [
     {
       "type": "image_picker",

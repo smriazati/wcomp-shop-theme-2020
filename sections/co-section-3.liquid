@@ -1,10 +1,20 @@
 <div class="page-width co-section-3">
+  {% if section.settings.headline != blank %}
+    <h2 class="title">{{ section.settings.headline }}</h2>
+  {% endif %}
     {% if section.settings.brand != blank %}
         {{ section.settings.brand }}
     {% endif %}
-    {% for block in section.blocks %}
-        {{ block.settings }}
-    {% endfor %}
+    <div class="logo-grid">
+      {% for block in section.blocks %}
+      <!-- {{ block.settings.brand_logo }} -->
+      {% if block.settings.brand_logo != blank %}
+        <div class="image-wrapper">
+          {% include 'image-plain', image: block.settings.brand_logo, height: 150, id: section.id %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
 </div>
 
 
@@ -12,7 +22,16 @@
 {% schema %}
 {
   "name": "Companies",
-  "class": "index-section",
+  "class": "corporate-section",
+  "max_blocks": 6,
+  "settings": [
+      { 
+        "type": "text",
+        "id": "headline",
+        "label": "Headline",
+        "default": "Who We've Worked With"
+    }
+  ],
   "blocks": [
     {
       "type": "image_pickre",

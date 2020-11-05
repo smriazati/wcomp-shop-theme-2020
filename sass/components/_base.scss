@@ -1,6 +1,22 @@
 @import '../settings/_settings.scss';
 
 
+// theme overrides
+.mobile-nav-wrapper::after {
+  border: none;
+}
+
+button {
+  background-color: transparent;
+  border: 0;
+  &:active,
+  &:focus {
+    border: 0;
+    outline: 0;
+  }
+}
+
+
 * {
   box-sizing: border-box;
   max-width: 100%;
@@ -8,6 +24,11 @@
 }
 
 body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  width: 100vw;
+  overflow-x: hidden;
   background: $bgColor;
   color: $textColor;
 }
@@ -29,3 +50,19 @@ a {
     width: 100%;
   }
 }
+
+main {
+  button,
+  .btn {
+    @include buttonBordered;
+  }
+  
+  .btn-text-link {
+    @include buttonTextLink;
+  }
+
+  .underlined-link {
+    text-decoration: underline;
+  }
+}
+

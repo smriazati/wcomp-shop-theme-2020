@@ -1,23 +1,28 @@
-<div class="page-width gad-section-3">
+<div class="featured-list gad-section-3">
 
-  {%- if section.settings.title -%}
-    {%- if section.settings.title != blank -%} 
-      {{ section.settings.title }}
+  <div class="text-wrapper">
+    {%- if section.settings.title -%}
+      {%- if section.settings.title != blank -%} 
+        <h2>{{ section.settings.title }}</h2>
+      {%- endif -%}
     {%- endif -%}
-  {%- endif -%}
 
-  {%- if section.settings.text -%}
-    {%- if section.settings.text != blank -%} 
-      {{ section.settings.text }}
+    {%- if section.settings.text -%}
+      {%- if section.settings.text != blank -%} 
+       <div class="description">
+        {{ section.settings.text }}
+       </div>
+      {%- endif -%}
     {%- endif -%}
-  {%- endif -%}
-  
-  {%- if section.settings.list -%}
-    {%- if section.settings.list != blank -%} 
-      {{ section.settings.list }}
+    
+    {%- if section.settings.list -%}
+      {%- if section.settings.list != blank -%} 
+        <div class="list">
+          {{ section.settings.list }}
+        </div>
+      {%- endif -%}
     {%- endif -%}
-  {%- endif -%}
-
+  </div>
 
 </div>
 
@@ -26,7 +31,7 @@
 {% schema %}
 {
   "name": "Featured List",
-  "class": "index-section",
+  "class": "gad-section",
   "settings": [
     {
       "type": "text",

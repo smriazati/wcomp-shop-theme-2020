@@ -1,15 +1,15 @@
-<div class="page-width co-section-6">
-  {% capture image_layout %}
-    <div class="image-wrapper">
-      {% if section.settings.image != blank %}
-        {% include 'image-feature-row', image: section.settings.image, height: 545, id: section.id %}
-      {% else %}
-        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-      {% endif %}
-    </div>
-  {% endcapture %}
+{% capture image_layout %}
+<div class="image-wrapper">
+  {% if section.settings.image != blank %}
+    {% include 'image-feature-row', image: section.settings.image, height: 545, id: section.id %}
+  {% else %}
+    {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+  {% endif %}
+</div>
+{% endcapture %}
 
-  <div class="feature-row">
+
+<div class="feature-row co-section-6">
 
     {{ image_layout }}
 
@@ -20,28 +20,27 @@
       {% if section.settings.text != blank %}
         <div class="text">{{ section.settings.text }}</div>
       {% endif %}
-      
       {% if section.settings.button_label != blank and section.settings.button_link != blank %}
-        {%- capture ariaLabel -%}
+      {%- capture ariaLabel -%}
           {{- section.settings.button_label -}}
           {%- if section.settings.button_link.type == 'frontpage_link' -%}
-            : {{ 'homepage.general.title' | t -}}
+          : {{ 'homepage.general.title' | t -}}
           {%- elsif section.settings.button_link.type == 'catalog_link' -%}
-            : {{ 'collections.catalog.title' | t -}}
+          : {{ 'collections.catalog.title' | t -}}
           {%- elsif section.settings.button_link.object.title -%}
-            : {{ section.settings.button_link.object.title -}}
+          : {{ section.settings.button_link.object.title -}}
           {%- endif -%}
-        {%- endcapture -%}
+      {%- endcapture -%}
 
-        <a href="{{ section.settings.button_link }}"
-          class="btn"
+      <a href="{{ section.settings.button_link }}"
+          class="underline-link"
           aria-label="{{ ariaLabel }}">
           {{- section.settings.button_label | escape -}}
-        </a>
+      </a>
+      
       {% endif %}
     </div>
-
-  </div>
+    
 </div>
 
 
@@ -49,7 +48,7 @@
 {% schema %}
 {
   "name": "Image + Text",
-  "class": "index-section",
+  "class": "corporate-section",
   "settings": [
     {
       "type": "image_picker",
@@ -60,7 +59,7 @@
       "type": "text",
       "id": "title",
       "label": "Heading",
-      "default": "Our Story"
+      "default": "Get Started"
     },
     {
       "type": "richtext",

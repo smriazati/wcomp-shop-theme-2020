@@ -1,9 +1,10 @@
 @import '../settings/_settings.scss';
 
 
-
+/* resets from theme */
 .page-width {
   *zoom: 1;
+  padding: 0;
 }
 
 /* overall page layout */
@@ -58,6 +59,84 @@ body {
       }
     }
   }
+}
+
+
+/* site grid */
+
+.page-width {
+  width: 100%;
+  @media (min-width: $site-width) {
+    width: $site-width;
+    margin: 0 auto;
+  }
+
+
+  
+}
+
+/* home page */
+@mixin basicGrid() {
+  @media (min-width: $grid-width) {
+    width: $grid-width;
+    max-width: $grid-width;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(6, $col-width);
+    grid-template-rows: 1fr;  
+  }
+}
+
+.grid-container {
+  @include basicGrid;
+}
+
+/* home page */
+
+.index-section + .index-section {
+  margin-top: $section-margin;
+}
+
+// hero
+.hero__inner {
+  width: 100%;
+  max-width: $grid-width;
+  padding: 0 $col-gutter;
+  margin: 0 auto;
+}
+
+// feature row 1
+#shopify-section-hero-1 + div {
+  .grid-container {
+    .feature-row__text {
+      grid-column: 2 / span 2;
+      width: 50%;
+      margin: 0 auto;
+      .h3 {
+        @include capsSofia;
+        font-size: 15px;
+      }
+      p {
+        @include pSmallStyle();
+      }
+    }
+    .image-wrapper {
+      grid-column: 5 / 7;
+    }
+  }
+}
+
+
+
+
+
+
+
+/* basic page template */
+
+.page-content {
+  max-width: 60ch;
+  margin: 0 auto;
 }
 
 

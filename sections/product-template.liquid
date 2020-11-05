@@ -267,13 +267,20 @@
           {% include 'social-sharing', share_title: product.title, share_permalink: product.url, share_image: product.featured_media %}
         {% endif %}
 
-        {% if settings.product_cta_text %}
-          {% if settings.product_cta_url %}
-            <a href="{{ settings.product_cta_url }}">{{ settings.product_cta_text }}</a>
-          {% else %}
-            {{ settings.product_cta_text }}
-          {% endif %}
-        {% endif %}
+        {% for tag in product.tags %}
+          {% unless tag contains 'theme-hide-product-cta' %}
+            {% if settings.product_cta_text %}
+              {% if settings.product_cta_url %}
+                <a href="{{ settings.product_cta_url }}">{{ settings.product_cta_text }}</a>
+              {% else %}
+                {{ settings.product_cta_text }}
+              {% endif %}
+            {% endif %}
+          {% endunless %}
+        {% endfor %}
+
+
+
     </div>
   </div>
 </div>

@@ -1,6 +1,6 @@
-<div class="page-width co-section-4" data-section-id="{{ section.id }}" data-section-type="quotes">
+<div class="quotes co-section-4" data-section-id="{{ section.id }}" data-section-type="quotes">
   {% if section.settings.title != blank %}
-    <div class="section-header text-center">
+    <div class="section-header">
       <h2>{{ section.settings.title | escape }}</h2>
     </div>
   {% endif %}
@@ -9,6 +9,7 @@
     <div class="quotes-wrapper" data-slider>
       <div class="quotes-slider-wrapper" data-slider-container>
         <div class="quotes-slider" id="Quotes-{{ section.id }}" data-count="{{ section.blocks.size }}" data-slider-track>
+
           {% for block in section.blocks %}
             <div id="slickSlide{{ block.id }}"
               class="quotes-slide quotes-slide--{{ block.id }}{% if section.blocks.size == 1 %} quotes-slide--single{% endif %}"
@@ -17,8 +18,7 @@
               data-slider-slide-index="{{ forloop.index0 }}"
               data-slider-item>
 
-              <blockquote class="quotes-slider__text text-center">
-                <span class="quote-icon">{% include 'icon-quote' %}</span>
+              <blockquote class="quotes-slider__text">
                 {% if block.settings.quote != blank %}
                   <div class="rte-setting rte">{{ block.settings.quote }}</div>
                 {% endif %}
@@ -30,19 +30,6 @@
           {% endfor %}
         </div>
       </div>
-
-      {% if section.blocks.size > 1 %}
-        <ul class="slick-dots{% if section.blocks.size < 4 %} slick-dots--mobile-only{% endif %}" data-slider-indicators>
-          {%- for block in section.blocks -%}
-            <li{% if forloop.first %} class="slick-active"{% endif %} data-slider-indicator>
-              <button id="slickDot{{ block.id }}"
-                aria-label="{{ 'sections.slideshow.load_slide' | t: slide_number: forloop.index }}"
-                data-slide-number="{{ forloop.index0 }}"
-                aria-controls="slickSlide{{ block.id }}"></button>
-            </li>
-          {%- endfor -%}
-        </ul>
-      {% endif %}
     </div>
   {% endif %}
 
@@ -56,7 +43,7 @@
 {% schema %}
 {
   "name": "Kind Words",
-  "class": "index-section",
+  "class": "corporate-section",
   "max_blocks": 6,
   "settings": [
     {

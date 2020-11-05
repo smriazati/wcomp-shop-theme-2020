@@ -1,25 +1,20 @@
-<div class="page-width co-section-2">
-  {% capture image_layout %}
-    <div class="image-wrapper">
-      {% if section.settings.image != blank %}
-        {% include 'image-feature-row', image: section.settings.image, height: 545, id: section.id %}
-      {% else %}
-        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-      {% endif %}
-    </div>
-  {% endcapture %}
+{% capture image_layout %}
+<div class="image-wrapper">
+  {% if section.settings.image != blank %}
+    {% include 'image-feature-row', image: section.settings.image, height: 545, id: section.id %}
+  {% else %}
+    {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+  {% endif %}
+</div>
+{% endcapture %}
 
-  <div class="feature-row">
-
-    <div class="text-wrapper">}
+<div class="feature-row co-section-2">
+    <div class="text-wrapper">
       {% if section.settings.text != blank %}
         <div class="text">{{ section.settings.text }}</div>
       {% endif %}
     </div>
-
     {{ image_layout }}
-
-  </div>
 </div>
 
   
@@ -28,7 +23,7 @@
   {% schema %}
   {
     "name": "Text + Image",
-    "class": "index-section",
+    "class": "corporate-section",
     "settings": [
       {
         "type": "image_picker",

@@ -1,0 +1,391 @@
+@import '../settings/_settings.scss';
+
+
+
+/* general feature rows */
+
+.shopify-section {
+    .feature-row {
+        @include basicGrid;
+        .text-wrapper {
+            p {
+                @include pSmallStyle;
+            }
+            .title {
+                @include h1Style;
+            }
+        }
+    }
+}
+
+/* general text banners */
+
+.text-banner {
+    background: $gray;
+    padding: $spacer*20 0;
+    .text-wrapper {
+        @include basicGrid;
+        text-align: center;
+        > * {
+            grid-column: 2 / 6;
+        }
+        h2 {
+            @include capsSofiaTitle($white);
+        }
+        p {
+            @include h4Style($white);
+        }
+    }
+}
+
+/* general rich text - like feature rows, but no pic */
+
+.shopify-section .rich-text {
+    @include basicGrid;
+}
+
+/* general featured list */
+
+
+.featured-list {
+    @include basicGrid;
+    .text-wrapper {
+        h2 {
+            @include capsSofiaTitle($slate);
+        }
+        .description {
+            p {
+                @include h3Style($slate);
+            }
+        }
+        .list {
+            p {
+                @include boldSofia;
+                a,
+                span {
+                    text-decoration: none !important;
+                }
+            }
+        }
+    }
+} 
+
+/* general hero */
+
+.hero {
+    position: relative;
+    .hero-text {
+        > * {
+            color: $slate;
+            margin-bottom: $spacer*2;
+            &:last-child {
+                margin-bottom: none;
+            }
+        }
+    }
+
+    .btn {
+        @include buttonBordered;
+        & + .btn {
+            margin-left: $spacer*2;
+        }
+    }
+
+    .hero-caption {
+        width: 60ch;
+        text-align: right;
+        position: absolute;
+        bottom: $spacer;
+        right: $spacer;
+        color: $white;
+        p {
+            @include pSmallStyle($white);
+            a {
+                @include lightLink;
+            }
+        }
+    }
+}
+
+
+
+/* PAGE PADDING */
+.main-content {
+    .corporate-section,
+    .gad-section,
+    .story-section {
+        display: block;
+        padding-top: $section-spacer;;
+        &:last-child {
+            padding-bottom: $section-spacer;;
+        }
+    } 
+}
+
+/* STORY PAGE */
+
+.st-section-1.feature-row {
+        .text-wrapper,
+        .image-wrapper {
+            grid-column: 2 / 5;
+        }
+    }
+
+.st-section-2.feature-row {
+        .text-wrapper {
+            grid-column: 2 / 4;
+        }
+        .image-wrapper {
+            grid-column: 5 / 7;
+        }
+    }
+
+.st-section-4.rich-text {
+        .text-wrapper {
+            grid-column: 2 / 4;
+        }
+    }
+
+
+
+
+/* GIVE A DAMN PAGE */
+
+
+.gad-section-1.feature-row {
+    .text-wrapper {
+        grid-column: 2 / 4;
+    }
+    .image-wrapper {
+        grid-column: 5 / 7;
+    }
+}
+
+.gad-section-2.featured-list {
+    .text-wrapper {
+        grid-column: 3 / span 3;
+    }
+} 
+
+.gad-section-3.featured-list {
+    .text-wrapper {
+        grid-column: 2 / span 3;
+    }
+} 
+
+
+/* CORPORATE PAGE */
+
+.co-section-1.feature-row {
+    .text-wrapper {
+        position: relative;
+        z-index: 9;
+        grid-column: 4 / 6;
+        grid-row: 1 / 2;
+    }
+    .image-wrapper {
+        position: relative;
+        z-index: 8;
+        grid-column: 1 / 5;
+        grid-row: 1 / 2;
+    }
+
+    .anim-text-swap {
+        // animations
+        $animationDuration: 8s;
+        span {
+            background-image: linear-gradient(to top, $slate 1%, transparent 1%);    
+            animation: textSwap $animationDuration ease infinite;  
+            opacity: 0;
+            display: none;
+            &:first-child {
+                display: inline;
+                animation-delay: 0;
+            }  
+            // &:nth-child(2) {
+            //     // animation-delay: $animationDuration;
+            // }  
+            // &:nth-child(3) {
+            //     // animation-delay: $animationDuration*2;
+            // }  
+        }
+    }
+    // animation tk 
+}
+
+@keyframes textSwap {
+    0% { opacity: 0; }
+    50%   { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+// The animation shorthand CSS property applies an animation between styles. It is a shorthand for animation-name, animation-duration, animation-timing-function, animation-delay, animation-iteration-count, animation-direction, animation-fill-mode, and animation-play-state.
+
+.co-section-2.feature-row {
+    .text-wrapper {
+        grid-column: 2 / 4;
+    }
+    .image-wrapper {
+        grid-column: 5 / 7;
+    }
+}
+
+.co-row {
+    display: flex;
+    .corporate-section {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+    > * {
+        @media (min-width: $site-width) {
+            width: $site-width/2;
+        }
+        flex: 0 0 50%;
+        padding: 0;
+        margin-top: $section-spacer;
+        border: $border;
+        &:first-child {
+            border-right: none;
+        }
+    }
+}
+
+// 3 & 4 no grid. each is half of site-width.  
+
+.co-section-3, 
+.co-section-4 {
+    h2 {
+        padding-left: $spacer*2;
+        @include h1Style($sand);
+    }
+}
+.co-section-3 {
+    .logo-grid {
+        padding: $section-spacer/2 $section-spacer;
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        grid-template-rows: repeat(2, auto);
+        .image-container {
+            img {
+                height: 150px;
+                object-fit: contain;
+                padding: $spacer*3;
+            }            
+        }
+    }
+}
+
+
+
+.co-section-4 {
+    &.quotes,
+    .quotes-wrapper,
+    .quotes-slider-wrapper,
+    .quotes-slider {
+        display: block;
+        width: 100%;
+        max-width: 50vw;
+        height: 100%;
+    }
+
+    .quotes-slider {
+        overflow: hidden;
+    }
+
+    .slick-track {
+        display: flex;
+    }
+
+
+    ul li .content {
+        transition: transform 0.3s linear;
+        transition-delay: 0.5s;
+    }
+    
+    ul li:not(.slick-current) .content {
+        transform: scale(0.9);
+        transition-delay: 0s;
+    }
+
+    blockquote {
+        p, cite {
+            max-width: 65ch;
+            margin: 0 auto;
+        }
+        p {
+            @include pSmallStyle;
+            margin-bottom: 0;
+        } 
+        cite {
+            @include pSmallStyle;
+            font-size: 12px;
+            line-height: 16px;
+            font-style: italic;
+        }
+    } 
+
+    .quotes-slider {
+        display: flex;
+        align-items: center;
+        .slick-arrow {
+            border: none;
+            display: block;
+            flex: 1;
+            transform: translateX(0);
+            transition: 1.3s ease-out transform;
+            &:hover {
+                background: transparent;
+            }
+            &.slick-prev {
+                text-align: right;
+                margin-right: $spacer;
+                &:hover {
+                    transform: translateX(-1*$spacer);
+                }
+            }
+            &.slick-next{
+                text-align: left;
+                margin-left: $spacer;
+                &:hover {
+                    transform: translateX($spacer);
+                }
+            }
+        }
+        .slick-list {
+            flex: 60%;
+            @media (min-width: $site-width) {
+                flex: 400px;
+            }
+            .slick-track {
+                display: flex;
+                .slick-slide {
+                    top: unset !important;
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+.co-section-5.feature-row {
+    .text-wrapper {
+        grid-column: 1 / 4;
+        padding: $col-width/1.9;
+    }
+    .image-wrapper {
+        grid-column: 4 / 7;
+    }
+}
+
+.co-section-6.feature-row {
+    .text-wrapper {
+        grid-column: 3 / span 3;
+        padding: $col-width/1.9;
+    }
+    .image-wrapper {
+        grid-column: 1 / 3;
+    }
+}

@@ -9340,11 +9340,11 @@ function imageHoverSwapper() {
     if (ref && imgHoverSwap) {
       ref.addEventListener("mouseenter", function( event ) {   
         ref.style.backgroundImage = `url("${imgHoverSwap}")`;
-        console.log('its starting! changing bg to ', imgHoverSwap);  
+        // console.log('its starting! changing bg to ', imgHoverSwap);  
       }, false);  
       ref.addEventListener("mouseleave", function( event ) {   
         ref.style.backgroundImage = `url("${imgBase}")`;
-        console.log('its starting! changing bg to ', imgBase);  
+        // console.log('its starting! changing bg to ', imgBase);  
       }, false);  
     }
   }

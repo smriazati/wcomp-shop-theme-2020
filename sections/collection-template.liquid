@@ -56,26 +56,46 @@
     {% else %} -->
       <div class="page-width">
         <div class="section-header text-center">
-          <h1>
-              <span class="visually-hidden">{{ 'collections.general.collection_label' | t }}: </span>
-              {{ collection.title }}
-          </h1>
 
-          {% if collection.metafields.custom_fields["collection_tagline"] != blank %}
-            <div class="custom-field custom-field__collection-tagline     custom-field__type--text">
-                {{ collection.metafields.custom_fields["collection_tagline"] }}
+          {% if collection.handle == 'all' %}
+            <h1>
+                Shop All
+            </h1>
+          
+            {% if settings.shop_all_page_tagline != blank %}
+              <div class="tagline">
+                {{ settings.shop_all_page_tagline }}
               </div>
-            </div>
-        {% endif %}
+            {% endif %}
 
-          {% if collection.description != blank %}
-            <div class="rte">
-              {{ collection.description }}
-            </div>
+            {% if settings.shop_all_page_description != blank %}
+              <div class="rte">
+                {{ settings.shop_all_page_description }}
+              </div>
+            {% endif %}
+
+          {% else %}
+        
+            <h1>
+                <span class="visually-hidden">{{ 'collections.general.collection_label' | t }}: </span>
+                {{ collection.title }}
+            </h1>
+
+            {% if collection.metafields.custom_fields["collection_tagline"] != blank %}
+                <div class="custom-field custom-field__collection-tagline     custom-field__type--text">
+                    {{ collection.metafields.custom_fields["collection_tagline"] }}
+                  </div>
+                </div>
+            {% endif %}
+
+            {% if collection.description != blank %}
+              <div class="rte">
+                {{ collection.description }}
+              </div>
+            {% endif %}
+          
           {% endif %}
-          {% if is_filter_by_available == false and section.settings.sort_enable == false %}
-            <span class="filters-toolbar__product-count">{{ 'collections.general.items_with_count' | t: count: collection.products_count }}</span>
-          {% endif %}
+
         </div>
       </div>
     {% endif %}
@@ -96,9 +116,18 @@
                         <!-- <option value="{{ collection.url }}">{{ 'collections.filters.all_tags' | t }}</option> -->
                         <option value="{{ collection.url }}" readonly="true" hidden="true" selected>Category</option>
                         <option value="{{ collection.url }}">{{ 'collections.filters.all_tags' | t }}</option>
+                        
+                        {% comment %}
+                          Don't include tags that start with _ in the filter list ! 
+                        {% endcomment %}
                         {% for tag in collection.all_tags %}
-                          {%- assign new_url = tag | link_to_tag: tag | split: 'href="' | last | split: '"' | first -%}
-                          <option value="{{ new_url }}"{% if current_tags contains tag %} selected="selected"{% endif %}>{{ tag }}</option>
+                          {%- assign tag_start = tag | slice: 0 -%}
+                          {% if tag_start == "_" %}
+                            {% continue %}
+                          {% else %}
+                            {%- assign new_url = tag | link_to_tag: tag | split: 'href="' | last | split: '"' | first -%}
+                            <option value="{{ new_url }}"{% if current_tags contains tag %} selected="selected"{% endif %}>{{ tag }}</option>
+                          {% endif %}
                         {% endfor %}
                       </select>
                       <!-- {% include 'icon-chevron-down' %} -->

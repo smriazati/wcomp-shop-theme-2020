@@ -1,31 +1,18 @@
-<div class="page-width rich-text">
-      {% if section.settings.section_title != blank %}
-        <div class="text-center">
-          <h2 class="h3">{{ section.settings.section_title | escape }}</h2>
-        </div>
-      {% endif %}
-      {% if section.settings.text != blank %}
-        <div class="text-center">{{ section.settings.text }}</div>
-      {% endif %}
-      {% if section.settings.button_label != blank and section.settings.button_link != blank %}
-      {%- capture ariaLabel -%}
-        {{- section.settings.button_label -}}
-        {%- if section.settings.button_link.type == 'frontpage_link' -%}
-          : {{ 'homepage.general.title' | t -}}
-        {%- elsif section.settings.button_link.type == 'catalog_link' -%}
-          : {{ 'collections.catalog.title' | t -}}
-        {%- elsif section.settings.button_link.object.title -%}
-          : {{ section.settings.button_link.object.title -}}
-        {%- endif -%}
-      {%- endcapture -%}
-
-      <a href="{{ section.settings.button_link }}"
-        class="btn"
-        aria-label="{{ ariaLabel }}">
-        {{- section.settings.button_label | escape -}}
-      </a>
+<div class="rich-text st-section-4">
+  <div class="text-wrapper">
+    {% if section.settings.section_title != blank %}
+      <div class="title">
+        <h2 class="h3">{{ section.settings.section_title | escape }}</h2>
+      </div>
     {% endif %}
-    </div>
+    {% if section.settings.text != blank %}
+      <div class="description">
+        {{ section.settings.text }}
+      </div>
+    {% endif %}
+    {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+      {% include 'button', label: section.settings.button_label, link: section.settings.button_link %}
+    {% endif %}
   </div>
 </div>
 
@@ -34,7 +21,7 @@
 {% schema %}
 {
   "name": "Text Column",
-  "class": "index-section",
+  "class": "story-section",
   "settings": [
     {
       "type": "text",

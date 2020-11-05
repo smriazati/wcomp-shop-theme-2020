@@ -1,18 +1,18 @@
-<div class="page-width st-section-1">
-  {% capture image_layout %}
-    <div class="image-wrapper">
-      {% if section.settings.image != blank %}
-        {% include 'image-feature-row', image: section.settings.image, height: 545, id: section.id %}
-      {% else %}
-        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-      {% endif %}
-    </div>
-  {% endcapture %}
+{% capture image_layout %}
+<div class="image-wrapper">
+  {% if section.settings.image != blank %}
+    {% include 'image-feature-row', image: section.settings.image, height: 545, id: section.id %}
+  {% else %}
+    {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+  {% endif %}
+  {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+    {% include 'button', label: section.settings.button_label, link: section.settings.button_link %}
+  {% endif %}
+</div>
+{% endcapture %}
 
-  <div class="feature-row">
-
-    {{ image_layout }}
-
+<div class="feature-row st-section-2">
+ 
     <div class="text-wrapper">
       {% if section.settings.title != blank %}
         <div class="title">{{ section.settings.title }}</div>
@@ -20,28 +20,10 @@
       {% if section.settings.text != blank %}
         <div class="text">{{ section.settings.text }}</div>
       {% endif %}
-    
-      {% if section.settings.button_label != blank and section.settings.button_link != blank %}
-        {%- capture ariaLabel -%}
-          {{- section.settings.button_label -}}
-          {%- if section.settings.button_link.type == 'frontpage_link' -%}
-            : {{ 'homepage.general.title' | t -}}
-          {%- elsif section.settings.button_link.type == 'catalog_link' -%}
-            : {{ 'collections.catalog.title' | t -}}
-          {%- elsif section.settings.button_link.object.title -%}
-            : {{ section.settings.button_link.object.title -}}
-          {%- endif -%}
-        {%- endcapture -%}
-
-        <a href="{{ section.settings.button_link }}"
-          class="btn"
-          aria-label="{{ ariaLabel }}">
-          {{- section.settings.button_label | escape -}}
-        </a>
-      {% endif %}
     </div>
 
-  </div>
+    {{ image_layout }}
+
 </div>
 
 
@@ -49,7 +31,7 @@
 {% schema %}
 {
   "name": "Text + Image",
-  "class": "index-section",
+  "class": "story-section",
   "settings": [
     {
       "type": "image_picker",
@@ -59,8 +41,7 @@
     {
       "type": "text",
       "id": "title",
-      "label": "Heading",
-      "default": "Our Story"
+      "label": "Heading"
     },
     {
       "type": "richtext",

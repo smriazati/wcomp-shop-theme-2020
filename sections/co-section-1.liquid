@@ -1,34 +1,33 @@
-<div class="page-width co-section-1">
-  {% capture image_layout %}
-    <div class="image-wrapper">
-      {% if section.settings.image != blank %}
-        {% include 'image-feature-row', image: section.settings.image, height: 545, id: section.id %}
-      {% else %}
-        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-      {% endif %}
-    </div>
-  {% endcapture %}
+{% capture image_layout %}
+<div class="image-wrapper">
+  {% if section.settings.image != blank %}
+    {% include 'image-feature-row', image: section.settings.image, height: 545, id: section.id %}
+  {% else %}
+    {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+  {% endif %}
+</div>
+{% endcapture %}
 
-  <div class="feature-row">
-
+<div class="feature-row co-section-1">
     {{ image_layout }}
 
     <div class="text-wrapper">
       {% if section.settings.text != blank %}
-        <div class="text">{{ section.settings.text }}</div>
+        <h1>
+          {{ section.settings.text }} 
+          {% if section.settings.text_animated_1 != blank or
+            section.settings.text_animated_2 != blank or 
+            section.settings.text_animated_3 != blank %}
+            <span id="anim-text-swap" class="anim-text-swap">
+              {% if section.settings.text_animated_1 != blank %}<span>{{ section.settings.text_animated_1 }}</span>{% endif %}
+              {% if section.settings.text_animated_2 != blank %}<span>{{ section.settings.text_animated_2 }}</span>{% endif %}
+              {% if section.settings.text_animated_3 != blank %}<span>{{ section.settings.text_animated_3 }}</span>{% endif %}
+            </span>
+          {% endif %}
+        </h1>
       {% endif %}
-      {% if section.settings.text_animated_1 != blank %}
-        <div class="text-animation">{{ section.settings.text_animated_1 }}</div>
-      {% endif %}
-      {% if section.settings.text_animated_2 != blank %}
-        <div class="text-animation">{{ section.settings.text_animated_2 }}</div>
-      {% endif %}
-      {% if section.settings.text_animated_3 != blank %}
-        <div class="text-animation">{{ section.settings.text_animated_3 }}</div>
-      {% endif %}
-    </div>
 
-  </div>
+    </div>
 </div>
 
 
@@ -36,7 +35,7 @@
 {% schema %}
 {
   "name": "Banner",
-  "class": "index-section",
+  "class": "corporate-section",
   "settings": [
     {
       "type": "image_picker",
@@ -44,7 +43,7 @@
       "label": "Image"
     },
     {
-      "type": "richtext",
+      "type": "text",
       "id": "text",
       "label": "Text"
     },

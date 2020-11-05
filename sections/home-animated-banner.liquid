@@ -1,9 +1,9 @@
 <div data-section-id="{{ section.id }}" class="animationWrapper">
 
   <div class="text-banner">
-    {% if section.settings.section_title != blank %}
+    {% if section.settings.section_title_1 != blank %}
       <div class="text-center">
-        <h2 class="h3">{{ section.settings.section_title | escape }}</h2>
+        <h2 class="h3">{{ section.settings.section_title_1 | escape }}</h2>
       </div>
     {% endif %}
     {% if section.settings.text != blank %}
@@ -12,6 +12,11 @@
   </div>
 
   <div class="our-brands">
+    {% if section.settings.section_title_2 != blank %}
+    <div class="text-center">
+      <h2 class="h3">{{ section.settings.section_title_2 | escape }}</h2>
+    </div>
+  {% endif %}
     <ul>
       {% for block in section.blocks %}
       <li>
@@ -19,6 +24,7 @@
           <h4>{{ block.settings.brand_tagline }}<h4>
           </li>
       {% endfor %}
+      <li>and more!</li>
     </ul>
   </div>
 
@@ -32,13 +38,18 @@
   "settings": [
     {
       "type": "text",
-      "id": "section_title",
+      "id": "section_title_1",
       "label": "Heading"
     },
     {
       "type": "richtext",
       "id": "text",
       "label": "Text"
+    },
+    {
+      "type": "text",
+      "id": "section_title_2",
+      "label": "Brands Headline"
     }
   ],
   "blocks": [
@@ -58,13 +69,28 @@
             "options": [
               {
                 "group": "tagline",
+                "value": "BIPOC Owned",
+                "label": "BIPOC Owned"
+              },
+              {
+                  "group": "tagline",
+                  "value": "Certified B-Corp",
+                  "label": "Certified B-Corp"
+                },
+              {
+                "group": "tagline",
                 "value": "Handmade",
                 "label": "Handmade"
               },
               {
                 "group": "tagline",
-                "value": "USA-Made",
-                "label": "USA-Made"
+                "value": "Made in the USA",
+                "label": "Made in the USA"
+              },
+              {
+                "group": "tagline",
+                "value": "Socially Conscious",
+                "label": "Socially Conscious"
               },
               {
                 "group": "tagline",
@@ -73,8 +99,8 @@
               },
               {
                 "group": "tagline",
-                "value": "women_owned",
-                "label": "Women-Owned"
+                "value": "Women Owned",
+                "label": "Women Owned"
               }
             ]
         }

@@ -1,0 +1,142 @@
+@import 'colors.scss';
+
+@mixin boldFutura {
+    font-weight: 700;
+}
+
+@mixin baseFutura {
+    font-family: futura-pt, sans-serif;
+    font-weight: 400;
+}
+
+@mixin baseFreight {
+    font-family: freight-display-pro, serif;
+    font-weight: 400;
+}
+
+@mixin italicFreight {
+    @include baseFreight;
+    font-style: italic;
+}
+
+@mixin baseSofia {
+    font-family: sofia-pro, sans-serif;
+    font-weight: 400;
+}
+
+
+@mixin bodyFontStyle {
+    @include baseFutura;
+    font-size: 14px;
+}
+
+@mixin pStyle($color: $slate) {
+    @include baseFutura;
+    font-size: 20px;
+    color: $color;
+}
+
+@mixin pSmallStyle($color: $slate) {
+    @include baseSofia;
+    color: $color;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+@mixin h1Style($color: $slate) {
+    @include baseFreight;
+    font-size: 48pt;
+    color: $color;
+}
+
+@mixin h2Style($color: $slate) {
+    @include baseFreight;
+    font-size: 44px;
+    color: $color;
+}
+
+@mixin h3Style($color: $slate) {
+    @include baseFreight;
+    font-size: 36px;
+    color: $color;
+}
+
+
+@mixin h4Style($color: $slate) {
+    @include baseSofia;
+    font-size: 44px;
+    color: $color;
+}
+
+@mixin buttonBase($color: $slate) {
+    @include baseSofia;
+    text-transform: uppercase;
+    font-size: 14px;
+    color: $color;
+    background: transparent;
+    &:hover {
+        background: $gray;
+    }
+}
+
+@mixin buttonBordered() {
+    @include buttonBase;
+    border: $border;
+}
+
+@mixin buttonFlat() {
+    @include buttonBase;
+}
+
+
+@mixin animArrow() {
+    display: flex;
+    &::after {
+        padding-left: $spacer*1;
+        content: '→';
+        transform: translateX(0);
+        font-size: inherit;
+        transition: 1.3s ease-out transform;
+    }
+
+    &:hover {
+        &::after {
+            transform: translateX($spacer);
+        }
+    }
+}
+
+
+
+
+@mixin buttonTextLink($color: $black) {
+    color: $color;
+    text-decoration: none;
+    @include animArrow();
+}
+
+
+@mixin lightLink() {
+    color: $white;
+    &:hover {
+        color: $gray;
+    }
+}
+
+@mixin capsSofia {
+    @include baseSofia;
+    text-transform: uppercase;
+    letter-spacing: 0;
+}
+
+@mixin boldSofia {
+    @include baseSofia;
+    font-weight: 400;
+}
+
+
+@mixin capsSofiaTitle($color: $white) {
+    @include capsSofia;
+    color: $color;
+    font-size: 15px;
+}

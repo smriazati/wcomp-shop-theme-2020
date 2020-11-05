@@ -1,0 +1,40 @@
+<div class="page-width contact-custom-page">
+{% if section.settings.form_title != blank %}
+    <div class="text">{{ section.settings.form_title }}</div>
+  {% endif %}
+
+  {% if section.settings.form_description != blank %}
+      <div class="rte">{{ section.settings.form_description }}</div>
+  {% endif %}
+
+</div>
+
+
+
+{% schema %}
+{
+  "name": "Contact Form",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Main Image"
+    },
+    {
+        "type": "richtext",
+        "id": "form_title",
+        "label": "Form Title"
+    },
+    {
+      "type": "richtext",
+      "id": "form_description",
+      "label": "Form Description"
+    },
+    {
+      "type": "richtext",
+      "id": "form_submission_success_message",
+      "label": "Form Submission Success Message"
+    }
+  ]
+}
+{% endschema %}

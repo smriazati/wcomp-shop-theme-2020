@@ -1,15 +1,14 @@
-<div class="page-width st-section-1">
-  {% capture image_layout %}
-    <div class="image-wrapper">
-      {% if section.settings.image != blank %}
-        {% include 'image-feature-row', image: section.settings.image, height: 545, id: section.id %}
-      {% else %}
-        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-      {% endif %}
-    </div>
-  {% endcapture %}
+{% capture image_layout %}
+<div class="image-wrapper">
+  {% if section.settings.image != blank %}
+    {% include 'image-feature-row', image: section.settings.image, height: 545, id: section.id %}
+  {% else %}
+    {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+  {% endif %}
+</div>
+{% endcapture %}
 
-  <div class="feature-row">
+<div class="feature-row st-section-1">
 
     {{ image_layout }}
 
@@ -22,14 +21,13 @@
       {% endif %}
     </div>
 
-  </div>
 </div>
 
 
 {% schema %}
 {
   "name": "Banner",
-  "class": "index-section",
+  "class": "story-section",
   "settings": [
     {
       "type": "image_picker",

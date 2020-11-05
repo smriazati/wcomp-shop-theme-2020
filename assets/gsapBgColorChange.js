@@ -3,7 +3,7 @@ function animateFrom(elem) {
     gsap.set(elem, 
         {
             backgroundColor: '#FFF', 
-            color: '#000', 
+            color: '#ADABAB', 
             opacity: 1
         });
 }
@@ -11,7 +11,7 @@ function animateTo(elem) {
     // console.log('gsap to animation')
     gsap.to(elem, 
         {
-            backgroundColor: '#000', 
+            backgroundColor: '#ADABAB', 
             color: '#FFF',
             opacity: 1
         })

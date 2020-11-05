@@ -50,6 +50,7 @@ $nav-height: 100px;
         }
     
         .site-nav nav > ul {
+            list-style: none;
             display: grid;
             grid-template-columns: 1fr 1fr 1fr $logoWidth 1fr 1fr 1fr;
             grid-template-rows: $nav-height;
@@ -70,6 +71,17 @@ $nav-height: 100px;
         }
     }
 
+    .js-drawer-open {
+        header.site-header {
+            grid-template-rows: $nav-height $nav-height;
+            .search-bar {
+                grid-row-start: 2;
+                grid-row-end: 3;
+                grid-column-start: 1;
+                grid-column-end: 4;
+            }
+        }
+    }
     .site-logo img {
         max-width: $logoWidth;
     }
@@ -91,12 +103,24 @@ $nav-height: 100px;
     .site-header {
         position: relative;
         border: none;
+        z-index: 1000;
     }
     .mobile-nav-btn {
         display: block;
         position: absolute;
         top: $spacer;
         right: $spacer;
+        svg {
+            width: $spacer*5;
+        }
+        button:focus, button:active {
+            outline: 0;
+        }
+        .mobile-nav--open {
+            .icon-close {
+                display: none;
+            }
+        }
     }
     .site-logo {
         max-width: 200px;
@@ -115,8 +139,53 @@ $nav-height: 100px;
 }
 
 
+/* 
+design
+*/
 
+header.site-header {
+    .site-nav, 
+    .search-bar.drawer {
+        border-bottom: $border;
+    }  
+}  
 
+.site-nav .site-nav--active a {
+    color: $slate;
+}
+
+/* search */
+
+.search-bar.drawer {
+    position: unset;
+    width: 100%;
+    height: $nav-height !important;
+    .search-bar__form {
+        flex: 1;
+        position: relative;
+        max-width: 100%;
+        border: none;
+        height: 100%;
+    }
+
+    .search-bar__input {
+        // padding: 0;
+        // width: 100%;
+        outline: 0;
+        min-height: 44px;
+        height: 100%;
+        border: none;
+        text-align: center;
+    }
+
+    button svg {
+        width: $spacer*5;
+    }
+}
+
+::placeholder {
+    color: $slate;
+}
 
 /* fixes for shopify */
 
@@ -126,4 +195,15 @@ $nav-height: 100px;
 
 .site-nav__link .icon-chevron-down {
     display: none;
+}
+
+
+// announcement 
+
+.announcement-bar {
+    background: $black;
+}
+.announcement-bar__message {
+    color: $white;
+    @include italicFreight;
 }
