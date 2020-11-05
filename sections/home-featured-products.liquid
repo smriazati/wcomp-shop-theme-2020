@@ -1,0 +1,98 @@
+
+<div class="home-featured-products">
+  {% if section.settings.title != blank %}
+    <div class="section-header">
+      <h2 class="h1">{{ section.settings.title | escape }}</h2>
+    </div>
+  {% endif %}
+
+    <div class="grid-container">
+      {% for block in section.blocks %}
+      {%- assign product = all_products[block.settings.featured_product] -%}
+        <a href="{{ product.url }}" class="product-item grid-container-item" {{ block.shopify_attributes }}>
+          {% if block.settings != blank %}
+              <div class="product-text">
+                {% if product.title  != blank %}
+                  <h3>{{ product.title }}</h3>
+                {% endif %}
+                {% if product.price  != blank %}
+                  <p class="price">${{ product.price }}</p>
+                {% endif %}
+              </div>
+              <div class="product-image">
+                {% if product.media  != blank %}
+                  {%- assign media = product.media[0] -%}
+                    <img id="{{ media_id }}"
+                      class="{{ media_class }} lazyload"
+                      data-src="{{ media | img_url: '527x527', crop: 'center' }}"
+                      data-widths="[180, 360, 540, 720]"
+                      data-sizes="auto"
+                      alt="{{ media.alt | escape }}">
+                  {% endif %}
+              </div>
+              <div class="product-hover-overlay">
+                {% if product.description  != blank %}
+                  <div class="description">
+                    {{ product.description | truncatewords: 25 }}
+                  </div>
+                {% endif %}
+                <p class="btn" href="{{ product.url }}">
+                  Shop Now
+                </p>
+              </div>
+            {% endif %}
+          </a>
+      {% endfor %}
+    </div> 
+
+    {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+      {% include 'button', label: section.settings.button_label, link: section.settings.button_link %}
+    {% endif %}
+    
+</div>
+
+
+
+{% schema %}
+{
+  "name": "Featured products row",
+  "class": "index-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label":"Heading",
+      "default": "Featured products"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text_block",
+      "name": "Column",
+      "settings": [
+        {
+          "type": "product",
+          "id": "featured_product",
+          "label": "Product"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured products",
+      "category": "Product"
+    }
+  ]
+}
+{% endschema %}

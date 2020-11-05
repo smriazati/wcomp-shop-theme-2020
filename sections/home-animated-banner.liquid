@@ -1,20 +1,22 @@
-<div data-section-id="{{ section.id }}" class="animationWrapper">
-
-  <div class="text-banner">
+<div data-section-id="{{ section.id }}" class="animated-banner animationWrapper">
+<div class="text-banner">
+  <div class="text-wrapper">
     {% if section.settings.section_title_1 != blank %}
-      <div class="text-center">
-        <h2 class="h3">{{ section.settings.section_title_1 | escape }}</h2>
+      <div class="title">
+        <h2>{{ section.settings.section_title_1 | escape }}</h2>
       </div>
     {% endif %}
     {% if section.settings.text != blank %}
-      <p class="text-center">{{ section.settings.text }}</p>
+      <div class="description">
+        {{ section.settings.text }}
+      </div>
     {% endif %}
   </div>
 
-  <div class="our-brands">
+  <div class="our-brands text-wrapper">
     {% if section.settings.section_title_2 != blank %}
-    <div class="text-center">
-      <h2 class="h3">{{ section.settings.section_title_2 | escape }}</h2>
+    <div class="title">
+      <h2>{{ section.settings.section_title_2 | escape }}</h2>
     </div>
   {% endif %}
     <ul>
@@ -24,11 +26,11 @@
           <h4>{{ block.settings.brand_tagline }}<h4>
           </li>
       {% endfor %}
-      <li>and more!</li>
+      <li><h3>and more!</h3></li>
     </ul>
   </div>
 
-
+</div>
 </div>
 
 {% schema %}

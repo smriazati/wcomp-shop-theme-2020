@@ -1,0 +1,88 @@
+
+
+<div class="home-cta">
+
+    {% for block in section.blocks %}
+    <div class="grid-container" {{ block.shopify_attributes }}>
+
+        <div class="image-wrapper">
+            {% if block.settings.image != blank %}
+              {% include 'image-feature-row', image: block.settings.image, height: 545, id: block.id %}
+            {% endif %}
+        </div>
+    
+        <div class="text-wrapper">
+          {% if block.settings.title != blank %}
+            <div class="title">{{ block.settings.title }}</div>
+          {% endif %}
+          {% if block.settings.text != blank %}
+            <div class="text">{{ block.settings.text }}</div>
+          {% endif %}
+          {% if block.settings.button_label != blank and block.settings.button_link != blank %}
+            {%- capture ariaLabel -%}
+                {{- block.settings.button_label -}}
+                {%- if block.settings.button_link.type == 'frontpage_link' -%}
+                : {{ 'homepage.general.title' | t -}}
+                {%- elsif block.settings.button_link.type == 'catalog_link' -%}
+                : {{ 'collections.catalog.title' | t -}}
+                {%- elsif block.settings.button_link.object.title -%}
+                : {{ block.settings.button_link.object.title -}}
+                {%- endif -%}
+            {%- endcapture -%}
+        
+            <a href="{{ block.settings.button_link }}"
+                class="underline-link"
+                aria-label="{{ ariaLabel }}">
+                {{- block.settings.button_label | escape -}}
+            </a>
+          {% endif %}
+        </div>
+
+    </div>
+    {% endfor %}
+
+</div>
+
+
+
+{% schema %}
+{
+  "name": "Call to Action",
+  "class": "index-section",
+  "max_blocks": 2,
+  "blocks": [
+    {
+        "type": "text",
+        "name": "Row",
+        "settings": [
+            {
+                "type": "image_picker",
+                "id": "image",
+                "label": "Image"
+            },
+            {
+                "type": "richtext",
+                "id": "text",
+                "label": "Text"
+            },
+            {
+                "type": "text",
+                "id": "button_label",
+                "label": "Button label"
+            },
+            {
+                "type": "url",
+                "id": "button_link",
+                "label": "Button link"
+            }
+        ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Call to Action",
+      "category": "Image"
+    }
+  ]
+}
+{% endschema %}
