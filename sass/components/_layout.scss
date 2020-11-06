@@ -69,10 +69,7 @@ body {
   @media (min-width: $site-width) {
     width: $site-width;
     margin: 0 auto;
-  }
-
-
-  
+  }  
 }
 
 /* home page */
@@ -92,6 +89,8 @@ body {
   @include basicGrid;
 }
 
-
+.grid-container.grid-container-auto-rows {
+  grid-auto-rows: auto;
+}
 
 

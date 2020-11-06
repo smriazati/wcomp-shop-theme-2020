@@ -1,8 +1,102 @@
 @import '../settings/_settings.scss';
 
+.template-product .main-content {
+    padding: 0;
+}
+
 .product-recommendations__inner {
     .product-card__title,
     .price--listing {
         display: none;
     }
 }
+
+.product-single {
+    &.grid-container {
+        .image-wrapper {
+            grid-column: span 3;
+        }
+        .text-wrapper {
+            grid-column: 4 / span 3;
+
+            .product-featured-tag p {
+                @include baseSofia;
+                font-size: 15px;
+                margin: $spacer 0;
+            }
+            .product-single__title {
+                @include baseFreight;
+                font-size: 36px;
+                line-height: 46px;
+                margin: $spacer 0;
+            }
+            .price-item {
+                @include baseSofia;
+                font-size: 22px;
+                line-height: 30px;
+                margin: $spacer 0;
+                &:before {
+                    content: '$'
+                }
+            }
+            .product-single__description.rte,
+            .product-single__description.rte * {
+                @include baseSofia;
+                font-size: 16px;
+                line-height: 24px;
+                ul {
+                    margin-top: $spacer;
+                }
+            }
+            .product-cta {
+                margin: $spacer 0;
+                @include baseFreight;
+                font-size: 14px;
+                line-height: 16px;
+            }
+
+            .btn,
+            .shopify-payment-button__button--unbranded {
+                @include buttonFlat;
+            }
+            .shopify-payment-button__button--hidden {
+                display: none;
+            }
+
+            .product-form,
+            .product-single__description {
+                padding: 0;
+                margin: 0;
+            }
+        }
+    }
+}
+
+.product-breadcrumbs {
+    padding: $spacer*3 0;
+    .text-wrapper {
+        grid-column: span 6; 
+    }
+}
+.product-recommendations {
+    margin-top: $section-spacer;
+
+    .section-header.grid-container {
+        .text-wrapper {
+            grid-column: span 6;
+            margin-bottom: $spacer*3;
+        }
+    }
+
+    ul.product-recs-grid.grid-container {
+        list-style: none;
+        li {
+            grid-column: span 1;
+        }
+        
+    }
+    .product-info {
+        display: none;
+    }
+}
+

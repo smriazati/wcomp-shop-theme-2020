@@ -2,22 +2,45 @@
 
 // general footer  layout 
 
-.site-footer__content-row {
-  display: flex;
-}
-.site-footer__content > div {
-  flex: 1
-}
-.site-footer__content > .site-footer__logo {
-  flex: 50%;
+.grid-container {
+  .site-footer-logo {
+    grid-column: 1 / 2;
+  }
+  .site-footer-nav {
+    grid-column: 4 / 5;
+  }
+  .site-footer-socials {
+    grid-column: 5 / 6;
+  }
+  .site-footer-newsletter {
+    grid-column: 6 / 7;
+  }
 }
 
+.site-footer-copyright {
+  margin-top: $section-spacer;
+}
 
-.site-footer__item {
+// columns 
+
+.site-footer-item {
   display: flex;
   flex-direction: column;
   padding: 0;
+
+  h3,
+  ul li {
+    @include baseSofia;
+    font-size: 15px;
+    color: $white;
+  }
+  a {
+    text-decoration: none;
+  }
+  
 }
+
+
 
 .site-footer__social-icons {
   padding: 0;
@@ -34,33 +57,44 @@
   }
 }
 
-.site-footer-copyright {
+// copyright 
+
+.site-footer__copyright-content {
   display: flex;
   justify-content: center;
+  align-items: center;
   > *:first-child {
     padding-right: $spacer/2;
+  }
+  * {
+    font-size: 12px !important;
+    color: #707070 !important;
+    a {text-decoration: none;}
   }
 }
 
 // newsletter form
 
 .site-footer form {
+  max-width: 100%;
   .input-group {
     display: flex;
-    flex-direction: row;
     flex-wrap: nowrap;
+    margin-top: $spacer;
     .input-group__field[type="email"],
-    .btn {
+    .input-group__btn {
       background: transparent;
       border: none;
       border-bottom: 1px solid $white;
+      @include baseFreight;
+      font-size: 24px;
+      margin: 0;
+      display: inline-block;
     }
     .input-group__field[type="email"] {
-      flex: 80%;
+      width: 50%;
       padding: 0;
-    }
-    .input-group__btn {
-      flex: 20%;
+      border-radius: 0;
     }
   }
   button[type="submit"] {
@@ -68,8 +102,9 @@
       display: none;
     }
     &:after {
-      content: '>';
+      content: '→';
       width: 100%;
+      color: #707070;
     }
   }
 }
@@ -77,3 +112,8 @@
 ::placeholder {
   color: $white;
 }
+
+.shopify-challenge__container {
+  padding-top: $section-spacer;
+}
+

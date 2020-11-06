@@ -76,15 +76,19 @@
     @media only screen and (min-width: 750px) {
         &.hero--x-large {
             height: 775px;
-            height: 90vh;
+            height: 83vh;
         }
     }
-    .hero__inner {
-        width: 100%;
-        max-width: $grid-width;
-        padding: 0 $col-gutter;
-        margin: 0 auto;
+
+    .grid-container {
+        .hero-text {
+            grid-column: 1 / 4;
+        }
+        .hero-caption {
+            grid-column: 5 / 7;
+        }
     }
+
     .hero-text {
         > * {
             color: $slate;
@@ -122,14 +126,18 @@
   
 
 /* PAGE PADDING */
+
+
 .main-content {
+    min-height: 50vh;
+    padding: $section-spacer 0;
     .corporate-section,
     .gad-section,
     .story-section {
         display: block;
-        padding-top: $section-spacer;;
+        padding-bottom: $section-spacer;
         &:last-child {
-            padding-bottom: $section-spacer;;
+            padding-bottom: 0;
         }
     } 
 }
@@ -376,6 +384,7 @@
                 display: flex;
                 .slick-slide {
                     top: unset !important;
+                    padding-bottom: $section-spacer / 2;
                 }
             }
         }
@@ -410,6 +419,9 @@
 
 /* HOME PAGE */
 
+#shopify-section-hero-1 {
+   margin-top: -1 * $section-spacer;
+}
   // this selects the div right under the hero :) 
   #shopify-section-hero-1 + div {
     .grid-container {
@@ -562,16 +574,18 @@
 
 .home-cta {
     .grid-container {
-        .feature-row__text {
+        .text-wrapper {
             grid-column: 3 / 4;
+            grid-row: 1 / 2;
         }
         .image-wrapper {
             grid-column: 2 / 3;
+            grid-row: 1 / 2;
         }
     } 
     .grid-container + .grid-container {
         margin-top: $spacer*6;
-        .feature-row__text {
+        .text-wrapper {
             grid-column: 4 / 5;
         }
         .image-wrapper {
@@ -588,5 +602,19 @@
     }
     .feature-row__image-wrapper {
         margin-bottom: 0;
+    }
+}
+
+
+// general pages
+.page-wrapper {
+    .page-content {
+        margin-top: $section-spacer;
+    }
+    
+    &.grid-container {
+        > * {
+            grid-column: 2 / 6;
+        }
     }
 }

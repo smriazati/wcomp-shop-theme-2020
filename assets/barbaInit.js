@@ -6,13 +6,13 @@
 //       leave(data) {
 //         return gsap.to(data.current.container, {
 //           opacity: 0,
-//           transform: 'translateX(-20vw)'
+//         //   transform: 'translateX(-20vw)'
 //         });
 //       },
 //       enter(data) {
 //         return gsap.from(data.next.container, {
 //           opacity: 0,
-//           transform: 'translateX(20vw)'
+//         //   transform: 'translateX(20vw)'
 //         });
 //       }
 //     }],

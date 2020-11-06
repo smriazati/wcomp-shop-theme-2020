@@ -22,41 +22,33 @@
 
 <footer class="site-footer critical-hidden" role="contentinfo" data-section-id="{{ section.id }}" data-section-type="footer-section">
 
-  <div class="page-width">
-    <div class="site-footer__content site-footer__content-row">
-      {% comment %} FOOTER LOGO LOOP STARTS HERE {% endcomment %}
-      <div class="site-footer__item site-footer__logo">
-        <div class="site-footer__item-inner">
+    <div class="grid-container">
+
+      <div class="site-footer-item site-footer-logo">
           {%- assign footer_logo = section.settings.footer_logo -%}
-
-          <a href="{{ routes.root_url }}" class="site-footer__logo-image" data-image-loading-animation>
-          {% capture logo_alt %}{{ footer_logo.alt | default: shop.name }}{% endcapture %}
-          <img class="lazyload js"
-               src="{{ footer_logo | img_url: '300x300' }}"
-               data-src="{{ img_url }}"
-               data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
-               data-aspectratio="{{ footer_logo.aspect_ratio }}"
-               data-sizes="auto"
-               alt="{{ logo_alt | escape }}"
-               style="max-width: {{ footer_logo_max_width }}px">
-          <noscript>
-            <img src="{{ footer_logo | img_url: image_size }}"
-                 srcset="{{ footer_logo | img_url: image_size }} 1x, {{ footer_logo | img_url: image_size, scale: 2 }} 2x"
-                 alt="{{ footer_logo.alt | default: shop.name }}"
-                 style="max-width: 200px;">
-          </noscript>
-        </a>
-
-        </div>
+          {%- assign image_size = 144 -%}
+          <a href="{{ routes.root_url }}" class="site-footer-logo-image" data-image-loading-animation>
+            {% capture logo_alt %}{{ footer_logo.alt | default: shop.name }}{% endcapture %}
+            <img class="lazyload js"
+                src="{{ footer_logo | img_url: '144x' }}"
+                data-src="{{ img_url }}"
+                data-widths="[180]"
+                data-aspectratio="{{ footer_logo.aspect_ratio }}"
+                data-sizes="auto"
+                alt="{{ logo_alt | escape }}">
+            <noscript>
+              <img src="{{ footer_logo | img_url: image_size }}"
+                  srcset="{{ footer_logo | img_url: image_size }} 1x, {{ footer_logo | img_url: image_size, scale: 2 }} 2x"
+                  alt="{{ footer_logo.alt | default: shop.name }}"
+                  style="max-width: 200px;">
+            </noscript>
+          </a>
       </div>
-      {% comment %} FOOTER LOGO LOOP END {% endcomment %}
 
-      {% comment %} LINK LIST LOOP STARTS HERE {% endcomment %}
-      <div class="site-footer__item">
-        <div class="site-footer__item-inner">
+      <div class="site-footer-item site-footer-nav">
           {%- assign footer_linklist = section.settings.footer_menu -%}
-            <ul class="site-footer__linklist
-                      {% if inline_list %}list--inline{% endif %}">
+          <nav>
+            <ul class="site-footer__linklist">
               {%- for link in linklists[footer_linklist].links -%}
                 <li class="site-footer__linklist-item">
                   <a href="{{ link.url }}"
@@ -67,12 +59,12 @@
                 </li>
               {%- endfor -%}
           </ul>
-        </div>
+        </nav>
       </div>
-      {% comment %} LINK LIST LOOP END {% endcomment %}
+
 
       {%- assign socials = "Facebook Twitter Pinterest Instagram Tumblr Snapchat YouTube Vimeo" | split: ' ' -%}
-      <div class="site-footer-item site-footer__socials">
+      <div class="site-footer-item site-footer-socials">
         {%- if social_icons -%}
           <ul class="site-footer__social-icons social-icons site-footer__icon-list">
             {%- for social in socials -%}
@@ -97,27 +89,29 @@
         {%- endif -%}
       </div> {% comment %} SOCIALS COLUMN END {% endcomment %}
 
-      <div class="site-footer__item">
+      <div class="site-footer-item site-footer-newsletter">
         <h3>Newsletter</h3>
-        {% include 'newsletter' %}
+        {% include 'newsletter-footer' %}
       </div> 
 
-    </div> {% comment %} FOOTER ROW 1 ENDS {% endcomment %}
+    </div> 
 
-    
-    <div class="site-footer__content site-footer__content-row">
-      <div class="site-footer-item site-footer-copyright text-center">
-        <small class="site-footer__copyright-content">&copy; {{ 'now' | date: "%Y" }} {{ shop.name | link_to: routes.root_url }}</small>
-        {%- if section.settings.footer_copyright_text -%}
-          {%- if section.settings.footer_copyright_text != blank -%} 
-            <small class="rte">
-              {{ section.settings.footer_copyright_text }}
-            </small>
-          {%- endif -%}
+  
+    <div class="site-footer-copyright page-width text-center">
+      {%- if section.settings.footer_copyright_text -%}
+        {%- if section.settings.footer_copyright_text != blank -%} 
+          <small class="site-footer__copyright-content">
+            <span>&copy; {{ 'now' | date: "%Y" }} {{ shop.name | link_to: routes.root_url }}</span>
+            {{ section.settings.footer_copyright_text }}
+          </small>
+        {%- else -%}
+          <small class="site-footer__copyright-content">
+            <span>&copy; {{ 'now' | date: "%Y" }} {{ shop.name | link_to: routes.root_url }}</span>
+          </small>
         {%- endif -%}
-      </div>
+      {%- endif -%}
     </div>
-  </div>
+
 </footer>
 
 {% schema %}

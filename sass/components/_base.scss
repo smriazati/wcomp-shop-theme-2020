@@ -20,7 +20,7 @@ button {
 * {
   box-sizing: border-box;
   max-width: 100%;
-  transition: $transition;
+  // transition: $transition;
 }
 
 body {
@@ -65,4 +65,3 @@ main {
     text-decoration: underline;
   }
 }
-

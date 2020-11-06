@@ -45,7 +45,8 @@
 
 @mixin h1Style($color: $slate) {
     @include baseFreight;
-    font-size: 48pt;
+    font-size: 48px;
+    line-height: 60px;
     color: $color;
 }
 
@@ -70,7 +71,7 @@
 
 @mixin buttonBase($color: $slate) {
     @include baseSofia;
-    text-transform: uppercase;
+    // text-transform: uppercase;
     font-size: 14px;
     color: $color;
     background: transparent;
@@ -86,6 +87,8 @@
 
 @mixin buttonFlat() {
     @include buttonBase;
+    border: none;
+    background: $white;
 }
 
 

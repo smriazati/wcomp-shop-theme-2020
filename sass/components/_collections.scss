@@ -3,3 +3,77 @@
 .filters-toolbar-wrapper {
     border: 0;
 }
+
+
+.collections-page {
+    margin-top: -1 * $section-spacer;
+    .collections-header {
+        .section-header {
+            border-bottom: $border;
+            padding-top: $spacer*6;
+            padding-bottom: $section-spacer / 2;
+            .grid-container {
+                .text-wrapper {
+                    grid-column: 1 / 5;
+                    h1 {
+                        @include baseSofia();
+                        font-size: 15px;
+                    }
+                    .description p {
+                        @include h1Style();
+                    }
+                }
+            }
+        }
+    
+        .filters-toolbar.grid-container {
+            grid-column: 1 / 7;
+            padding-top: $spacer*6;
+        }
+    }
+
+    .collections-grid {
+        ul.grid-container {
+            list-style: none;
+            li {
+                grid-column: span 2;
+            }
+        }
+
+        .product-card {
+            .product-info {
+                display: flex;
+                font-size: 18px;
+
+                > * {
+                    display: block;
+                    margin-right: $spacer;
+                    &:last-child {
+                        margin-right: none;
+                    }
+                }
+            }
+            .product-card__title {
+                min-height: 100%;
+                border: none;
+                &:hover {
+                    border: none;
+                }
+                p {
+                    @include baseSofia;
+                    font-size: 18px;
+                    margin: 0;
+                }
+            }
+            .price .price-item {
+                @include baseSofia;
+                font-size: 12px;
+                color: $gray;
+                &:before {
+                    content: "$"
+                }
+            }
+        }
+    }
+
+}
