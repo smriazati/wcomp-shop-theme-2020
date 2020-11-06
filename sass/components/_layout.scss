@@ -83,6 +83,26 @@ body {
     grid-template-rows: 1fr;  
     grid-gap: $col-gutter;
   }
+  @media (min-width: $bp-sm) and (max-width: $grid-width){
+    width: 90%;
+    width: 90vw;
+    max-width: 90%;
+    width: 90vw;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 1fr;  
+    grid-gap: $col-gutter;
+  }
+  @media (max-width: $bp-sm) {
+    width: 90%;
+    width: 90vw;
+    max-width: 90%;
+    width: 90vw;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .grid-container {
