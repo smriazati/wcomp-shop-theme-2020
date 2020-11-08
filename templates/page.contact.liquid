@@ -1,69 +1,151 @@
-<div class="page-width">
-  <div class="grid">
-    <div class="grid__item medium-up--five-sixths medium-up--push-one-twelfth">
-      <div class="section-header text-center">
-        <h1>{{ page.title }}</h1>
-      </div>
+{% capture image_layout %}
+<div class="image-wrapper">
+  {% if settings.contact_form_image != blank %}
+    {% include 'image-feature-row', image: settings.contact_form_image, height: 545, id: section.id %}
+  {% else %}
+    {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+  {% endif %}
+</div>
+{% endcapture %}
 
-      <!-- {% if page.content.size > 0 %}
-        <div class="rte">
-          {{ page.content }}
+<div class="contact-page">
+
+  <div class="contact-section contact-form-container">
+    <div class="grid-container">
+
+      {{ image_layout }}
+
+      <div class="text-wrapper">
+        <h1 class="title">{{ page.title }}</h1>
+        <div class="description">
+          <p>{{ settings.contact_form_description }}</p>
         </div>
-      {% endif %} -->
-
-      {% section 'contact-section-1' %}
-
-      <div class="contact-form">
-        {%- assign formId = 'ContactForm' -%}
-        {% form 'contact', id: formId %}
-          {% include 'form-status', form: form, form_id: formId %}
-
+        <div class="contact-form">
+          {%- assign formId ='ContactForm' -%}
+          {% form 'contact', id: formId %}
+            {% include 'form-status', form: form, form_id: formId %}
+            <div class="form-row">
             <div class="form-group">
-              <label for="{{ formId }}-name">{{ 'contact.form.name' | t }}</label>
-              <input type="text" id="{{ formId }}-name" name="contact[{{ 'contact.form.name' | t }}]" value="{% if form[name] %}{{ form[name] }}{% elsif customer %}{{ customer.name }}{% endif %}">
-            </div>
-            <div class="form-group">
-              <label for="{{ formId }}-email">{{ 'contact.form.email' | t }} <span aria-hidden="true">*</span></label>
+              <label for="{{ formId }}-name" class="visually-hidden">Name</label>
               <input
-                type="email"
-                id="{{ formId }}-email"
-                name="contact[email]"
+                class="cf-input"
+                placeholder="name"
+                type="name"
+                id="{{ formId }}-name"
+                name="contact[name]"
                 autocorrect="off"
                 autocapitalize="off"
-                value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+                value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
                 aria-required="true"
-                {%- if form.errors contains 'email' -%}
-                  class="input--error"
-                  aria-invalid="true"
-                  aria-describedby="{{ formId }}-email-error"
-                {%- endif -%}
                 >
-              {%- if form.errors contains 'email' -%}
-                <span id="{{ formId}}-email-error" class="input-error-message">
-                  <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
-                  {% include 'icon-error' %}
-                  <span>{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}.</span>
-                </span>
-              {%- endif -%}
             </div>
 
             <div class="form-group">
-              <label for="{{ formId }}-message">{{ 'contact.form.message' | t }}</label>
-              <textarea rows="10" id="{{ formId }}-message" name="contact[{{ 'contact.form.message' | t }}]">{% if form.body %}{{ form.body }}{% endif %}</textarea>    
+                <label for="{{ formId }}-email" class="visually-hidden">{{ 'contact.form.email' | t }}</label>
+                <input
+                  class="cf-input"
+                  placeholder="email address"
+                  type="email"
+                  id="{{ formId }}-email"
+                  name="contact[email]"
+                  autocorrect="off"
+                  autocapitalize="off"
+                  value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+                  aria-required="true"
+                  {%- if form.errors contains 'email' -%}
+                    class="input--error"
+                    aria-invalid="true"
+                    aria-describedby="{{ formId }}-email-error"
+                  {%- endif -%}
+                  >
+                {%- if form.errors contains 'email' -%}
+                  <span id="{{ formId}}-email-error" class="input-error-message">
+                    <span class="visually-hidden">{{ 'general.accessibility.error' | t }} </span>
+                    {% include 'icon-error' %}
+                    <span>{{ form.errors.translated_fields['email'] | capitalize }} {{ form.errors.messages['email'] }}.</span>
+                  </span>
+                {%- endif -%}
+              </div>
+              <div class="form-group">
+                <label class="visually-hidden" for="{{ formId }}-inquiryType">corporate or retail?</label>
+                <select id="{{ formId }}-inquiryType" name="contact[{{ 'contact.form.inquiryType'}}]"                 aria-required="true">
+                  <option value="" disabled selected>corporate or retail?</option>
+                  <option value="Corporate">Corporate</option>
+                  <option value="Retail">Retail</option>
+                </select>
+              </div>
+              </div>
+   
+  
+              <div class="form-group">
+                <label for="{{ formId }}-message">{{ 'contact.form.message' | t }}</label>
+                <textarea rows="10" id="{{ formId }}-message" name="contact[{{ 'contact.form.message' | t }}]">{% if form.body %}{{ form.body }}{% endif %}</textarea>    
+              </div>
+  
+            <div class="form-group">
+              <input type="submit" class="btn" value="Submit">
             </div>
-          <!-- <label for="{{ formId }}-phone">{{ 'contact.form.phone' | t }}</label>
-          <input type="tel" id="{{ formId }}-phone" name="contact[{{ 'contact.form.phone' | t }}]" pattern="[0-9\-]*" value="{% if form[phone] %}{{ form[phone] }}{% elsif customer %}{{ customer.phone }}{% endif %}"> -->
+  
+          {% endform %}
+        </div> <!-- /. text-wrapper -->
 
+      </div><!-- /. grid-container -->
+      </div> <!-- / .contact-section -->
 
-          <div class="form-group">
-            <input type="submit" class="btn" value="{{ 'contact.form.submit' | t }}">
+      <div class="contact-section contact-more-info">
+          <div class="page-width contact-row">
+            <div class="contact-row-item newsletter">
+              <div class="contact-column">
+                <div class="contact-column-item">
+                  <div class="text-wrapper">
+                    <h3>Newsletter</h3>
+                    <p>{{ settings.contact_form_newsletter_description }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="contact-row-item socials-location">
+              <div class="contact-column">
+                <div class="contact-column-item socials">
+                  <div class="text-wrapper">
+                    <h3>Social</h3>
+                    <p>{{ settings.contact_form_socials_description }}</p>
+
+                    {%- assign socials = "Facebook Twitter Pinterest Instagram Tumblr Snapchat YouTube Vimeo" | split: ' ' -%}
+                    <div class="socials">
+                        <ul class="socials-list">
+                          {%- for social in socials -%}
+                            {%- assign social_link = social | prepend: 'social_' | append: '_link' | downcase -%}
+                            {%- if settings[social_link] != blank -%}
+                              <li>
+                                <a href="{{ settings[social_link] | escape }}" aria-describedby="a11y-external-message" target="_blank">
+                                  {{ social }}
+                                </a>
+                              </li>
+                            {%- endif -%}
+                          {%- endfor -%}
+                        </ul>
+                    </div> 
+                  </div>
+              </div>
+              <div class="contact-column-item location">
+                <div class="text-wrapper">
+                  <h3>Location</h3>
+                  <p>{{ settings.contact_form_location_description }}</p>
+                </div>
+              </div>
+            </div>
           </div>
+      </div><!-- /. grid-container -->
+    </div> <!-- / .contact-section -->
 
-        {% endform %}
+    <div class="contact-section instagram-embed">
+      <div id="insta-feed" class="grid-container"></div>
+      <div class="page-width">
+        <p class="insta-link">
+          <a class="no-line" href="{{ settings.social_instagram_link }}" target="_blank">@wcompliments</a>
+        </p>
       </div>
+    </div> <!-- / .contact-section -->
 
-      {% section 'contact-section-2' %}
-
-    </div>
-  </div>
-</div>
+</div><!-- /. contact-page -->

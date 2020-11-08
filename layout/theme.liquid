@@ -215,7 +215,7 @@
 
   <div class="page-container drawer-page-content" id="PageContainer" data-barba="wrapper">
 
-    <main class="main-content js-focus-hidden" id="MainContent" role="main" tabindex="-1" data-barba="container">
+    <main class="main-content js-focus-hidden {{ template | remove: 'page.' }}-template" id="MainContent" role="main" tabindex="-1" data-barba="container" data-barba-namespace="{{ template | remove: 'page.' }}">
       {{ content_for_layout }}
     </main>
 
@@ -237,50 +237,25 @@
 
 
   {% comment %}
-  home page bg color change
+animation scripts
   {% endcomment %}
-  {% if request.page_type == 'index' %}
-  <script src="{{ 'gsapBgColorChange.js' | asset_url }}"></script>
-  {% endif %}
-
+  <!-- <script src="{{ 'gsapBgColorChange.js' | asset_url }}"></script> -->
+  <script src="{{ 'gsapSectionEnter.js' | asset_url }}"></script>
 
   {% comment %}
-  barba.js
-  assets / barbaInit.js
+    barba.js
+    assets / barbaInit.js
   {% endcomment %}
   {% if request.page_type != 'collection' and request.page_type != 'product' %}
-  <script src="{{ 'barbaInit.js' | asset_url }}"></script>
-
-  <script>
-    function preventBarbaIntoShop() {
-      const eltest = document.querySelectorAll("a");
-      const els = document.querySelectorAll("a[href^='/collections/']");
-      console.log('preventing barba in shop... ', els);
-      els.forEach(el => el.classList.add('prevent'));
-    }
-    preventBarbaIntoShop();
-  </script>
-
+    <script src="{{ 'barbaInit.js' | asset_url }}"></script>
   {% endif %}
 
-
-  {% comment %}
-  add prevent class to links w/ collections/ and product/ routes
-  change bg color on shop pages
-  {% endcomment %}
   {% if request.page_type == 'collection' or request.page_type == 'product' %}
-
-  <script>
-    console.log('its a collection or product page');
-  </script>
-
-  <style>
-    body {
-      background: #F5F5F5;
-    }
-  </style>
-  <!-- data-barba-prevent -->
-
+    <style>
+      body {
+        background: #F5F5F5;
+      }
+    </style>
   {% endif %}
 
 
@@ -312,8 +287,6 @@
         prev.innerHTML = '←';
         next.innerHTML = '→';
       }
-
-
     });
 
 

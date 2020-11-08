@@ -35,9 +35,9 @@
                 font-size: 22px;
                 line-height: 30px;
                 margin: $spacer 0;
-                &:before {
-                    content: '$'
-                }
+                // &:before {
+                //     content: '$'
+                // }
             }
             .product-single__description.rte,
             .product-single__description.rte * {

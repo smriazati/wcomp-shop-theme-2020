@@ -114,3 +114,24 @@ body {
 }
 
 
+.page-width {
+  @media (min-width: $grid-width) {
+    width: $grid-width;
+    max-width: $grid-width;
+    margin: 0 auto;
+  }
+  @media (min-width: $bp-sm) and (max-width: $grid-width){
+    width: 90%;
+    width: 90vw;
+    max-width: 90%;
+    width: 90vw;
+    margin: 0 auto;
+  }
+  @media (max-width: $bp-sm) {
+    width: 90%;
+    width: 90vw;
+    max-width: 90%;
+    width: 90vw;
+    margin: 0 auto;
+  }
+}

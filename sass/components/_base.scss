@@ -35,11 +35,19 @@ body {
 
 a {
   color: $linkColor;
+  transition: .3s ease color;
   &:hover {
     color: $linkHover;
   }
 }
 
+.no-line {
+  text-decoration: none;
+}
+
+.caps {
+  text-transform: uppercase;
+}
 .page-container {
   transform: none;
 }

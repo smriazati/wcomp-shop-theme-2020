@@ -69,9 +69,9 @@
                 @include baseSofia;
                 font-size: 12px;
                 color: $gray;
-                &:before {
-                    content: "$"
-                }
+                // &:before {
+                //     content: "$"
+                // }
             }
         }
     }

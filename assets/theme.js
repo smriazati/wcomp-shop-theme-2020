@@ -2711,12 +2711,12 @@ theme.Helpers = (function() {
     if (typeof this.stylesheetPromise === 'undefined') {
       this.stylesheetPromise = new Promise(function(resolve) {
         var link = document.querySelector('link[href="' + stylesheetUrl + '"]');
-
-        if (link.loaded) resolve();
-
-        link.addEventListener('load', function() {
-          setTimeout(resolve, 0);
-        });
+        if (link) {
+          if (link.loaded) resolve();
+          link.addEventListener('load', function() {
+            setTimeout(resolve, 0);
+          });
+        }
       });
     }
 
@@ -9251,8 +9251,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
       if (mainContent && mainContent.children && mainContent.children.length) {
         var firstSection = document.getElementsByClassName('index-section')[0];
-
-        if (!firstSection.contains(image)) return;
+        if (firstSection) {
+          if (!firstSection.contains(image)) return;
+        }
 
         window.performance.mark('debut:index:first_image_visible');
       }
@@ -9319,33 +9320,5 @@ function removeImageLoadingAnimation(image) {
 
   if (imageWrapper) {
     imageWrapper.removeAttribute('data-image-loading-animation');
-  }
-}
-
-/* 
-Extend image_hover_swap to other sections:
-1. add image_hover_swap setting to section schema
-2. update image div to include data-bg-hover-swap = <section class="settings image_hover_swap
-3. use the script below, update imgBase to grab url to the original image (background-image or src)
-4. voila! 
-*/
-
-function imageHoverSwapper() {
-  const ref = document.querySelector('div[data-bg-swap]');
-  if (ref) {
-    const imgHoverSwap = ref.dataset.bgSwap; 
-    const imgBase = ref.dataset.bgBase; 
-    console.log('hi images', imgBase, imgHoverSwap);
-  
-    if (ref && imgHoverSwap) {
-      ref.addEventListener("mouseenter", function( event ) {   
-        ref.style.backgroundImage = `url("${imgHoverSwap}")`;
-        // console.log('its starting! changing bg to ', imgHoverSwap);  
-      }, false);  
-      ref.addEventListener("mouseleave", function( event ) {   
-        ref.style.backgroundImage = `url("${imgBase}")`;
-        // console.log('its starting! changing bg to ', imgBase);  
-      }, false);  
-    }
   }
 }

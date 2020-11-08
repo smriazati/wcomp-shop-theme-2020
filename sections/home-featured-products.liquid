@@ -15,9 +15,8 @@
                 {% if product.title  != blank %}
                   <h3>{{ product.title }}</h3>
                 {% endif %}
-                {% if product.price  != blank %}
-                  <p class="price">${{ product.price }}</p>
-                {% endif %}
+                {% include 'product-price-listing', product: product, show_vendor: show_vendor %}
+
               </div>
               <div class="product-image">
                 {% if product.media  != blank %}
@@ -56,7 +55,7 @@
 {% schema %}
 {
   "name": "Featured products row",
-  "class": "index-section",
+  "class": "index-section section-animation",
   "settings": [
     {
       "type": "text",

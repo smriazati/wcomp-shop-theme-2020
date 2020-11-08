@@ -75,6 +75,7 @@
     font-size: 14px;
     color: $color;
     background: transparent;
+    transition: .3s ease background;
     &:hover {
         background: $gray;
     }

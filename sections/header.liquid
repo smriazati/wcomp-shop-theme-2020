@@ -38,7 +38,7 @@
           <li>
             {% comment %} START CART {% endcomment %}
             <a href="{{ routes.cart_url }}" class="site-header__icon site-header__cart">
-              Cart
+              <span>Cart</span>
               <div id="CartCount" class="site-header__cart-count{% if cart.item_count == 0 %} hide{% endif %} critical-hidden" data-cart-count-bubble>
                 <span data-cart-count>{{ cart.item_count }}</span>
                 <span class="icon__fallback-text medium-up--hide">{{ 'layout.cart.items_count' | t: count: cart.item_count }}</span>

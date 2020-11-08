@@ -15,6 +15,9 @@
         }
     }
 }
+.feature-row__image-wrapper {
+    margin: 0;
+}
 
 /* general text banners */
 
@@ -130,7 +133,13 @@
 
 .main-content {
     min-height: 50vh;
-    padding: $section-spacer 0;
+    > *:first-child {
+        padding-top:  $section-spacer;
+    }
+    > *:last-child {
+        padding-bottom:  $section-spacer;
+    }
+    // padding: $section-spacer 0;
     .corporate-section,
     .gad-section,
     .story-section {
@@ -153,6 +162,26 @@
         .image-wrapper {
             grid-column: 2 / 5;
         }
+        .image-hover-swap {
+            position: relative;
+            > * {
+                position: relative;
+            }
+            > .image-hover-swap-img-wrapper {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                opacity: 0;
+                transition: $transition;
+            }
+        }
+        .image-wrapper:hover {
+            .image-hover-swap > .image-hover-swap-img-wrapper {
+                opacity: 1;
+            }
+        }
     }
 
 .st-section-2.feature-row {
@@ -161,6 +190,9 @@
         }
         .image-wrapper {
             grid-column: 5 / 7;
+            .btn-text-link {
+                margin-top: $spacer;
+            }
         }
     }
 
@@ -421,13 +453,35 @@
 
 #shopify-section-hero-1 {
    margin-top: -1 * $section-spacer;
+   overflow: hidden;
+   position: relative;
+   #Hero-swap-hero-1 {
+       background-size: cover;
+   }
+   .image-hover-swap {
+       width: 100%;
+       position: absolute;
+       top: 0;
+       left: 0;
+       opacity: 0;
+       transition: $transition;
+       display: grid;
+   }
+   &:hover {
+       .image-hover-swap {
+           opacity: 1;
+       }
+   }
 }
   // this selects the div right under the hero :) 
   #shopify-section-hero-1 + div {
     .grid-container {
       .feature-row__text {
         grid-column: 2 / span 2;
-        width: 50%;
+        @media (min-width: $site-width) {
+            width: 50%;
+        }
+        width: 70%;
         margin: 0 auto;
         padding: 0;
         .h3 {
@@ -473,7 +527,7 @@
             z-index: 10;
             display: flex;
             justify-content: space-between;
-            h3, p {
+            h3, .price-item {
                 @include baseSofia;
                 font-size: 12px;
             }
@@ -503,6 +557,7 @@
                 font-size: 10px;
             }
             .btn {
+                margin-top: $spacer*3;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -542,8 +597,11 @@
         margin-bottom: $spacer*3;
     }
 
-    .description p {
-        margin: 0;
+    .text-banner .text-wrapper {
+        .description p {
+            margin: 0;
+            color: unset;
+        }
     }
 
     .our-brands ul {

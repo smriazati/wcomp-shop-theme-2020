@@ -57,7 +57,7 @@
         {%- if product.price_varies -%}
           {{ 'products.product.from_lowest_price_html' | t: lowest_price: money_price }}
         {%- else -%}
-          {{ money_price | money_without_currency | remove: '.00'}}
+          {{ money_price }}
         {%- endif -%}
       </span>
     </dd>

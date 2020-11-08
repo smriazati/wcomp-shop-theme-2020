@@ -218,3 +218,12 @@ header.site-header {
 .search-bar__actions {
     display: none;
 }
+
+.site-header__cart {
+    display: flex;
+    justify-content: center;
+    .site-header__cart-count {
+        position: relative;
+        margin: 0 $spacer;
+    }
+}

@@ -8,6 +8,46 @@
     "theme_support_url": "https:\/\/support.shopify.com\/"
   },
   {
+    "name": "Contact Page",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "contact_form_image",
+        "label": "Main Image"
+      },
+      {
+          "type": "text",
+          "id": "contact_form_title",
+          "label": "Form Title"
+      },
+      {
+        "type": "text",
+        "id": "contact_form_description",
+        "label": "Form Description"
+      },
+      {
+        "type": "text",
+        "id": "contact_form_submission_success",
+        "label": "Form Submission Success Message"
+      },
+      {
+        "type": "text",
+        "id": "contact_form_newsletter_description",
+        "label": "Newsletter description"
+      },
+      {
+        "type": "text",
+        "id": "contact_form_socials_description",
+        "label": "Socials description"
+      },
+      {
+        "type": "text",
+        "id": "contact_form_location_description",
+        "label": "Location description"
+      }
+    ]
+  },
+  {
     "name": "Product Pages",
     "settings":[
       {
