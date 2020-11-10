@@ -25,7 +25,13 @@
 -%}
 
 <dl class="price price--listing
-  {%- if available == false %} price--sold-out {% endif -%}
+{% if available == false %} 
+  {% if product.tags contains '_Coming Soon' %}
+    price--coming-soon
+  {% else %}
+    price--sold-out 
+  {% endif %}  
+{% endif %}
   {%- if compare_at_price > price %} price--on-sale {% endif -%}
   {%- if product.price_varies == false and product.compare_at_price_varies %} price--compare-price-hidden {% endif -%}
   {%- if variant.unit_price_measurement %} price--unit-available {% endif -%}"
@@ -113,7 +119,14 @@
       <span>{{ 'products.product.on_sale' | t }}</span>
     </span>
     <span class="price__badge price__badge--sold-out">
-      <span>{{ 'products.product.sold_out' | t }}</span>
+      {% unless product.tags contains '_Coming Soon' %}
+        <span>{{ 'products.product.sold_out' | t }}</span>
+      {% endunless %}
+    </span>
+    <span class="price__badge price__badge--coming-soon">
+      {% if product.tags contains '_Coming Soon' %}
+        <span>Coming Soon</span>
+      {% endif %}
     </span>
   </div>
 </dl>

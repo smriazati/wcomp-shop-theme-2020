@@ -44,6 +44,7 @@
             .product-info {
                 display: flex;
                 font-size: 18px;
+                margin-top: $spacer;
 
                 > * {
                     display: block;
@@ -76,4 +77,112 @@
         }
     }
 
+}
+
+.grid-view-item__image-wrapper {
+    margin: 0;
+}
+
+.grid-view-item__image-wrapper.product-card__image-wrapper,
+.grid-view-item__image-wrapper.product-card__image-wrapper img {
+    max-width: 100% !important;
+}
+
+
+// filters
+.filters-toolbar__input {
+    overflow: visible;
+}
+.filters-toolbar-wrapper {
+    padding-top: $section-spacer/2;
+    padding-bottom: $section-spacer/3;
+}
+.filters-toolbar {
+    display: flex;
+    flex-wrap: nowrap;
+    p {
+        white-space: nowrap;
+        @include capsSofia;
+        font-size: 14px;
+        margin: 0;
+        margin-right: $spacer*4;
+        padding-top: 3px;
+    }
+    > * {
+        flex: 1;
+    }
+}
+.filter-item select {
+    outline: 0;
+    padding: 0;
+    height: auto;
+    background: transparent;
+    border: 0;
+    width: auto;
+    @include baseSofia;
+    font-size: 22px;
+    margin-right: $spacer*2;
+}
+
+.product-card {
+    .price__badges {
+        &.price__badges--listing {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: black;
+            width: 50%;
+            text-align: center;
+            margin: 0;
+            .price-badge, 
+            .price__badge--sale,
+            .price__badge--sold-out,
+            .price__badge--coming-soon {
+                background: $black;
+                color: $white;
+                padding: $spacer*3;
+                text-align: center;
+                font-weight: 400;
+                @include capsSofia;
+                font-size: 14px;
+                span {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+
+.pagination {
+    padding: 0;
+    .load-more-btn {
+        margin: $section-spacer/2 0;
+    }
+}
+
+
+@keyframes fadeDownAnim {
+    from { opacity: 1;}
+    to   { opacity: .5;}
+}
+
+.loadingMore {
+    animation: fadeOutAnim 1s ease-out 1 forwards;
+}
+
+@keyframes fadeOutAnim {
+    from { opacity: .5;}
+    to   { opacity: 0;}
+}
+.fadeOutBtn {
+    animation: fadeOutAnim 1s ease-out 1 forwards;
+}
+
+@keyframes fadeInNewCollection {
+    from { opacity: 0;}
+    to   { opacity: 1;}
+}
+.collections-grid.load-more-pagination-results {
+    animation: fadeInNewCollection 1s ease-out 1 forwards;
 }

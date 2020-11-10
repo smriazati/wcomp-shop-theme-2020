@@ -144,6 +144,7 @@ design
 */
 
 header.site-header {
+    background: $white;
     .site-nav, 
     .search-bar.drawer {
         border-bottom: $border;
@@ -166,6 +167,12 @@ header.site-header {
         max-width: 100%;
         border: none;
         height: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    @mixin searchBarInput {
+        opacity: 1;
+        @include h2Style($slate);
     }
 
     .search-bar__input {
@@ -176,16 +183,46 @@ header.site-header {
         height: 100%;
         border: none;
         text-align: center;
-    }
+        caret-color: transparent;
 
-    button svg {
-        width: $spacer*5;
+        @include searchBarInput;
+        &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+            @include searchBarInput;
+          }
+          &::-moz-placeholder { /* Firefox 19+ */
+            @include searchBarInput;
+          }
+          &:-ms-input-placeholder { /* IE 10+ */
+            @include searchBarInput;
+          }
+          &:-moz-placeholder { /* Firefox 18- */
+            @include searchBarInput;
+          }
+    }
+    .input-sizer {
+        @include searchBarInput;
+    }
+    button.search-bar__submit {
+        width: 0;
+        padding: 0;
+        position: relative;
+        font-size: 22px;
+        @include baseSofia;
     }
 }
 
-::placeholder {
-    color: $slate;
+
+
+.search-bar__actions {
+    display: none;
 }
+
+.search-bar__input {
+    width: auto;
+}
+
+
+
 
 /* fixes for shopify */
 
@@ -215,9 +252,7 @@ header.site-header {
 }
 
 
-.search-bar__actions {
-    display: none;
-}
+
 
 .site-header__cart {
     display: flex;
@@ -227,3 +262,68 @@ header.site-header {
         margin: 0 $spacer;
     }
 }
+
+.site-nav--has-dropdown .site-nav__dropdown {
+    z-index: 1000;
+    background: $white;
+}
+
+.predictive-search {
+    background: $white; 
+}
+
+.input-sizer {
+    display: inline-grid;
+    vertical-align: top;
+    align-items: center;
+    position: relative;
+    
+    &.stacked {
+      padding: .5em;
+      align-items: stretch;
+      
+      &::after,
+      input,
+      textarea {
+        grid-area: 2 / 1;
+      }
+    }
+    
+    &::after,
+    input,
+    textarea {
+      width: auto;
+      min-width: 1em;
+      grid-area: 1 / 2;
+      font: inherit;
+      padding: 0.25em;
+      margin: 0;
+      resize: none;
+      background: none;
+      appearance: none;
+      border: none;
+    }
+    
+    span {
+      padding: 0.25em;
+    }
+    
+    &::after {
+      content: attr(data-value) ' ';
+      visibility: hidden;
+      white-space: pre-wrap;
+    }
+    
+    &:focus-within {
+      // outline: solid 1px blue;
+      // box-shadow: 4px 4px 0px blue;
+      // > span { color: blue; }
+      
+      textarea:focus,
+      input:focus {
+        outline: none;
+      }
+    }
+  }
+  
+  

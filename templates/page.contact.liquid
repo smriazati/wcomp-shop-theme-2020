@@ -69,7 +69,7 @@
               <div class="form-group">
                 <label class="visually-hidden" for="{{ formId }}-inquiryType">corporate or retail?</label>
                 <select id="{{ formId }}-inquiryType" name="contact[{{ 'contact.form.inquiryType'}}]"                 aria-required="true">
-                  <option value="" disabled selected>corporate or retail?</option>
+                  <option value="{{ page.url }}" readonly="true" hidden="true" selected>corporate or retail?</option>
                   <option value="Corporate">Corporate</option>
                   <option value="Retail">Retail</option>
                 </select>

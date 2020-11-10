@@ -1,18 +1,19 @@
-{% paginate search.results by 10 %}
+{% paginate search.results by 12 %}
 
-<div class="page-width">
+<div class="search-page-header page-wrapper grid-container grid-container-auto-rows">
   {% if search.performed == false %}
-    <div class="text-center">
+    <div class="text-wrapper">
       <h1 class="h2">{{ 'general.search.title' | t }}</h1>
   {% else %}
-    <div class="text-center">
-      <h1 class="h2">
+    <div class="text-wrapper">
+      <h1 class="h3">
         <span class="visually-hidden">{{ 'general.search.heading' | t: count: search.results_count }}:</span>
         {{ 'general.search.results_with_count' | t: terms: search.terms, count: search.results_count }}
       </h1>
+      <h2 class="visually-hidden">{{ 'general.search.heading' | t: count: search.results_count }}</h2>
   {% endif %}
-      <div class="grid">
-        <div class="grid__item medium-up--six-tenths medium-up--push-two-tenths">
+      <div class="search-bar">
+        <div class="">
           {% if search.performed and search.results_count == 0 %}
             <div class="rte search--no-results-found">
               <p>{{ 'general.search.no_results' | t }}</p>
@@ -46,7 +47,7 @@
               </div>
 
               <button type="submit" class="search-form__connected-submit" aria-label="{{ 'general.search.submit' | t }}" data-search-page-predictive-search-submit>
-                {% include 'icon-search' %}
+                →
               </button>
             </div>
           </form>
@@ -57,51 +58,48 @@
 
 
 {% if search.performed %}
-  {% if search.results_count > 0 %}
-    <hr aria-hidden="true" />
-  {% endif %}
 
-  <h2 class="visually-hidden">{{ 'general.search.heading' | t: count: search.results_count }}</h2>
-
-  <ul class="page-width list-view-items">
-    {% for item in search.results %}
-      <li class="list-view-item">
-        {% if item.object_type == 'product' %}
-          {% include 'product-card-list', product: item %}
-        {% else %}
-          <div class="product-card product-card--list">
-            <a href="{{ item.url }}" class="full-width-link">
-              <span class="visually-hidden">{{ item.title }}</span>
-            </a>
-            <div class="list-view-item__link">
-              <div class="list-view-item__image-column">
-                <div class="list-view-item__image-wrapper product-card__image-wrapper">
-                  {% unless item.image == null %}
-                    <img class="list-view-item__image" src="{{ item.image.src | img_url: '600x600' }}" alt="{{ item.image.alt | escape }}">
-                  {% endunless %}
+  <div class="search-results-container">
+    <ul class="search-results page-wrapper grid-container grid-container-auto-rows">
+      {% for item in search.results %}
+        <li class="search-result-item">
+          {% if item.object_type == 'product' %}
+            {% include 'product-card-list', product: item %}
+          {% else %}
+            <div class="product-card product-card--list">
+              <a href="{{ item.url }}" class="full-width-link">
+                <span class="visually-hidden">{{ item.title }}</span>
+              </a>
+              <div class="list-view-item__link">
+                <div class="list-view-item__image-column">
+                  <div class="list-view-item__image-wrapper product-card__image-wrapper">
+                    {% unless item.image == null %}
+                      <img class="list-view-item__image" src="{{ item.image.src | img_url: '600x600' }}" alt="{{ item.image.alt | escape }}">
+                    {% endunless %}
+                  </div>
                 </div>
-              </div>
-
-              <div class="list-view-item__title-column">
-                <div class="list-view-item__title" aria-hidden="true">
-                  <span class="product-card__title">{{ item.title }}</span>
-                </div>
-                <div>
-                  {% if item.published_at %}{{ item.published_at | date: format: "date" }} &#8212; {% endif %}
-                  {{ item.content | strip_html | truncate: 200 }}
+  
+                <div class="list-view-item__title-column">
+                  <div class="list-view-item__title" aria-hidden="true">
+                    <span class="product-card__title">{{ item.title }}</span>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        {% endif %}
-      </li>
-    {% endfor %}
-  </ul>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  
 
   {%- if paginate.pages > 1 -%}
-    {% include 'pagination', paginate: paginate %}
-  {%- endif -%}
-{% endif %}
+      <div class="pagination load-more">
+        <div role="navigation" aria-label="pagination" class="load-more-btn btn" data-load-more-search="{{ paginate.next.url }}">Load More</div>
+      </div>
+    {%- endif -%}
+  {% endif %}
+</div>
+
 
 {% if search.results_count < 2  %}
   <div class="search--less-than-2-results"></div>

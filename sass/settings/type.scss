@@ -26,7 +26,7 @@
 
 
 @mixin bodyFontStyle {
-    @include baseFutura;
+    @include baseSofia;
     font-size: 14px;
 }
 
@@ -76,8 +76,9 @@
     color: $color;
     background: transparent;
     transition: .3s ease background;
-    &:hover {
+    &:hover:not([aria-disabled="true"]) {
         background: $gray;
+        cursor: pointer;
     }
 }
 

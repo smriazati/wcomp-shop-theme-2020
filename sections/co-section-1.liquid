@@ -19,9 +19,9 @@
             section.settings.text_animated_2 != blank or 
             section.settings.text_animated_3 != blank %}
             <span id="anim-text-swap" class="anim-text-swap">
-              {% if section.settings.text_animated_1 != blank %}<span>{{ section.settings.text_animated_1 }}</span>{% endif %}
-              {% if section.settings.text_animated_2 != blank %}<span>{{ section.settings.text_animated_2 }}</span>{% endif %}
-              {% if section.settings.text_animated_3 != blank %}<span>{{ section.settings.text_animated_3 }}</span>{% endif %}
+              {% if section.settings.text_animated_1 != blank %}<span id="at-1">{{ section.settings.text_animated_1 }}</span>{% endif %}
+              {% if section.settings.text_animated_2 != blank %}<span id="at-2">{{ section.settings.text_animated_2 }}</span>{% endif %}
+              {% if section.settings.text_animated_3 != blank %}<span id="at-3">{{ section.settings.text_animated_3 }}</span>{% endif %}
             </span>
           {% endif %}
         </h1>

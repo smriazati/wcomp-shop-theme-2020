@@ -174,7 +174,7 @@
                 width: 100%;
                 height: 100%;
                 opacity: 0;
-                transition: $transition;
+                transition: .3s ease opacity;
             }
         }
         .image-wrapper:hover {
@@ -238,6 +238,12 @@
         z-index: 9;
         grid-column: 4 / 6;
         grid-row: 1 / 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        height: 100%;
+        padding-top: 140px;
+
     }
     .image-wrapper {
         position: relative;
@@ -247,23 +253,9 @@
     }
 
     .anim-text-swap {
-        // animations
-        $animationDuration: 8s;
         span {
-            background-image: linear-gradient(to top, $slate 1%, transparent 1%);    
-            animation: textSwap $animationDuration ease infinite;  
-            opacity: 0;
-            display: none;
-            &:first-child {
-                display: inline;
-                animation-delay: 0;
-            }  
-            // &:nth-child(2) {
-            //     // animation-delay: $animationDuration;
-            // }  
-            // &:nth-child(3) {
-            //     // animation-delay: $animationDuration*2;
-            // }  
+            background-image: linear-gradient(to top, $slate 1%, transparent 1%); 
+            display: inline;   
         }
     }
     // animation tk 
@@ -570,6 +562,16 @@
             .product-hover-overlay {
                 opacity: 1;
             } 
+        }
+        .price__badges {
+            &.price__badges--listing {
+                .price-badge, 
+                .price__badge--sale,
+                .price__badge--sold-out,
+                .price__badge--coming-soon {
+                    display: none !important;
+                }
+            }
         }
 
     }

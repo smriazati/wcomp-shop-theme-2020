@@ -1,0 +1,96 @@
+@import '../settings/_settings.scss';
+
+.cart-popup-wrapper {
+    @include baseSofia;
+    height: 100%;
+    background: $white;
+    border: 0;
+    border-left: $border;
+    .cart-popup {
+        height: 100%;
+        padding: 0;
+        > * {
+            padding: $spacer*2;
+            margin: 0 auto;
+            display: block;
+        }
+        .cart-popup__header {
+            border: 0;
+            border-bottom: $border;
+            display: flex;
+            .cart-popup__heading {
+                @include baseSofia;
+                font-size: 12px;
+            }
+        }
+        .cart-popup-item {
+            margin: $spacer*2 0;
+        }
+
+        ul.product-details {
+            list-style: none;
+            padding: 0;
+            .product-details__item--variant-option {
+                @include baseSofia;
+                font-size: 12px;
+            }
+        }
+
+        .cart-popup__cta-link,
+        .cart-popup__dismiss-button {
+            @include baseSofia;
+            font-size: 12px;
+        }
+        .cart-popup__cta-link,
+        .cart-popup__dismiss {
+            background: $white;
+            transition: $transition;
+            &:hover {
+                background: $gray;
+            }
+        }
+        .cart-popup__cta-link {
+           border-left: 0;
+           border-right: 0;
+        }
+        .cart-popup__dismiss {
+            border-bottom: $border;
+        }
+        
+    }
+
+}
+
+// cart page
+
+.cart-template {
+    .grid-container {
+        > * {
+            grid-column: 2 / span 4;
+        }
+    }
+
+    .list-view-item__title {
+        a {
+            @include h3Style;
+            text-decoration: none;
+        }
+    }
+
+    ul.product-details {
+        list-style: none;
+        padding: 0;
+        .product-details__item--variant-option {
+            @include pSmallStyle;
+        }
+    }
+    .cart__remove {
+        @include baseSofia;
+        font-size: 12px;
+        a { 
+            text-decoration: none;
+        }
+    }
+
+}
+

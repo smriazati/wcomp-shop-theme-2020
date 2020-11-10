@@ -2855,6 +2855,8 @@ theme.Header = (function() {
 
   var cache = {};
 
+  var isOpen = false;
+
   function init() {
     cacheSelectors();
     styleDropdowns(document.querySelectorAll(selectors.siteNavHasDropdown));
@@ -2904,7 +2906,7 @@ theme.Header = (function() {
     if (cache.activeDropdown) hideDropdown();
 
     cache.activeDropdown = element;
-
+    isOpen = true;
     element
       .querySelector(selectors.siteNavLinkMain)
       .setAttribute('aria-expanded', 'true');
@@ -2913,6 +2915,7 @@ theme.Header = (function() {
       window.addEventListener('keyup', keyUpHandler);
       document.body.addEventListener('click', hideDropdown);
     }, 250);
+
   }
 
   function hideDropdown() {
@@ -2922,11 +2925,10 @@ theme.Header = (function() {
       .querySelector(selectors.siteNavLinkMain)
       .setAttribute('aria-expanded', 'false');
     cache.activeDropdown.classList.remove(config.activeClass);
-
+    isOpen = false;
     cache.activeDropdown = document.querySelector(
       selectors.siteNavActiveDropdown
     );
-
     window.removeEventListener('keyup', keyUpHandler);
     document.body.removeEventListener('click', hideDropdown);
   }
@@ -3013,7 +3015,7 @@ theme.Header = (function() {
     });
 
     cache.parents.forEach(function(element) {
-      element.removeEventListener('click', submenuParentClickHandler);
+      element.removeEventListener('mouseover', submenuParentClickHandler);
     });
 
     cache.siteNavChildLink.forEach(function(element) {
@@ -7429,17 +7431,23 @@ theme.Filters = (function() {
   var selectors = {
     filterSelection: '#FilterTags',
     sortSelection: '#SortBy',
+    sortSelection2: '#SortBy2',
     selectInput: '[data-select-input]'
   };
 
   function Filters(container) {
     this.filterSelect = container.querySelector(selectors.filterSelection);
     this.sortSelect = container.querySelector(selectors.sortSelection);
+    this.sortSelect2 = container.querySelector(selectors.sortSelection2);
 
     this.selects = document.querySelectorAll(selectors.selectInput);
 
     if (this.sortSelect) {
       this.defaultSort = this._getDefaultSortValue();
+    }
+
+    if (this.sortSelect2) {
+      this.defaultSort2 = this._getDefaultSort2Value();
     }
 
     if (this.selects.length) {
@@ -7462,6 +7470,9 @@ theme.Filters = (function() {
 
     if (this.sortSelect) {
       this.sortSelect.addEventListener('change', this._onSortChange.bind(this));
+    }
+    if (this.sortSelect2) {
+      this.sortSelect2.addEventListener('change', this._onSort2Change.bind(this));
     }
 
     theme.Helpers.promiseStylesheet().then(
@@ -7507,6 +7518,18 @@ theme.Filters = (function() {
       );
     },
 
+    _onSort2Change: function() {
+      this.queryParams.sort_by_brand = this._getSort2Value();
+
+      if (this.queryParams.page) {
+        delete this.queryParams.page;
+      }
+
+      window.location.search = decodeURIComponent(
+        new URLSearchParams(Object.entries(this.queryParams)).toString()
+      );
+    },
+
     _onFilterChange: function() {
       document.location.href = this._getFilterValue();
     },
@@ -7519,8 +7542,16 @@ theme.Filters = (function() {
       return this.sortSelect.value || this.defaultSort;
     },
 
+    _getSort2Value: function() {
+      return this.sortSelect2.value || this.defaultSort;
+    },
+
     _getDefaultSortValue: function() {
       return this.sortSelect.dataset.defaultSortby;
+    },
+
+    _getDefaultSort2Value: function() {
+      return this.sortSelect2.dataset.defaultSortby;
     },
 
     onUnload: function() {
@@ -7530,6 +7561,10 @@ theme.Filters = (function() {
 
       if (this.sortSelect) {
         this.sortSelect.removeEventListener('change', this._onSortChange);
+      }
+
+      if (this.sortSelect2) {
+        this.sortSelect2.removeEventListener('change', this._onSort2Change);
       }
 
       this.mql.removeListener(this.initBreakpoints);
@@ -9322,3 +9357,106 @@ function removeImageLoadingAnimation(image) {
     imageWrapper.removeAttribute('data-image-loading-animation');
   }
 }
+
+
+// LOAD MORE ON COLLECTIONS
+
+let triggeredProductCall = false;
+const collectionContainer = document.querySelector('.collections-page')
+
+loadMoreProductsButton(document);
+
+function loadMoreProductsButton(newDoc) {
+  let moreButton = newDoc.querySelector('[data-load-more-products]');
+  if (moreButton) {
+    if (moreButton.dataset.loadMoreProducts) {
+      moreButton.onclick = loadMoreProductsEvent;  
+    } else {
+      moreButton.remove()
+    }
+  }
+}
+
+function loadMoreProductsEvent() {
+  let nextUrl = this.dataset.loadMoreProducts
+  let oldButton = this;
+  if (nextUrl) {
+    //console.log(nextUrl);
+    if ((triggeredProductCall == false)) {
+      triggeredProductCall = true;
+
+      $.ajax({
+        url: nextUrl,
+        type: 'GET',
+        beforeSend: function() {
+          oldButton.classList.add('loadingMore');
+        }
+      })
+      
+      .done(function(data) {
+        oldButton.remove();
+        let d = document.createElement('div');
+        d.innerHTML = data; 
+        let newGrid = d.querySelector('.collections-grid');
+        //console.log(d.querySelector('.collections-grid'));
+        loadMoreProductsButton(d)
+        newGrid.classList.add('load-more-pagination-results');
+        collectionContainer.append(newGrid);
+        triggeredProductCall = false
+      });
+    }
+  }	
+}
+
+
+
+// LOAD MORE ON SEARCH
+
+let triggeredSearchCall = false;
+const searchContainer = document.querySelector('.search-template')
+
+loadMoreSearchButton(document);
+
+function loadMoreSearchButton(newDoc) {
+  let moreButton = newDoc.querySelector('[data-load-more-search]');
+  if (moreButton) {
+    if (moreButton.dataset.loadMoreSearch) {
+      moreButton.onclick = loadMoreSearchEvent;  
+    } else {
+      moreButton.remove();
+    }
+  }
+}
+
+function loadMoreSearchEvent() {
+  let nextUrl = this.dataset.loadMoreSearch
+  let oldButton = this;
+  console.log(nextUrl, oldButton)
+  if (nextUrl) {
+    //console.log(nextUrl);
+    if ((triggeredSearchCall == false)) {
+      triggeredSearchCall = true;
+
+      $.ajax({
+        url: nextUrl,
+        type: 'GET',
+        beforeSend: function() {
+          oldButton.classList.add('loadingMore');
+        }
+      })
+      
+      .done(function(data) {
+        oldButton.remove();
+        let d = document.createElement('div');
+        d.innerHTML = data; 
+        let newGrid = d.querySelector('.search-results-container');
+        //console.log(newGrid);
+        loadMoreSearchButton(d)
+        newGrid.classList.add('load-more-pagination-results');
+        searchContainer.append(newGrid);
+        triggeredSearchCall = false
+      });
+    }
+  }	
+}
+

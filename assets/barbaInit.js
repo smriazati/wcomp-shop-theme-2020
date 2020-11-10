@@ -1,19 +1,14 @@
-console.log('barba init');
+// console.log('barba init');
 
-// home, corporate, story, giveadamn, contact us, pages (like shipping, faq, other?)
-// collections, product
+function preventBarbaIntoShop() {
+  const els = document.querySelectorAll("a[href^='/collections/']");
+  // console.log('preventing barba in shop... ', els);
+  els.forEach(el => el.classList.add('prevent'));
+  const els2 = document.querySelectorAll("a[href^='/products/']");
+  // console.log('preventing barba in shop... ', els);
+  els2.forEach(el => el.classList.add('prevent'));
 
-// set the NAMESPACES
-
-const container = document.getElementById('PageContainer');
-
-const corporate = container.querySelector('.corporate-template')
-const story = container.querySelector('.story-template')
-const giveadamn = container.querySelector('.giveadamn-template')
-const index = container.querySelector('.index-template')
-
-const isShop = false;
-
+}
 
 function initializeQuoteSlider() {
     // check for slider 
@@ -37,7 +32,7 @@ function initializeQuoteSlider() {
     }
 }
 function animateFrom(elem) {
-  console.log('gsap set animation')
+  //console.log('gsap set animation')
   gsap.set(elem, 
       {
           backgroundColor: '#FFF', 
@@ -72,7 +67,7 @@ function colorChange(previousdivheight) {
   // console.log('ref', ref);
 
   if (ref && gsap && ScrollTrigger) {
-      console.log('everything exists, starting up animation conditions');
+      //console.log('everything exists, starting up animation conditions');
       const elem = ref;
       // console.log('element offset top', elem.offsetTop);
       // console.log('previous div height?', previousdivheight);
@@ -83,7 +78,7 @@ function colorChange(previousdivheight) {
       
       ScrollTrigger.create({
           trigger: elem,
-          markers: true,
+          // markers: true,
           start: startPt,
           end: endPt,
           onEnter: function() { animateTo(elem) }, 
@@ -94,6 +89,52 @@ function colorChange(previousdivheight) {
   }
 }
 
+function textSwapAnimation() {
+  const atRef1 = document.getElementById('at-1');
+  const atRef2 = document.getElementById('at-2');
+  const atRef3 = document.getElementById('at-3');
+  if (atRef1) {
+    gsap.set('#at-1', 
+    {
+        display: 'none',
+        opacity: 0
+    });
+
+  }
+  if (atRef2) {
+    gsap.set('#at-2', 
+    {
+        display: 'none',
+        opacity: 0
+    });
+  }
+
+  if (atRef3) {
+    gsap.set('#at-3', 
+    {
+        display: 'none',
+        opacity: 0
+    });
+  }
+
+
+  var tl = gsap.timeline({repeat: -1, repeatDelay: 0});
+  if (atRef1) {
+    tl.to("#at-1", {display: 'inline', opacity: 1, duration: 3});
+    tl.to("#at-1", {display: 'none', opacity: 0, duration: 1});
+  }
+  if (atRef2) {
+    tl.to("#at-2", {display: 'inline', opacity: 2, duration: 3});
+    tl.to("#at-2", {display: 'none', opacity: 0, duration: 1});
+  }
+  if (atRef3) {
+    tl.to("#at-3", {display: 'inline', opacity: 1, duration: 3});
+    tl.to("#at-3", {display: 'none', opacity: 0, duration: 1});
+  }
+
+}
+
+
 // initialize barba
 
 barba.init({
@@ -101,11 +142,15 @@ barba.init({
         namespace: 'index',
         beforeEnter(data) {
           colorChange(data.current.container.offsetHeight);
+        },
+        beforeOnce(data) {
+          //console.log('here we go', data)
         }
       }, {
         namespace: 'corporate',
         beforeEnter(data) {
           initializeQuoteSlider();
+          textSwapAnimation();
         }
      }, {
         namespace: 'story',
@@ -124,17 +169,43 @@ barba.init({
         }
     }, {
         namespace: 'contact',
+        once() {
+          document.body.style.backgroundColor = '#D0CEC9'
+        },
         beforeEnter(data) {
-
+          document.body.style.backgroundColor = '#D0CEC9'
+        },
+        beforeLeave() {
+          document.body.style.backgroundColor = '#fff'
         }
     }],
     transitions: [{
       name: 'default-transition',
+      once(data) {
+        console.log(data);
+        gsap.set(data.next.container, {
+          opacity: 0,
+          y: '-5vh'
+        });
+        preventBarbaIntoShop();
+      },
+      afterOnce(data) {
+        gsap.to(data.next.container, {
+          opacity: 1,
+          duration: 1.1,
+        });
+        if (data.next.namespace === 'corporate') {
+          textSwapAnimation();
+        }
+        if (data.next.namespace === 'index') {
+          colorChange(0);
+        }
+      },
       leave(data) {
         gsap.to(data.current.container, {
           opacity: 0,
           ease: "power1.out",
-          duration: 0.5
+          duration: 1
         });
       },
       enter(data) {
@@ -150,12 +221,22 @@ barba.init({
         });
       }
     }],
+    
     // define a custom function that will prevent Barba
     // from working on links that contains a `prevent` CSS class
-    // prevent: ({ el }) => el.classList && el.classList.contains('prevent')
+    prevent: ({ el }) => el.classList && el.classList.contains('prevent')
   });
 
   barba.hooks.enter((data) => {
     // console.log(data.current.container.offsetHeight);
     console.log(data.next.namespace);
+    window.scrollTo(0, 0);
+    // sectionAnimation(data.current.container.offsetHeight);
+    preventBarbaIntoShop();
   });
+
+  // barba.hooks.beforeOnce((data) => {
+  //   console.log('barba here we go', data)
+  // });
+//beforeOnce
+

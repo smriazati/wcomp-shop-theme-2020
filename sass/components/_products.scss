@@ -39,6 +39,7 @@
                 //     content: '$'
                 // }
             }
+
             .product-single__description.rte,
             .product-single__description.rte * {
                 @include baseSofia;
@@ -68,16 +69,30 @@
                 padding: 0;
                 margin: 0;
             }
+            .product-single__description {
+                margin-top: $spacer*3;
+            }
         }
     }
 }
 
+.main-content>*:first-child.product-breadcrumbs {
+    padding: $section-spacer/2 0;
+}
+
 .product-breadcrumbs {
-    padding: $spacer*3 0;
+    .breadcrumb,
+    .breadcrumb a,
+    .breadcrumb span {
+        @include capsSofia;
+        color: $gray;
+        text-decoration: none;
+    }
     .text-wrapper {
         grid-column: span 6; 
     }
 }
+
 .product-recommendations {
     margin-top: $section-spacer;
 
@@ -100,3 +115,74 @@
     }
 }
 
+.product-single__thumbnails-item {
+    display: block;
+}
+.product-single__thumbnail.active-thumb {
+    border: $border;
+}
+
+.product-form__cart-submit {
+    position: relative;
+    .icon-loading {
+        position: absolute;
+        width: $spacer*3;
+        right: $spacer*3;
+        top: 0;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        //background: green;
+        svg {
+            width: $spacer*3;
+        }
+    }
+}
+
+.product-form__controls-group {
+    .product-form__item {
+        margin: $spacer*3 0;
+        &.selector-wrapper {
+            position: relative;
+            select + .select-menu-icon {
+                position: absolute;
+                bottom: $spacer*2;
+                right: $spacer*3;
+                pointer-events: none;
+                @include pSmallStyle;
+            }
+        }
+    }
+    .product-form__item--submit {
+        margin-top: 0;
+    }
+    .product-form__item label {
+        font-size: 10px;
+    }
+    select {
+        border-radius: 0;
+        border: $border;
+        @include pSmallStyle;
+    }
+}
+
+.price__badges {
+    .price-badge,
+    .price__badge--sale,
+    .price__badge--sold-out {
+        border: 0;
+        background: $white;
+    }
+}
+
+.price--coming-soon {
+    .price__badge--coming-soon {
+       display: flex;
+       border: 0;
+       background: $white;
+    } 
+}
+
+.return-link-wrapper {
+    margin-bottom: $section-spacer;
+}

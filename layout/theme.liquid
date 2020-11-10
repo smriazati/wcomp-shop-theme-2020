@@ -250,7 +250,10 @@ animation scripts
     <script src="{{ 'barbaInit.js' | asset_url }}"></script>
   {% endif %}
 
+
+
   {% if request.page_type == 'collection' or request.page_type == 'product' %}
+
     <style>
       body {
         background: #F5F5F5;
@@ -291,6 +294,12 @@ animation scripts
 
 
   </script>
+
+
+{% if request.page_type == 'collection' %}
+<script src="{{ 'gsapCollection.js' | asset_url }}"></script>
+<!-- <script src="{{ 'loadMoreCollection.js' | asset_url }}"></script> -->
+{% endif %}
 
 
 </body>

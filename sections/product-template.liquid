@@ -87,7 +87,7 @@
                         {%- endif -%}
                       {%- endcapture -%}
 
-                      <img class="product-single__thumbnail-image" src="{{ media.preview_image | img_url: '110x110', scale: 2 }}" alt="{{ thumbnailAlt }}">
+                      <img class="product-single__thumbnail-image" src="{{ media.preview_image | img_url: '110x110', scale: 2, crop: 'center' }}" alt="{{ thumbnailAlt }}">
                       {%- if media.media_type == 'video' or media.media_type =='external_video' -%}
                         <div class="product-single__thumbnail-badge">
                           {% include 'icon-video-badge-full-color' %}
@@ -125,12 +125,13 @@
 
         
         {% for tag in product.tags %}
-          {% unless tag contains 'theme-hide-product-cta' %}
+
+          {%- assign firstCharacter = tag | slice: 0 -%}
+          {% unless firstCharacter contains '_' %}
             <div class="product-featured-tag">
               <p>{{ tag }}</p>
             </div>
           {% endunless %}
-          {% break %}
         {% endfor %}
 
 
@@ -174,6 +175,7 @@
                         <option value="{{ value | escape }}"{% if option.selected_value == value %} selected="selected"{% endif %}>{{ value }}</option>
                       {% endfor %}
                     </select>
+                    <span class="select-menu-icon">+</span>
                   </div>
                 {% endfor %}
               </div>
@@ -220,12 +222,18 @@
                   data-add-to-cart>
                   <span data-add-to-cart-text>
                     {% unless current_variant.available %}
-                      {{ 'products.product.sold_out' | t }}
+                            
+                    {% if product.tags contains '_Coming Soon' %}
+                    Coming Soon 
+                    {% else %}
+                    {{ 'products.product.sold_out' | t }} 
+                    {% endif %}
+
                     {% else %}
                       {{ 'products.product.add_to_cart' | t }}
                     {% endunless %}
                   </span>
-                  <span class="hide" data-loader>
+                  <span class="hide icon-loading" data-loader>
                     {% include 'icon-spinner' %}
                   </span>
                 </button>
@@ -269,6 +277,7 @@
               {% endif %}
             {% endif %}
           {% endunless %}
+          {% break %}
         {% endfor %}
 
 

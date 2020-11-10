@@ -109,11 +109,16 @@
   }
 }
 
-::placeholder {
-  color: $white;
-}
 
 .shopify-challenge__container {
   padding-top: $section-spacer;
 }
 
+
+.site-footer form .input-group .input-group__field[type="email"]::placeholder {
+  color: $white;
+}
+
+.site-footer {
+  margin-top: 0;
+}

@@ -1,9 +1,9 @@
-{% paginate collection.products by limit %}
+{% paginate collection.products by 12 %}
 
 <div class="collections-page" data-section-id="{{ section.id }}" data-section-type="collection-template">
   <header class="collections-header">
     {%- assign is_filter_by_available = false -%}
-      {%- if section.settings.tags_enable and collection.all_tags.size > 0 -%}
+      {%- if  collection.all_tags.size > 0 -%}
         {%- assign is_filter_by_available = true -%}
       {%- endif -%}
     
@@ -34,80 +34,76 @@
       </div> <!-- /. text-wrapper-->
     </div>
 
-      {% if is_filter_by_available or section.settings.sort_enable %}
-      <div class="filters-toolbar-wrapper{% if is_filter_by_available %} filters-toolbar--has-filter{% endif %}">
-        <div class="page-width">
-          <div class="filters-toolbar grid-container ">
-            <div class="filters-toolbar__item-wrapper">
+      {% if is_filter_by_available %}
+      <div class="grid-container filters-toolbar-wrapper{% if is_filter_by_available %} filters-toolbar--has-filter{% endif %}">
+        <div class="filters-toolbar">
+          <p>Filter by</p>
+              {% unless collection.all_tags.size == 0 %}
+              <div class="filter-item filter-by-tags">
+                <label class="visually-hidden select-label" for="FilterTags">{{ 'collections.filters.title_tags' | t }}</label>
+                  <select class="filters-toolbar__input hidden" name="FilterTags" id="FilterTags" aria-describedby="a11y-refresh-page-message a11y-selection-message" data-select-input>
+                    <option value="{{ collection.url }}" readonly="true" hidden="true" selected>Category</option>
+                    <option value="{{ collection.url }}">{{ 'collections.filters.all_tags' | t }}</option>
+                    {% comment %}
+                      Don't include tags that start with _ in the filter list ! 
+                    {% endcomment %}
+                    {% for tag in collection.all_tags %}
+                      {%- assign tag_start = tag | slice: 0 -%}
+                      {% if tag_start == "_" %}
+                        {% continue %}
+                      {% else %}
+                        {%- assign new_url = tag | link_to_tag: tag | split: 'href="' | last | split: '"' | first -%}
+                        <option value="{{ new_url }}"{% if current_tags contains tag %} selected="selected"{% endif %}>{{ tag }}</option>
+                      {% endif %}
+                    {% endfor %}
+                  </select>
+              </div>
+              {% endunless %}
 
-              <!-- tag filter -->
-              {% if section.settings.tags_enable %}
-                {% unless collection.all_tags.size == 0 %}
-                  <div class="filters-toolbar__item-child">
-                    <label class="filters-toolbar__label select-label" for="FilterTags">{{ 'collections.filters.title_tags' | t }}</label>
-                    <div class="filters-toolbar__input-wrapper select-group">
-                      <select class="filters-toolbar__input hidden" name="FilterTags" id="FilterTags" aria-describedby="a11y-refresh-page-message a11y-selection-message" data-select-input>>
-                        <option value="{{ collection.url }}" readonly="true" hidden="true" selected>Category</option>
-                        <option value="{{ collection.url }}">{{ 'collections.filters.all_tags' | t }}</option>
-                        {% comment %}
-                          Don't include tags that start with _ in the filter list ! 
-                        {% endcomment %}
-                        {% for tag in collection.all_tags %}
-                          {%- assign tag_start = tag | slice: 0 -%}
-                          {% if tag_start == "_" %}
-                            {% continue %}
-                          {% else %}
-                            {%- assign new_url = tag | link_to_tag: tag | split: 'href="' | last | split: '"' | first -%}
-                            <option value="{{ new_url }}"{% if current_tags contains tag %} selected="selected"{% endif %}>{{ tag }}</option>
-                          {% endif %}
-                        {% endfor %}
-                      </select>
-                    </div>
-                  </div>
-                {% endunless %}
-              {% endif %}
-
-              {% comment %}
-              <!-- price-ascending
-              price-descending -->
-              <!-- price filter -->
-              {% endcomment %}
-
-              {% if section.settings.sort_enable %}
-                <div class="filters-toolbar__item-child">
+                <div class="filter-item filter-by-price">
                   {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
-                  {% if collection.all_tags.size == 0 %}
-                  <div class="filters-toolbar__item-child">
-                    <label class="filters-toolbar__label select-label" for="FilterTags">{{ 'collections.sorting.title' | t }}</label>
-                  {% else %}
-                    <label class="visually-hidden filters-toolbar__label select-label" for="SortBy">{{ 'collections.sorting.title' | t }}</label>
-                  <div class="filters-toolbar__input-wrapper select-group">
-                    {% endif %}
+                  <label class="visually-hidden select-label" for="SortBy">Price</label>
                     <select name="sort_by" id="SortBy"
-                      class="filters-toolbar__input hidden"
-                      aria-describedby="a11y-refresh-page-message a11y-selection-message"
-                      data-default-sortby="{{ collection.default_sort_by }}"
-                      data-select-input
-                      data-theme-text="Price"
-                      <option value="{{ collection.url }}" readonly="true" hidden="true" selected>Price</option>
-                      {% for option in collection.sort_options %}
-                        {% if option.value contains 'price-ascending' or option.value contains 'price-descending'  %}
-                          <option value="{{ option.value }}" {% if sort_by == option.value %} selected="selected" {% endif %}>{{ option.name }} </option>
-                        {% endif%}
-                      {% endfor%}
+                        class="hidden"
+                        aria-describedby="a11y-refresh-page-message a11y-selection-message"
+                        data-default-sortby="{{ collection.default_sort_by }}"
+                        data-select-input
+                        data-theme-text="Price">
+                        <option value="{{ collection.url }}" readonly="true" hidden="true" selected>Price</option>
+                        {% for option in collection.sort_options %}
+                          {% if option.value contains 'price-ascending' or option.value contains 'price-descending'  %}
+                            <option value="{{ option.value }}" {% if sort_by == option.value %} selected="selected" {% endif %}>{{ option.name }} </option>
+                          {% endif%}
+                        {% endfor%}
                     </select>
-                  </div>
                 </div>
-              {% endif %}
-            </div>
+
+
+                <div class="filter-item filter-by-brand">
+                    <label class="visually-hidden select-label" for="FilterByBrand">Brand</label>
+
+                    <select name="brands" id="FilterByBrand" class="hidden"                           
+                        aria-describedby="a11y-refresh-page-message a11y-selection-message"
+                        onChange="window.location.href=this.value">
+                      <option value="{{ collection.url }}" readonly="true" hidden="true" selected>Brand</option>
+
+                      <option value="/collections/all">All</option>
+                      {% for product_vendor in shop.vendors %}
+                        {% if collection.current_vendor contains product_vendor %}
+                            <option value="{{ product_vendor | url_for_vendor }}" selected>{{ product_vendor }}</option>
+                        {% else %}
+                            <option value="{{ product_vendor | url_for_vendor }}">{{ product_vendor }}</option>
+                        {% endif %}
+                      {% endfor %}
+                    </select>
+                </div>
+
           </div>
         </div>
-      </div>
     {% endif %}
   </header>
 
-  <div class="collections-grid" id="Collection">
-
+  <div class="collections-grid">
       <ul class="grid-container">
         {% for product in collection.products %}
             <li class="grid__item grid__item--{{section.id}}">
@@ -124,7 +120,9 @@
     {% endif %}
 
     {%- if paginate.pages > 1 -%}
-      {% include 'pagination', paginate: paginate %}
+      <div class="pagination load-more">
+        <div role="navigation" aria-label="pagination" class="load-more-btn btn" data-load-more-products="{{ paginate.next.url }}">Load More</div>
+      </div>
     {%- endif -%}
   </div>
 </div>
@@ -135,20 +133,6 @@
 
 {% schema %}
 {
-  "name": "Collection pages",
-  "settings": [
-    {
-      "type": "checkbox",
-      "id": "sort_enable",
-      "label": "Enable sorting",
-      "default": true
-    },
-    {
-      "type": "checkbox",
-      "id": "tags_enable",
-      "label": "Enable tag filtering",
-      "default": true
-    }
-  ]
+  "name": "Collection pages"
 }
 {% endschema %}
