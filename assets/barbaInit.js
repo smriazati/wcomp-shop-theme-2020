@@ -10,9 +10,9 @@ function preventBarbaIntoShop() {
 
 }
 
-function initializeQuoteSlider() {
+function initializeQuoteSlider(newDoc) {
     // check for slider 
-    const slider = document.querySelector('.quotes-slider');
+    const slider = newDoc.querySelector('.quotes-slider');
     if (slider) {
       $('.quotes-slider').slick({
         centerMode: false,
@@ -24,8 +24,8 @@ function initializeQuoteSlider() {
       });
 
       // get arrows
-      const prev = document.querySelector('.slick-prev');
-      const next = document.querySelector('.slick-next');
+      const prev = newDoc.querySelector('.slick-prev');
+      const next = newDoc.querySelector('.slick-next');
 
       prev.innerHTML = '←';
       next.innerHTML = '→';
@@ -64,6 +64,7 @@ function colorChange(previousdivheight) {
   // console.log('hi gsap color change')
   const ref = document.querySelector('.gsap-bg-color-change');
   const endOffset = 150;
+  const startSooner = 0;
   // console.log('ref', ref);
 
   if (ref && gsap && ScrollTrigger) {
@@ -71,9 +72,9 @@ function colorChange(previousdivheight) {
       const elem = ref;
       // console.log('element offset top', elem.offsetTop);
       // console.log('previous div height?', previousdivheight);
-      const startPt = elem.offsetTop - previousdivheight;
-      const endPt = (startPt + elem.offsetHeight) - endOffset;
-      // console.log(startPt, endPt);
+      const startPt = (elem.offsetTop - previousdivheight) - startSooner;
+      const endPt = (startPt + elem.offsetHeight + startSooner) - endOffset;
+      console.log(startPt, endPt);
       animateFrom(elem);
       
       ScrollTrigger.create({
@@ -149,7 +150,7 @@ barba.init({
       }, {
         namespace: 'corporate',
         beforeEnter(data) {
-          initializeQuoteSlider();
+          initializeQuoteSlider(data.next.container);
           textSwapAnimation();
         }
      }, {
@@ -195,6 +196,7 @@ barba.init({
           duration: 1.1,
         });
         if (data.next.namespace === 'corporate') {
+//          console.log('after once corporate')
           textSwapAnimation();
         }
         if (data.next.namespace === 'index') {
@@ -235,8 +237,4 @@ barba.init({
     preventBarbaIntoShop();
   });
 
-  // barba.hooks.beforeOnce((data) => {
-  //   console.log('barba here we go', data)
-  // });
-//beforeOnce
 

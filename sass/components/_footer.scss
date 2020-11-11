@@ -66,9 +66,14 @@
   > *:first-child {
     padding-right: $spacer/2;
   }
+  > * {
+    height: 18px;
+  }
   * {
     font-size: 12px !important;
     color: #707070 !important;
+    margin: 0;
+    display: inline;
     a {text-decoration: none;}
   }
 }
@@ -121,4 +126,26 @@
 
 .site-footer {
   margin-top: 0;
+}
+
+.site-footer-logo-image {
+  width: 100px;
+}
+
+@media (max-width: $bp-sm) {
+  .site-footer {
+    .grid-container {
+      text-align: center;
+      > * {
+        margin: $spacer*6 0;
+      }
+    }
+    .site-footer__linklist li, 
+    .site-footer__social-icons li {
+      justify-content: center;
+    }
+    .site-footer-copyright {
+      margin-top: $section-spacer/2;
+    }
+  }
 }

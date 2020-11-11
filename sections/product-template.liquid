@@ -271,7 +271,9 @@
           {% unless tag contains 'theme-hide-product-cta' %}
             {% if settings.product_cta_text %}
               {% if settings.product_cta_url %}
-                <a class="btn-text-link product-cta" href="{{ settings.product_cta_url }}">{{ settings.product_cta_text }}</a>
+                <div class="product-cta">
+                  <a class="btn-text-link product-cta-link" href="{{ settings.product_cta_url }}">{{ settings.product_cta_text }}</a>
+                </div> 
               {% else %}
                 {{ settings.product_cta_text }}
               {% endif %}

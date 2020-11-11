@@ -30,12 +30,12 @@
         <ul id="MobileNav">
           {% include 'site-nav-noUL', linklist: section.settings.main_linklist %}
           {% include 'site-nav-noUL', linklist: section.settings.shop_linklist %}
-          <li>
+          <li class="search-nav-btn">
             <button type="button" class="btn--link site-header__icon site-header__search-toggle js-drawer-open-top" data-predictive-search-open-drawer>
               Search
             </button>
           </li>
-          <li>
+          <li class="cart-nav-btn">
             {% comment %} START CART {% endcomment %}
             <a href="{{ routes.cart_url }}" class="site-header__icon site-header__cart">
               <span class="site-nav__label">Cart</span>
@@ -46,12 +46,11 @@
             </a>
             {% comment %} END CART {% endcomment %}
           </li>
-        </ul>
+          </ul>
       </nav>
     </div> <!-- / .site-nav -->
 
     {% include 'search-drawer' %}
-
     
     <div class="mobile-nav-btn">
       <button type="button" class="btn--link site-header__icon site-header__menu js-mobile-nav-toggle mobile-nav--open" aria-controls="MobileNav"  aria-expanded="false" aria-label="{{ 'layout.navigation.menu' | t }}">
@@ -60,6 +59,44 @@
       </button>
     </div>
 
+    <div class="mobile-secondary-header">
+      <ul>
+        <li>
+          <button type="button" class="btn--link site-header__icon site-header__search-toggle js-drawer-open-top" data-predictive-search-open-drawer>
+            {% include 'icon-search' %} 
+          </button>
+        </li>
+        <li>
+          <a href="{{ routes.cart_url }}" class="site-header__icon site-header__cart">
+            <div id="CartCount" class="site-header__cart-count critical-hidden" data-cart-count-bubble>
+              {% if cart.item_count == 0 %}
+                {% include 'icon-cart' %}
+              {% else %} 
+                <span class="cart-count">( {{ cart.item_count }} )</span>
+              {% endif %} 
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="social-mobile-nav">
+      <nav>
+        <ul>
+          {%- assign socials = "Facebook Twitter Pinterest Instagram Tumblr Snapchat YouTube Vimeo" | split: ' ' -%}
+            {%- for social in socials -%}
+            {%- assign social_link = social | prepend: 'social_' | append: '_link' | downcase -%}
+            {%- if settings[social_link] != blank -%}
+              <li class="social-icons__item desktop-hide">
+                <a class="social-icons__link" href="{{ settings[social_link] | escape }}" aria-describedby="a11y-external-message" target="_blank">
+                  {{ social }}
+                </a>
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      </nav>
+    </div>
 
   </header>
 

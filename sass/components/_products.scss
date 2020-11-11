@@ -15,6 +15,7 @@
     &.grid-container {
         .image-wrapper {
             grid-column: span 3;
+            padding-right: $col-width/2;
         }
         .text-wrapper {
             grid-column: 4 / span 3;
@@ -50,7 +51,9 @@
                 }
             }
             .product-cta {
-                margin: $spacer 0;
+                margin: $spacer*3 0;
+            }
+            .product-cta-link {
                 @include baseFreight;
                 font-size: 14px;
                 line-height: 16px;

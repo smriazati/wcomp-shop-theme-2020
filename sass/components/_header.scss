@@ -93,51 +93,9 @@ $nav-height: $spacer*12;
     @include responsiveHeaderGrid($logo-width-lg);
 }
 
-@media (min-width: $bp-sm) and (max-width: $bp-lg) {
+@media (min-width: $nav-bp) and (max-width: $bp-lg) {
     @include responsiveHeaderGrid($logo-width-md);
 }
-
-// mobile nav
-
-@media (max-width: $bp-sm) {
-    .site-header {
-        position: relative;
-        border: none;
-        z-index: 1000;
-    }
-    .mobile-nav-btn {
-        display: block;
-        position: absolute;
-        top: $spacer;
-        right: $spacer;
-        svg {
-            width: $spacer*5;
-        }
-        button:focus, button:active {
-            outline: 0;
-        }
-        .mobile-nav--open {
-            .icon-close {
-                display: none;
-            }
-        }
-    }
-    .site-logo {
-        max-width: 200px;
-    }
-    .site-nav {
-        margin: 0;
-    }
-    .site-nav nav ul {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        > * {
-            padding: $spacer;
-        }
-    }
-}
-
 
 /* 
 design
@@ -145,10 +103,12 @@ design
 
 header.site-header {
     background: $white;
-    .site-nav, 
-    .search-bar.drawer {
-        border-bottom: $border;
-    }  
+    @media (min-width: $nav-bp) {
+        .site-nav, 
+        .search-bar.drawer {
+            border-bottom: $border;
+        }  
+    }
 }  
 
 .site-nav .site-nav--active a {
@@ -173,6 +133,8 @@ header.site-header {
     @mixin searchBarInput {
         opacity: 1;
         @include h2Style($slate);
+        font-size: 24px;
+        line-height: 30px;
     }
 
     .search-bar__input {
@@ -210,8 +172,6 @@ header.site-header {
         @include baseSofia;
     }
 }
-
-
 
 .search-bar__actions {
     display: none;
@@ -327,3 +287,154 @@ header.site-header {
   }
   
   
+
+
+
+ // mobile nav & header fixes 11.10.20
+@media (min-width: $nav-bp) {
+    .social-mobile-nav,
+    .mobile-secondary-header {
+        display: none;
+    }
+}
+
+@media (max-width: $nav-bp) {
+    $mobile-header-height: 50px;
+    .site-header {
+        position: relative;
+        z-index: 1000;
+        padding: 0;
+        display: grid;
+        grid-template-rows: $mobile-header-height;
+        grid-template-columns: repeat(3,1fr);
+        border-bottom: 1px solid black;
+        .site-logo {
+            grid-column: 2 / 3;
+            max-width: 100%;
+        }
+        .site-nav {
+            border: 0;
+            margin: 0;
+        }
+        .mobile-nav-btn {
+            grid-column: 1 / 2;
+            grid-row: 1 / 2;
+            display: flex;
+            svg {
+                width: $spacer*2;
+            }
+            button:focus, button:active {
+                outline: 0;
+            }
+            .mobile-nav--open {
+                .icon-close {
+                    display: none;
+                }
+            }
+        }
+    }
+    .mobile-nav-wrapper,
+    .js-menu--is-open.is-transitioning,
+    .mobile-nav-wrapper.js-menu--is-open {
+        transform: none !important;
+        #MobileNav {
+            opacity: 0;
+        }
+    }
+
+    @keyframes fadeInNewCollection {
+        from { opacity: 0;}
+        to   { opacity: 1;}
+    }
+
+    .mobile-nav-wrapper.js-menu--is-open #MobileNav {
+        animation: fadeInNewCollection .3s ease-out 1 forwards;
+        position: fixed;
+        z-index: 999;
+        height: 100%;
+        width: 100%;
+        background: white;
+        margin-top: $mobile-header-height + 1px;
+    }
+
+    .site-nav nav ul li a, .site-nav nav ul li button, .site-nav nav ul li button span {
+        font-size: 36px;
+        line-height: 43px;
+    }
+    .site-nav nav ul li button {
+        padding: 0;
+    }
+    .site-nav nav ul li {
+        padding: $spacer*2 $spacer*4;
+    }
+
+
+    .search-nav-btn,
+    .cart-nav-btn {
+        display: none;
+    }
+
+    .mobile-secondary-header {
+        grid-row: 1 / 2;
+        grid-column: 3 / 4;
+        ul {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            justify-content: flex-end;
+        }
+        li {
+            display: flex;
+        }
+        svg {
+            width: $spacer*4;
+            height: $spacer*4;
+            padding: $spacer;
+        }
+        .site-header__icon {
+            padding-left: $spacer;
+            padding-right: 0;
+        }
+        .site-header__cart-count {
+            display: flex;
+            align-items: center;
+            span.cart-count {
+                text-decoration: none;
+                font-size: 14px;
+                border: 0;
+                @include baseSofia;
+                padding: 0;
+            }
+        }
+    }
+    .social-mobile-nav {
+        display: none;
+    }
+    .social-mobile-nav.mobile-nav-is-open {
+        display: block;
+        position: fixed;
+        bottom: $spacer*6;
+        left: $spacer*4;
+        z-index: 1001;
+        ul {
+            list-style: none;
+            padding: 0;
+            > * {
+                padding: $spacer 0;
+            }
+            li a {
+                @include baseSofia;
+                font-size: 15px;
+                color: #49484C;
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+
+
+
+.site-nav__label {
+    white-space: nowrap;
+}

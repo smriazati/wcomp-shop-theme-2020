@@ -5,28 +5,18 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <!-- <meta name="theme-color" content="{{ settings.color_button }}"> -->
+  <meta name="theme-color" content="#000">
 
   <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
   <link rel="preconnect" href="https://fonts.shopify.com" crossorigin>
   <link rel="preconnect" href="https://monorail-edge.shopifysvc.com">
 
-  <!-- {%- assign header_font = settings.type_header_font -%}
-  {%- assign base_font = settings.type_base_font -%}
-  {%- assign base_font_bolder = base_font | font_modify: 'weight', 'bolder' -%}
-  {%- assign base_font_bold = base_font | font_modify: 'weight', 'bold' -%}
-  {%- assign base_font_italic = base_font | font_modify: 'style', 'italic' -%}
-  {%- assign base_font_bold_italic = base_font_bold | font_modify: 'style', 'italic' -%} -->
-
   <link rel="preload" href="{{ 'theme.css' | asset_url }}" as="style">
   <link rel="preload" href="{{ 'styles.css' | asset_url }}" as="style">
 
-  <!-- <link rel="preload" as="font" href="{{ header_font | font_url }}" type="font/woff2" crossorigin>
-  <link rel="preload" as="font" href="{{ base_font | font_url }}" type="font/woff2" crossorigin>
-  <link rel="preload" as="font" href="{{ base_font_bold | font_url }}" type="font/woff2" crossorigin> -->
 
   <!-- CUSTOM THEME FONTS FROM TYPEKIT -->
-  <link rel="stylesheet" href="https://use.typekit.net/vyj7hyi.css">
+  <link rel="stylesheet" href="https://use.typekit.net/bzw6dzr.css">
 
 
   <link rel="preload" href="{{ 'theme.js' | asset_url }}" as="script">
@@ -34,25 +24,18 @@
 
   {% comment %}
   GSAP & ScrollTrigger
-  assets / gsapInit.js
   {% endcomment %}
-  <!-- <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js" as="script">
-  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/CSSRulePlugin.min.js" as="script">
-  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/ScrollTrigger.min.js" as="script">
-  <link rel="preload" href="{{ 'gsapInit.js' | asset_url }}" as="script"> -->
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/CSSRulePlugin.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/ScrollTrigger.min.js"></script>
 
-
   {% comment %}
   barba.js
   {% endcomment %}
-  <script src="https://unpkg.com/@barba/core"></script>
-
-
-
+  {% if request.page_type != 'collection' and request.page_type != 'product' %}
+    <script src="https://unpkg.com/@barba/core"></script>
+  {% endif %}
 
   {%- if canonical_url != blank  -%}
   <link rel="canonical" href="{{ canonical_url }}">
@@ -271,7 +254,7 @@ animation scripts
   <script type="text/javascript">
     $(document).ready(function () {
 
-      // check for slider 
+      // check for slider, initialize it if it happens
       const slider = document.querySelector('.quotes-slider');
       if (slider) {
         $('.quotes-slider').slick({
@@ -297,8 +280,7 @@ animation scripts
 
 
 {% if request.page_type == 'collection' %}
-<script src="{{ 'gsapCollection.js' | asset_url }}"></script>
-<!-- <script src="{{ 'loadMoreCollection.js' | asset_url }}"></script> -->
+  <script src="{{ 'gsapCollection.js' | asset_url }}"></script>
 {% endif %}
 
 

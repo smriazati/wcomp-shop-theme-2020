@@ -3106,18 +3106,21 @@ theme.MobileNav = (function() {
     };
   }
 
+  const headerLinks = document.querySelector('.site-header').querySelectorAll('a');
+
   function openMobileNav() {
     // var translateHeaderHeight = cache.siteHeader.offsetHeight;
     var translateHeaderHeight = 0;
 
     theme.Helpers.prepareTransition(cache.mobileNavContainer);
     cache.mobileNavContainer.classList.add(classes.navOpen);
+    cache.siteHeader.querySelector('.social-mobile-nav').classList.add('mobile-nav-is-open');
 
-    cache.mobileNavContainer.style.transform =
-      'translateY(' + translateHeaderHeight + 'px)';
+    // cache.mobileNavContainer.style.transform =
+    //   'translateY(' + translateHeaderHeight + 'px)';
 
-    cache.pageContainer.style.transform =
-      'translate3d(0, ' + cache.mobileNavContainer.scrollHeight + 'px, 0)';
+    // cache.pageContainer.style.transform =
+    //   'translate3d(0, ' + cache.mobileNavContainer.scrollHeight + 'px, 0)';
 
     slate.a11y.trapFocus({
       container: cache.sectionHeader,
@@ -3129,6 +3132,12 @@ theme.MobileNav = (function() {
     cache.mobileNavToggle.setAttribute('aria-expanded', true);
 
     window.addEventListener('keyup', keyUpHandler);
+
+    // add event listeners to all links to close the menu on barba transition 
+    headerLinks.forEach( link => {
+      link.addEventListener("click", closeMobileNav);
+    })
+
   }
 
   function keyUpHandler(event) {
@@ -3138,9 +3147,12 @@ theme.MobileNav = (function() {
   }
 
   function closeMobileNav() {
+    console.log('closing')
     theme.Helpers.prepareTransition(cache.mobileNavContainer);
     cache.mobileNavContainer.classList.remove(classes.navOpen);
-    cache.mobileNavContainer.style.transform = 'translateY(-100%)';
+    cache.siteHeader.querySelector('.social-mobile-nav').classList.remove('mobile-nav-is-open');
+
+    //cache.mobileNavContainer.style.transform = 'translateY(-100%)';
     cache.pageContainer.setAttribute('style', '');
 
     slate.a11y.trapFocus({
@@ -3161,6 +3173,11 @@ theme.MobileNav = (function() {
 
     window.removeEventListener('keyup', keyUpHandler);
     window.scrollTo(0, 0);
+
+    // remove event listeners after menu closes 
+    headerLinks.forEach( link => {
+      link.removeEventListener("click", closeMobileNav);
+    })
   }
 
   function mobileNavRemoveTrapFocus() {

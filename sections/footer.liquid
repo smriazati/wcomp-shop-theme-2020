@@ -30,9 +30,9 @@
           <a href="{{ routes.root_url }}" class="site-footer-logo-image" data-image-loading-animation>
             {% capture logo_alt %}{{ footer_logo.alt | default: shop.name }}{% endcapture %}
             <img class="lazyload js"
-                src="{{ footer_logo | img_url: '144x' }}"
-                data-src="{{ img_url }}"
-                data-widths="[180]"
+                src="{{ footer_logo | img_url: '100x', scale: 2 }}"
+                data-src="{{ footer_logo | img_url: image_size, scale: 2 }}"
+                data-widths="[100]"
                 data-aspectratio="{{ footer_logo.aspect_ratio }}"
                 data-sizes="auto"
                 alt="{{ logo_alt | escape }}">
@@ -101,8 +101,8 @@
       {%- if section.settings.footer_copyright_text -%}
         {%- if section.settings.footer_copyright_text != blank -%} 
           <small class="site-footer__copyright-content">
-            <span>&copy; {{ 'now' | date: "%Y" }} {{ shop.name | link_to: routes.root_url }}</span>
-            {{ section.settings.footer_copyright_text }}
+            <div><p>&copy; {{ 'now' | date: "%Y" }} {{ shop.name | link_to: routes.root_url }}</p></div>
+            <div>{{ section.settings.footer_copyright_text }}</div>
           </small>
         {%- else -%}
           <small class="site-footer__copyright-content">

@@ -1,12 +1,14 @@
 
 <div class="home-featured-products">
-  {% if section.settings.title != blank %}
-    <div class="section-header">
-      <h2 class="h1">{{ section.settings.title | escape }}</h2>
+    <div class="section-header grid-container">
+      {% if section.settings.title != blank %}
+      <div class="text-wrapper">
+        <h2 class="h1">{{ section.settings.title | escape }}</h2>
+      </div>
+      {% endif %}
     </div>
-  {% endif %}
-
-    <div class="grid-container">
+  
+    <div class="featured-products-grid grid-container">
       {% for block in section.blocks %}
       {%- assign product = all_products[block.settings.featured_product] -%}
         <a href="{{ product.url }}" class="product-item grid-container-item" {{ block.shopify_attributes }}>
@@ -43,11 +45,13 @@
           </a>
       {% endfor %}
     </div> 
-
-    {% if section.settings.button_label != blank and section.settings.button_link != blank %}
-      {% include 'button', label: section.settings.button_label, link: section.settings.button_link %}
-    {% endif %}
-    
+    <div class="section-footer grid-container">
+      <div class="text-wrapper">
+      {% if section.settings.button_label != blank and section.settings.button_link != blank %}
+        {% include 'button', label: section.settings.button_label, link: section.settings.button_link %}
+      {% endif %}
+      </div>
+    </div>
 </div>
 
 

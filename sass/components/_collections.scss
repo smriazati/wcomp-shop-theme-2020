@@ -186,3 +186,15 @@
 .collections-grid.load-more-pagination-results {
     animation: fadeInNewCollection 1s ease-out 1 forwards;
 }
+
+// mobile
+@media (max-width: $bp-sm) {
+    .collections-page .collections-grid ul.grid-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        > * {
+            flex: 0 0 48%;
+        }
+    }
+}

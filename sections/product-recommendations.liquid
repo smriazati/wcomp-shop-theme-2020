@@ -6,15 +6,24 @@
         <div class="text-wrapper">
           <h2 class="title">{{ section.settings.heading | escape }}</h2>
         </div>
+        {%- else -%}
+        <div class="text-wrapper">
+          <h2 class="title">You May Also Like</h2>
+        </div>
         {%- endif -%}
       </div>
-
       <ul class="product-recs-grid grid-container">
+        <!-- if there are less than 6 products, then count how mnay are missing. get collection. get products from collection that aren't already listed here. if there are none, then go to All collections-->
+
         {%- for product in recommendations.products -%}
           <li class="grid__item">
             {% include 'product-card-grid', max_height: 250, product: product, show_vendor: false %}
           </li>
         {%- endfor -%}
+        {% assign missing_recs = 6 | minus: recommendations.products_count %}
+        {%- if missing_recs > 0 -%}
+          <!-- Get {{ missing_recs }} -->
+        {%- endif -%}
       </ul>
     </div>   
     {%- endif -%}
@@ -24,30 +33,7 @@
 
 {% schema %}
 {
-  "name": {
-    "cs": "Doporučení produktů",
-    "da": "Produktanbefalinger",
-    "de": "Produktempfehlungen",
-    "en": "Product recommendations",
-    "es": "Recomendaciones de productos",
-    "fi": "Tuotesuositukset",
-    "fr": "Recommandations de produits",
-    "hi": "उत्पाद की अनुशंसाएं",
-    "it": "Raccomandazioni sui prodotti",
-    "ja": "商品の推奨",
-    "ko": "제품 권장 사항",
-    "nb": "Produktanbefalinger",
-    "nl": "Productaanbevelingen",
-    "pl": "Rekomendacje produktu",
-    "pt-BR": "Recomendações de produtos",
-    "pt-PT": "Recomendações de produtos",
-    "sv": "Produktrekommendationer",
-    "th": "คำแนะนำสินค้า",
-    "tr": "Ürün önerileri",
-    "vi": "Đề xuất sản phẩm",
-    "zh-CN": "产品推荐",
-    "zh-TW": "商品推薦"
-  },
+  "name": "Product recommendations",
   "settings": [
     {
       "type": "text",

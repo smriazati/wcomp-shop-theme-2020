@@ -17,6 +17,7 @@
 @mixin italicFreight {
     @include baseFreight;
     font-style: italic;
+    letter-spacing: 0.8px;
 }
 
 @mixin baseSofia {
@@ -31,7 +32,7 @@
 }
 
 @mixin pStyle($color: $slate) {
-    @include baseFutura;
+    @include baseSofia;
     font-size: 20px;
     color: $color;
 }
@@ -75,9 +76,10 @@
     font-size: 14px;
     color: $color;
     background: transparent;
-    transition: .3s ease background;
+    transition: .3s ease color;
+    border-radius: 0;
     &:hover:not([aria-disabled="true"]) {
-        background: $gray;
+        color: $gray;
         cursor: pointer;
     }
 }
