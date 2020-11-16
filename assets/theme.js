@@ -3132,12 +3132,11 @@ theme.MobileNav = (function() {
     cache.mobileNavToggle.setAttribute('aria-expanded', true);
 
     window.addEventListener('keyup', keyUpHandler);
-
-    // add event listeners to all links to close the menu on barba transition 
+    
+    // add event listeners after menu closes 
     headerLinks.forEach( link => {
       link.addEventListener("click", closeMobileNav);
     })
-
   }
 
   function keyUpHandler(event) {
@@ -3147,7 +3146,7 @@ theme.MobileNav = (function() {
   }
 
   function closeMobileNav() {
-    console.log('closing')
+    //console.log('closing')
     theme.Helpers.prepareTransition(cache.mobileNavContainer);
     cache.mobileNavContainer.classList.remove(classes.navOpen);
     cache.siteHeader.querySelector('.social-mobile-nav').classList.remove('mobile-nav-is-open');
@@ -8928,7 +8927,7 @@ theme.ProductRecommendations = (function() {
       baseUrl +
       '?section_id=product-recommendations&product_id=' +
       productId +
-      '&limit=4';
+      '&limit=6';
 
     window.performance.mark(
       'debut:product:fetch_product_recommendations.start'
@@ -9476,4 +9475,171 @@ function loadMoreSearchEvent() {
     }
   }	
 }
+
+function checkIfSelected(item) {
+  if (item.selectedIndex > 0) {
+    return true;
+  } else {
+    return false;
+  }
+}
+function collectionPageFilterWidths() {
+  const activelyFilteredClass = 'actively-filtered'
+  const filters = document.querySelector('.filters-toolbar');
+  if (filters) {
+    const catFilt = filters.querySelector('#FilterTags')
+    const priceFilt = filters.querySelector('#SortBy')
+    const brandFilt = filters.querySelector('#FilterByBrand')
+    //console.log(catFilt, priceFilt, brandFilt)
+    if (catFilt) {
+      if (checkIfSelected(catFilt)) {
+        catFilt.classList.add(activelyFilteredClass);
+      } else {
+        catFilt.classList.remove(activelyFilteredClass);
+      }
+    }
+    if (priceFilt) {
+      if (checkIfSelected(priceFilt)) {
+        priceFilt.classList.add(activelyFilteredClass);
+      } else {
+        priceFilt.classList.remove(activelyFilteredClass);
+      }
+    }
+    if (brandFilt) {
+      if (checkIfSelected(brandFilt)) {
+        brandFilt.classList.add(activelyFilteredClass);
+      } else {
+        brandFilt.classList.remove(activelyFilteredClass);
+      }
+    }
+  }
+}
+collectionPageFilterWidths();
+
+// flodesk newsletters - loading in via JS in order to prevent scrolling to form on page load
+
+// inline 
+document.addEventListener('DOMContentLoaded', function() {
+  const inlineNewsletterHTML = `<div class="fd-ef-5fac562d76d8d645a6cf181f">
+  <div class="ff__root">
+    <div class="ff__container">
+      <form class="flodesk-newsletter ff__form" action="https://form.flodesk.com/submit" method="post" data-form="fdv2">
+        <div class="ff__fields">
+          <input type="text" name="name" value="" style="display: none" />
+          <input type="hidden" name="submitToken" value="7d19c5c0002af513ad672dd553d6b30cfa401d59aa209d4a993c20ed053ebd35f38ff76f608bd72913c5fcd3f04ee6ea8a9c9530d5734e64223757cdf65e4283368287a4e66831f5154a8749c764bf96036d980ea3b6113b5eccd2e1ee76b70c" />
+          <div class="ff__grid">
+              <input class="fd-form-control ff__control newsletter-email" type="text" name="email" placeholder="Email address">
+              <button type="submit" class="fd-btn ff__button newsletter-submit" data-form-el="submit">
+                <span>→</span>
+              </button>
+          </div>
+        </div>
+        <div class="fd-success ff__success" data-form-el="success">
+          <p>Thank you for subscribing!</p>
+        </div>
+        <div class="fd-error ff__error" data-form-el="error"></div>
+      </form>
+    </div>
+  </div>
+  
+  <img height="1" width="1" style="display:none" src="https://t.flodesk.com/utm.gif?r=5fac562d76d8d645a6cf181f" />
+  </div>`
+
+  const contactFormNewsletter = document.getElementById('contact-page-newsletter');
+  if (contactFormNewsletter) {
+    // console.log('hi')
+    contactFormNewsletter.innerHTML = inlineNewsletterHTML;
+  }
+  
+  const footerNewsletter = document.getElementById('footer-newsletter');
+  if (footerNewsletter) {
+    // console.log('hi')
+    footerNewsletter.innerHTML = inlineNewsletterHTML;
+  }
+  
+});
+
+// move search button on small screens
+
+function isMobileNavBP() {
+  const ref = document.querySelector('.mobile-nav-btn');
+  if (ref) { 
+    const refStyle = window.getComputedStyle(ref).getPropertyValue('display');
+    if (refStyle === 'flex') {
+      return true;
+    } else {
+      return false;
+    }
+  } 
+}
+
+function moveSearchButtonForMobile() {
+    if (isMobileNavBP()) {
+      const theSearchBtn = document.querySelector('.search-nav-btn');
+      const theDestinationParent = document.querySelector('.mobile-secondary-header');
+      const theDestinationSiblingNode = theDestinationParent.querySelector('.cart-icon');
+      if (theSearchBtn) {
+        //console.log(theSearchBtn)
+        if (theDestinationSiblingNode) {
+          //console.log(theDestinationSiblingNode);
+          theDestinationSiblingNode.before(theSearchBtn);
+        }
+      }
+    }
+}
+
+document.addEventListener('DOMContentLoaded', moveSearchButtonForMobile);
+window.addEventListener('resize', moveSearchButtonForMobile);
+
+
+// Search drawer mobile fixes // set mobile nav display to none so it doesn't cover up header nav controls
+
+function isDrawerOpen() {
+  const ref = document.querySelector('#SearchDrawer');
+  if (ref) { 
+    const refStyle = window.getComputedStyle(ref).getPropertyValue('display');
+    if (refStyle === 'flex') {
+      return true
+    } else {
+      return false
+    }
+  } 
+}
+
+const theSearchBtnBtn = document.querySelector('.search-nav-btn button');
+const mobileNavToggle = document.querySelector('.mobile-nav-btn');
+
+theSearchBtnBtn.addEventListener('click', function (event) {
+
+    const mobileMenu = document.getElementById('MobileNav');
+    if (mobileMenu && isMobileNavBP) {
+      if (!isDrawerOpen()) {  
+        // hide mobile menu
+        // mobileMenu.style.display = 'none';
+      } 
+    }
+}); 
+
+mobileNavToggle.addEventListener('click', function (event) {
+  if (isMobileNavBP) {
+    const mobileMenu = document.getElementById('MobileNav');
+    if (mobileMenu) {
+        mobileMenu.style.display = 'block';
+    } 
+  }
+}); 
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  // on collection pages, scroll past title if filtered
+  const filtersToolbar = document.querySelector('.filters-toolbar-wrapper');
+  if (filtersToolbar) {
+    var isActivelyFiltered = document.getElementsByClassName('actively-filtered');
+    if (isActivelyFiltered.length > 0) {
+        filtersToolbar.scrollIntoView();
+    }
+  }
+});
+
+
 

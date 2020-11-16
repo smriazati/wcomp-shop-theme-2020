@@ -30,12 +30,14 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/CSSRulePlugin.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/ScrollTrigger.min.js"></script>
 
+
   {% comment %}
   barba.js
   {% endcomment %}
-  {% if request.page_type != 'collection' and request.page_type != 'product' %}
+  {% if request.page_type != 'collection' and request.page_type != 'product' and request.page_type != 'cart' %}
     <script src="https://unpkg.com/@barba/core"></script>
   {% endif %}
+
 
   {%- if canonical_url != blank  -%}
   <link rel="canonical" href="{{ canonical_url }}">
@@ -182,7 +184,37 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.css" integrity="sha512-wR4oNhLBHf7smjy0K4oqzdWumd+r5/+6QO/vDda76MW5iug4PT7v86FoEkySIJft3XA0Ae6axhIvHrqwm793Nw=="
   crossorigin="anonymous" />
-    {{ content_for_header }} </head>
+   
+  {{ content_for_header }} 
+  
+
+  {% if request.page_type == 'index' or template.name == 'index' %}
+    <script>
+      (function(w, d, t, s, n) {
+        w.FlodeskObject = n;
+        var fn = function() {
+          (w[n].q = w[n].q || []).push(arguments);
+        };
+        w[n] = w[n] || fn;
+        var f = d.getElementsByTagName(t)[0];
+        var e = d.createElement(t);
+        var h = '?v=' + new Date().getTime();
+        e.async = true;
+        e.src = s + h;
+        f.parentNode.insertBefore(e, f);
+      })(window, document, 'script', 'https://assets.flodesk.com/universal.js', 'fd');
+      window.fd('form', {
+        formId: '5fac56cdbf43d8c5c6bfccd4'
+      });
+    </script>
+
+  {%- else -%}
+
+    <script src="https://assets.flodesk.com/form.js?v=1605129829966"></script>
+
+  {%- endif -%}
+
+  </head>
 
 <body class="template-{{ request.page_type | handle }}">
 
@@ -204,6 +236,7 @@
 
 
     {% section 'footer' %}
+
 
 
     <div id="slideshow-info" class="visually-hidden" aria-hidden="true">
@@ -229,7 +262,7 @@ animation scripts
     barba.js
     assets / barbaInit.js
   {% endcomment %}
-  {% if request.page_type != 'collection' and request.page_type != 'product' %}
+  {% if request.page_type != 'collection' and request.page_type != 'product' and request.page_type != 'cart'%}
     <script src="{{ 'barbaInit.js' | asset_url }}"></script>
   {% endif %}
 
@@ -279,9 +312,12 @@ animation scripts
   </script>
 
 
+
+
 {% if request.page_type == 'collection' %}
   <script src="{{ 'gsapCollection.js' | asset_url }}"></script>
 {% endif %}
+
 
 
 </body>

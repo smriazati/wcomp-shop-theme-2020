@@ -6,7 +6,9 @@
 
 
 .collections-page {
-    margin-top: -1 * $section-spacer;
+    scroll-behavior: smooth;
+
+    //margin-top: 84px;
     .collections-header {
         .section-header {
             border-bottom: $border;
@@ -43,6 +45,7 @@
         .product-card {
             .product-info {
                 display: flex;
+                flex-wrap: wrap;
                 font-size: 18px;
                 margin-top: $spacer;
 
@@ -51,6 +54,16 @@
                     margin-right: $spacer;
                     &:last-child {
                         margin-right: none;
+                    }
+                }
+                .available-variants {
+                    text-transform: lowercase;
+                    flex: 0 0 100%;
+                    color: $gray;
+                    font-size: 10px;
+                    font-style: italic;
+                    @media (min-width: $bp-sm) {
+                        padding: $spacer 0;
                     }
                 }
             }
@@ -100,12 +113,20 @@
 .filters-toolbar {
     display: flex;
     flex-wrap: nowrap;
+@media (max-width: $bp-sm) {
+    flex-direction: column;
+    > .filter-item {
+        padding: $spacer;
+    }
+}
     p {
         white-space: nowrap;
         @include capsSofia;
         font-size: 14px;
         margin: 0;
-        margin-right: $spacer*4;
+        @media (min-width: $bp-sm) {
+            margin-right: $spacer*4;
+        }
         padding-top: 3px;
     }
     > * {
@@ -113,15 +134,46 @@
     }
 }
 .filter-item select {
+    text-align: center;
+    text-align-last: center;
+    -moz-text-align-last: center;
     outline: 0;
     padding: 0;
     height: auto;
     background: transparent;
     border: 0;
-    width: auto;
+    //width: auto;
+    width: unset;
     @include baseSofia;
     font-size: 22px;
-    margin-right: $spacer*2;
+    line-height: 30px;
+    @media (min-width: $bp-sm) {
+        margin-right: $spacer*2;
+    }
+    @media (max-width: $bp-sm) {
+        font-size: 16px;
+    }
+
+
+    &.category-filter:not(.actively-filtered) {
+        width: 8ch;
+    }
+    &.price-filter:not(.actively-filtered) {
+        width: 5ch;
+    }
+    &.brand-filter:not(.actively-filtered) {
+        width: 6ch;
+    }
+
+    &:focus {
+        min-width: 150px;
+        width: auto;
+    }
+
+
+    option {
+        width: 100%;
+    }
 }
 
 .product-card {
@@ -195,6 +247,18 @@
         justify-content: space-between;
         > * {
             flex: 0 0 48%;
+            margin-bottom: $spacer*3;
         }
     }
+}
+
+
+.product-card .product-card__image-wrapper {
+    opacity: 1;
+    transition: .6s ease-in opacity;
+}
+
+.product-card:hover .product-card__image-wrapper, 
+.product-card:focus-within .product-card__image-wrapper {
+    opacity: .8;
 }

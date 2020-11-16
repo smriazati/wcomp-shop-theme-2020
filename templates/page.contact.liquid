@@ -100,6 +100,7 @@
                   <div class="text-wrapper">
                     <h3>Newsletter</h3>
                     <p>{{ settings.contact_form_newsletter_description }}</p>
+                    <div id="contact-page-newsletter"></div>                    
                   </div>
                 </div>
               </div>
@@ -111,7 +112,7 @@
                     <h3>Social</h3>
                     <p>{{ settings.contact_form_socials_description }}</p>
 
-                    {%- assign socials = "Facebook Twitter Pinterest Instagram Tumblr Snapchat YouTube Vimeo" | split: ' ' -%}
+                    {%- assign socials = "Instagram Pinterest Facebook Twitter Tumblr Snapchat YouTube Vimeo" | split: ' ' -%}
                     <div class="socials">
                         <ul class="socials-list">
                           {%- for social in socials -%}

@@ -28,11 +28,12 @@
     <div class="site-nav">
       <nav id="AccessibleNav" class="site-header__primary-links mobile-nav-wrapper" role="navigation">
         <ul id="MobileNav">
-          {% include 'site-nav-noUL', linklist: section.settings.main_linklist %}
-          {% include 'site-nav-noUL', linklist: section.settings.shop_linklist %}
+          {% include 'site-nav-noUL-noDropdown', linklist: section.settings.main_linklist %}
+          {% include 'site-nav-noUL-customDropDown', linklist: section.settings.shop_linklist %}
           <li class="search-nav-btn">
             <button type="button" class="btn--link site-header__icon site-header__search-toggle js-drawer-open-top" data-predictive-search-open-drawer>
-              Search
+              <span class="search-text">Search</span> 
+              <span class="search-icon">{% include 'icon-search' %}</span>
             </button>
           </li>
           <li class="cart-nav-btn">
@@ -59,14 +60,9 @@
       </button>
     </div>
 
-    <div class="mobile-secondary-header">
+    <nav class="mobile-secondary-header">
       <ul>
-        <li>
-          <button type="button" class="btn--link site-header__icon site-header__search-toggle js-drawer-open-top" data-predictive-search-open-drawer>
-            {% include 'icon-search' %} 
-          </button>
-        </li>
-        <li>
+        <li class="cart-icon">
           <a href="{{ routes.cart_url }}" class="site-header__icon site-header__cart">
             <div id="CartCount" class="site-header__cart-count critical-hidden" data-cart-count-bubble>
               {% if cart.item_count == 0 %}
@@ -78,7 +74,7 @@
           </a>
         </li>
       </ul>
-    </div>
+    </nav>
 
     <div class="social-mobile-nav">
       <nav>

@@ -1,15 +1,22 @@
 {% capture image_layout %}
 <div class="image-wrapper">
+  {% if section.settings.button_link != blank %}
+    <a href="{{ section.settings.button_link }}">
+  {% endif %}
   {% if section.settings.image != blank %}
     {% include 'image-feature-row', image: section.settings.image, height: 545, id: section.id %}
   {% else %}
     {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
   {% endif %}
+  {% if section.settings.button_link != blank %}
+    </a>
+{% endif %}
   {% if section.settings.button_label != blank and section.settings.button_link != blank %}
     {% include 'button', label: section.settings.button_label, link: section.settings.button_link %}
   {% endif %}
 </div>
 {% endcapture %}
+
 
 <div class="feature-row st-section-2">
  

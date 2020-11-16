@@ -1,5 +1,3 @@
-// console.log('barba init');
-
 function preventBarbaIntoShop() {
   const els = document.querySelectorAll("a[href^='/collections/']");
   // console.log('preventing barba in shop... ', els);
@@ -7,6 +5,10 @@ function preventBarbaIntoShop() {
   const els2 = document.querySelectorAll("a[href^='/products/']");
   // console.log('preventing barba in shop... ', els);
   els2.forEach(el => el.classList.add('prevent'));
+
+  const els3 = document.querySelectorAll("a[href^='/cart']");
+  // console.log('preventing barba in shop... ', els);
+  els3.forEach(el => el.classList.add('prevent'));
 
 }
 
@@ -72,11 +74,19 @@ function colorChange(previousdivheight) {
       const elem = ref;
       // console.log('element offset top', elem.offsetTop);
       // console.log('previous div height?', previousdivheight);
-      const startPt = (elem.offsetTop - previousdivheight) - startSooner;
-      const endPt = (startPt + elem.offsetHeight + startSooner) - endOffset;
-      console.log(startPt, endPt);
+      let startPt;
+      let endPt;
+
+      if (window.innerWidth > 750) {
+        startPt = (elem.offsetTop - previousdivheight) - startSooner;
+        endPt = (startPt + elem.offsetHeight + startSooner) - endOffset;
+      } else {
+        startPt = (elem.offsetTop - previousdivheight) + ref.offsetHeight;
+        endPt = (startPt + elem.offsetHeight + startSooner) - endOffset;
+      }
+      //console.log(startPt, endPt);
+
       animateFrom(elem);
-      
       ScrollTrigger.create({
           trigger: elem,
           // markers: true,
@@ -118,25 +128,68 @@ function textSwapAnimation() {
     });
   }
 
-
+  const fadeInDuration = 1.5;
+  const fadeOutDuration = 0.5;
   var tl = gsap.timeline({repeat: -1, repeatDelay: 0});
   if (atRef1) {
-    tl.to("#at-1", {display: 'inline', opacity: 1, duration: 3});
-    tl.to("#at-1", {display: 'none', opacity: 0, duration: 1});
+    tl.to("#at-1", {display: 'inline', opacity: 1, duration: fadeInDuration});
+    tl.to("#at-1", {display: 'none', opacity: 0, duration: fadeOutDuration});
   }
   if (atRef2) {
-    tl.to("#at-2", {display: 'inline', opacity: 2, duration: 3});
-    tl.to("#at-2", {display: 'none', opacity: 0, duration: 1});
+    tl.to("#at-2", {display: 'inline', opacity: 2, duration: fadeInDuration});
+    tl.to("#at-2", {display: 'none', opacity: 0, duration: fadeOutDuration});
   }
   if (atRef3) {
-    tl.to("#at-3", {display: 'inline', opacity: 1, duration: 3});
-    tl.to("#at-3", {display: 'none', opacity: 0, duration: 1});
+    tl.to("#at-3", {display: 'inline', opacity: 1, duration: fadeInDuration});
+    tl.to("#at-3", {display: 'none', opacity: 0, duration: fadeOutDuration});
   }
 
 }
 
+function contactPageNewsletter(newDoc) {
+  const inlineNewsletterHTML = `<div class="fd-ef-5fac562d76d8d645a6cf181f">
+  <div class="ff__root">
+    <div class="ff__container">
+      <form class="flodesk-newsletter ff__form" action="https://form.flodesk.com/submit" method="post" data-form="fdv2">
+        <div class="ff__fields">
+          <input type="text" name="name" value="" style="display: none" />
+          <input type="hidden" name="submitToken" value="7d19c5c0002af513ad672dd553d6b30cfa401d59aa209d4a993c20ed053ebd35f38ff76f608bd72913c5fcd3f04ee6ea8a9c9530d5734e64223757cdf65e4283368287a4e66831f5154a8749c764bf96036d980ea3b6113b5eccd2e1ee76b70c" />
+          <div class="ff__grid">
+              <input class="fd-form-control ff__control newsletter-email" type="text" name="email" placeholder="Email address">
+              <button type="submit" class="fd-btn ff__button newsletter-submit" data-form-el="submit">
+                <span>→</span>
+              </button>
+          </div>
+        </div>
+        <div class="fd-success ff__success" data-form-el="success">
+          <p>Thank you for subscribing!</p>
+        </div>
+        <div class="fd-error ff__error" data-form-el="error"></div>
+      </form>
+    </div>
+  </div>
+  
+  <img height="1" width="1" style="display:none" src="https://t.flodesk.com/utm.gif?r=5fac562d76d8d645a6cf181f" />
+  </div>`
+  
+  const contactFormNewsletter = newDoc.querySelector('#contact-page-newsletter');
+  console.log(contactFormNewsletter);
+  if (contactFormNewsletter) {
+    // console.log('hi')
+    contactFormNewsletter.innerHTML = inlineNewsletterHTML;
+  }
+}
 
-// initialize barba
+function closeMobileMenu() {
+  console.log('close menu');
+}
+
+
+
+// // initialize barba
+// document.addEventListener("DOMContentLoaded", function(){
+//   // Handler when the DOM is fully loaded
+// });
 
 barba.init({
     views: [{
@@ -172,9 +225,13 @@ barba.init({
         namespace: 'contact',
         once() {
           document.body.style.backgroundColor = '#D0CEC9'
+          //console.log(document);
         },
         beforeEnter(data) {
-          document.body.style.backgroundColor = '#D0CEC9'
+          document.body.style.backgroundColor = '#D0CEC9';
+          instafeedApp();
+          contactPageNewsletter(data.next.container);
+
         },
         beforeLeave() {
           document.body.style.backgroundColor = '#fff'
@@ -183,20 +240,28 @@ barba.init({
     transitions: [{
       name: 'default-transition',
       once(data) {
-        console.log(data);
+        // console.log('once', data);
+        // data.next.container.querySelector('.flodesk-newsletter').blur();
         gsap.set(data.next.container, {
           opacity: 0,
           y: '-5vh'
         });
+
+        window.scrollTo(0, 0);
+        // if (data.next.namespace === 'index') {
+        //   getFlodeskPopup();
+        // }
         preventBarbaIntoShop();
       },
       afterOnce(data) {
+        // console.log('after once', data);
+        // data.next.container.querySelector('.flodesk-newsletter').blur();
         gsap.to(data.next.container, {
           opacity: 1,
+          y: 0,
           duration: 1.1,
         });
         if (data.next.namespace === 'corporate') {
-//          console.log('after once corporate')
           textSwapAnimation();
         }
         if (data.next.namespace === 'index') {
@@ -206,11 +271,13 @@ barba.init({
       leave(data) {
         gsap.to(data.current.container, {
           opacity: 0,
+          y: 0,
           ease: "power1.out",
           duration: 1
         });
       },
       enter(data) {
+        closeMobileMenu();
         // console.log(data.next.container);
         gsap.set(data.next.container, {
           opacity: 0,
@@ -223,15 +290,12 @@ barba.init({
         });
       }
     }],
-    
-    // define a custom function that will prevent Barba
-    // from working on links that contains a `prevent` CSS class
     prevent: ({ el }) => el.classList && el.classList.contains('prevent')
   });
 
   barba.hooks.enter((data) => {
     // console.log(data.current.container.offsetHeight);
-    console.log(data.next.namespace);
+    // console.log(data.next.namespace);
     window.scrollTo(0, 0);
     // sectionAnimation(data.current.container.offsetHeight);
     preventBarbaIntoShop();

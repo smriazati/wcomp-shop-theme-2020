@@ -15,7 +15,9 @@
     &.grid-container {
         .image-wrapper {
             grid-column: span 3;
-            padding-right: $col-width/2;
+            @media (min-width: $bp-sm) {
+                padding-right: $col-width/2;
+            }
         }
         .text-wrapper {
             grid-column: 4 / span 3;
@@ -62,6 +64,7 @@
             .btn,
             .shopify-payment-button__button--unbranded {
                 @include buttonFlat;
+                flex: 0 0 50%;
             }
             .shopify-payment-button__button--hidden {
                 display: none;
@@ -81,6 +84,9 @@
 
 .main-content>*:first-child.product-breadcrumbs {
     padding: $section-spacer/2 0;
+    @media (max-width: $bp-sm) {
+        padding: $spacer*3 0;
+    }
 }
 
 .product-breadcrumbs {
@@ -93,7 +99,11 @@
     }
     .text-wrapper {
         grid-column: span 6; 
+        @media (max-width: $bp-sm) {
+            padding: 0;
+        }
     }
+
 }
 
 .product-recommendations {
@@ -188,4 +198,67 @@
 
 .return-link-wrapper {
     margin-bottom: $section-spacer;
+}
+
+.product-form__controls-group--submit .shopify-payment-button {
+    display: none;
+}
+
+
+.product-single__thumbnails-item--full {
+    flex: 0 0 100px;
+}
+
+@media (max-width: $bp-sm) {
+    .product-recs-grid.grid-container {
+        width: 90%;
+        width: 90vw;
+        max-width: 90%;
+        max-width: 90vw;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: 1fr 1fr;  
+        grid-gap: $col-gutter;
+    }
+    .grid-view-item {
+        margin: 0;
+    }
+}
+
+#shopify-section-product-recommendations {
+    margin-bottom: 188px;
+}
+
+
+// thumbnail slider
+
+.product-single__thumbnail-image {
+    padding: 0;
+}
+
+@media (max-width: $bp-sm) {
+    .thumbnails-wrapper {
+        margin: 0;
+    }
+    .product-single__thumbnails-slider-track {
+        transform: none !important;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .slider-active .product-single__thumbnails {
+        max-width: 100%;
+    }
+
+    .product-single__thumbnails {
+        margin: 0;
+        justify-content: center;
+    }
+    .product-single__thumbnails-item--full {
+        flex: 0 0 70px;
+    }
+    .product-single__media-group--full {
+        margin-bottom: $spacer*2;
+    }
 }

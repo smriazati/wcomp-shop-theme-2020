@@ -41,8 +41,8 @@
               {% unless collection.all_tags.size == 0 %}
               <div class="filter-item filter-by-tags">
                 <label class="visually-hidden select-label" for="FilterTags">{{ 'collections.filters.title_tags' | t }}</label>
-                  <select class="filters-toolbar__input hidden" name="FilterTags" id="FilterTags" aria-describedby="a11y-refresh-page-message a11y-selection-message" data-select-input>
-                    <option value="{{ collection.url }}" readonly="true" hidden="true" selected>Category</option>
+                  <select class="category-filter filters-toolbar__input hidden" name="FilterTags" id="FilterTags" aria-describedby="a11y-refresh-page-message a11y-selection-message" data-select-input>
+                    <option value="{{ collection.url }}" readonly="true" hidden="true">Category</option>
                     <option value="{{ collection.url }}">{{ 'collections.filters.all_tags' | t }}</option>
                     {% comment %}
                       Don't include tags that start with _ in the filter list ! 
@@ -64,12 +64,13 @@
                   {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
                   <label class="visually-hidden select-label" for="SortBy">Price</label>
                     <select name="sort_by" id="SortBy"
-                        class="hidden"
+                        class="hidden price-filter"
                         aria-describedby="a11y-refresh-page-message a11y-selection-message"
                         data-default-sortby="{{ collection.default_sort_by }}"
                         data-select-input
                         data-theme-text="Price">
-                        <option value="{{ collection.url }}" readonly="true" hidden="true" selected>Price</option>
+                        <option value="{{ collection.url }}" readonly="true" hidden="true">Price</option>
+
                         {% for option in collection.sort_options %}
                           {% if option.value contains 'price-ascending' or option.value contains 'price-descending'  %}
                             <option value="{{ option.value }}" {% if sort_by == option.value %} selected="selected" {% endif %}>{{ option.name }} </option>
@@ -82,10 +83,10 @@
                 <div class="filter-item filter-by-brand">
                     <label class="visually-hidden select-label" for="FilterByBrand">Brand</label>
 
-                    <select name="brands" id="FilterByBrand" class="hidden"                           
+                    <select name="brands" id="FilterByBrand" class="hidden brand-filter"                           
                         aria-describedby="a11y-refresh-page-message a11y-selection-message"
                         onChange="window.location.href=this.value">
-                      <option value="{{ collection.url }}" readonly="true" hidden="true" selected>Brand</option>
+                      <option value="{{ collection.url }}" readonly="true" hidden="true">Brand</option>
 
                       <option value="/collections/all">All</option>
                       {% for product_vendor in shop.vendors %}

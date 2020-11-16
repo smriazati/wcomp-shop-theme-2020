@@ -82,37 +82,20 @@
 
 .site-footer form {
   max-width: 100%;
-  .input-group {
-    display: flex;
-    flex-wrap: nowrap;
-    margin-top: $spacer;
-    .input-group__field[type="email"],
-    .input-group__btn {
-      background: transparent;
-      border: none;
-      border-bottom: 1px solid $white;
-      @include baseFreight;
-      font-size: 24px;
-      margin: 0;
-      display: inline-block;
-    }
-    .input-group__field[type="email"] {
-      width: 50%;
+  .ff__grid {
+    .newsletter-email {
+      width: 75%;
       padding: 0;
       border-radius: 0;
     }
-  }
-  button[type="submit"] {
-    span {
-      display: none;
+    .newsletter-submit {
+      span {
+        color: #707070;
+      }
     }
-    &:after {
-      content: '→';
-      width: 100%;
-      color: #707070;
-    }
-  }
+  }  
 }
+
 
 
 .shopify-challenge__container {
@@ -120,9 +103,6 @@
 }
 
 
-.site-footer form .input-group .input-group__field[type="email"]::placeholder {
-  color: $white;
-}
 
 .site-footer {
   margin-top: 0;
@@ -140,6 +120,9 @@
         margin: $spacer*6 0;
       }
     }
+    .site-footer-logo-image {
+      margin: 0 auto;
+    }
     .site-footer__linklist li, 
     .site-footer__social-icons li {
       justify-content: center;
@@ -147,5 +130,14 @@
     .site-footer-copyright {
       margin-top: $section-spacer/2;
     }
+  }
+}
+
+
+
+
+.site-footer .newsletter-email {
+  &::placeholder {
+    color: $gray;
   }
 }

@@ -51,16 +51,14 @@
 
 
       {% if product.media.size > 1 %}
-        {% if product.media.size > 4 %}
+        {% if product.media.size > 20 %}
           {%- assign enable_thumbnail_slides = true -%}
         {% endif %}
-
         <div data-thumbnail-slider>
           <div class="thumbnails-wrapper{% if enable_thumbnail_slides == true %} slider-active{% endif %}" data-slider>
             {% if enable_thumbnail_slides == true %}
               <button type="button" class="btn btn--link medium-up--hide thumbnails-slider__btn thumbnails-slider__prev thumbnails-slider__prev--{{ section.id }}" data-slider-button>
-                {% include 'icon-chevron-left' %}
-                <span class="icon__fallback-text">{{ 'sections.slideshow.previous_slide' | t }}</span>
+                ←
               </button>
             {% endif %}
 
@@ -108,8 +106,7 @@
             </ul>
             {% if enable_thumbnail_slides == true %}
               <button type="button" class="btn btn--link medium-up--hide thumbnails-slider__btn thumbnails-slider__next thumbnails-slider__next--{{ section.id }}" data-slider-button data-slider-button-next>
-                {% include 'icon-chevron-right' %}
-                <span class="icon__fallback-text">{{ 'sections.slideshow.next_slide' | t }}</span>
+                →
               </button>
             {% endif %}
           </div>
@@ -303,24 +300,6 @@
 {
   "name": "Product pages",
   "settings": [
-    {
-      "type": "checkbox",
-      "id": "enable_payment_button",
-      "label": "Show dynamic checkout button",
-      "info": "Each customer will see their preferred payment method from those available on your store, such as PayPal or Apple Pay. [Learn more](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)",
-      "default": true
-    },
-    {
-      "type": "header",
-      "content": "Media",
-      "info": "Learn more about [media types](https://help.shopify.com/manual/products/product-media)"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_image_zoom",
-      "label": "Enable image zoom",
-      "default": true
-    },
     {
       "type": "checkbox",
       "id": "enable_video_looping",

@@ -20,10 +20,7 @@
             {% include 'product-card-grid', max_height: 250, product: product, show_vendor: false %}
           </li>
         {%- endfor -%}
-        {% assign missing_recs = 6 | minus: recommendations.products_count %}
-        {%- if missing_recs > 0 -%}
-          <!-- Get {{ missing_recs }} -->
-        {%- endif -%}
+        
       </ul>
     </div>   
     {%- endif -%}

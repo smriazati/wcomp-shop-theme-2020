@@ -3,6 +3,12 @@
 .contact-page {
     background: $sand;
     padding-bottom: 0;
+    .form-message--success {
+        border: $border;
+        background-color: transparent;
+        color: $slate;
+    }
+    
 }
 
 .contact-form-container {
@@ -83,8 +89,14 @@
     margin-top: $section-spacer;
     .contact-row {
         display: flex;
+        @media (max-width: $bp-sm) {
+            flex-direction: column;
+        }
         > * {
             flex: 0 0 50%;
+            @media (max-width: $bp-sm) {
+                flex: 1;
+            }
         }
 
         h3 {
@@ -103,7 +115,9 @@
         }
 
         .contact-row-item.newsletter {
-            border-right: $border;
+            @media (min-width: $bp-sm) {
+                border-right: $border;
+            }
         }
 
         .contact-column {
@@ -111,8 +125,10 @@
                 padding: $section-spacer/2;
             }
             .contact-column-item + .contact-column-item {
-                border-top: $border;
-                margin-top: $spacer*3;
+                @media (min-width: $bp-sm) {
+                    border-top: $border;
+                    margin-top: $spacer*3;
+                }
             }
         }
         
@@ -132,4 +148,54 @@
     width: 100% !important;
     padding-top: 100% !important;
     max-height: 280px;
+}
+
+.contact-page {
+    form.flodesk-newsletter {
+        max-width: $col-width;
+        padding-right: 5%;
+        margin-top: $section-spacer/2;
+        .ff__grid {
+            .newsletter-email,
+            .newsletter-submit {
+                @include baseSofia;
+                font-size: 15px;
+                border-bottom: 1px solid $slate;
+                color: $slate;
+            }
+
+            .newsletter-email {
+                padding: $spacer 0;
+                &::placeholder {
+                    color: $slate;
+                    text-transform: lowercase;
+                    opacity: 1;
+                }
+            }
+        }
+        &.fd-has-success {
+            * {
+                color: $slate;
+            }
+        }
+        button {
+            padding: 0;
+        }
+    
+    }
+    
+}
+
+
+#insta-feed {
+    @media (max-width: $bp-sm) {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        > * {
+            flex: 0 0 30%;
+            margin-bottom: 4%;
+        }
+    }
 }

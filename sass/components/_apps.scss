@@ -1,0 +1,12 @@
+@import '../settings/_settings.scss';
+
+accessibility-position-bottom-left, .accessibility-position-bottom-right {
+    bottom: 140px !important;
+    right: 21px !important;
+}
+
+
+.accessibility-box,
+#accessibility-menu-btn {
+    background-color: $slate !important; 
+}

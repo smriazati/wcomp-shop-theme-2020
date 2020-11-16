@@ -15,17 +15,12 @@ $nav-height: $spacer*12;
         overflow: visible;
     }
 
-    // dropdowns
-    .site-nav--has-dropdown {
-        position: relative;
-        .site-nav__dropdown {
-            position: absolute;
-        }
-    }
+
 
     header.site-header {
         max-width: $site-width;
         display: grid;
+//        grid-template-columns: 1fr $logoWidth 1fr;
         grid-template-columns: 1fr $logoWidth 1fr;
         padding: 0;
         max-width: $site-width;
@@ -89,11 +84,11 @@ $nav-height: $spacer*12;
 
 // responsive header grids
 
-@media (min-width: $bp-lg) {
+@media (min-width: 1300px) {
     @include responsiveHeaderGrid($logo-width-lg);
 }
 
-@media (min-width: $nav-bp) and (max-width: $bp-lg) {
+@media (min-width: $nav-bp) and (max-width: 1300px) {
     @include responsiveHeaderGrid($logo-width-md);
 }
 
@@ -117,6 +112,20 @@ header.site-header {
 
 /* search */
 
+@keyframes pulseOpacity {
+    0% {
+        opacity: 0.6;
+    }
+    30% {
+        opacity: 0.8;
+    }
+    80% {
+        opacity: 0.8;
+    }
+    100% {
+        opacity: 0.6;
+    }
+}
 .search-bar.drawer {
     position: unset;
     width: 100%;
@@ -131,10 +140,14 @@ header.site-header {
         justify-content: center;
     }
     @mixin searchBarInput {
-        opacity: 1;
+        //opacity: 1;
         @include h2Style($slate);
         font-size: 24px;
         line-height: 30px;
+        @media (max-width: $bp-sm) {
+            font-size: 18px;
+            line-height: 18px;
+        }
     }
 
     .search-bar__input {
@@ -142,7 +155,6 @@ header.site-header {
         // width: 100%;
         outline: 0;
         min-height: 44px;
-        height: 100%;
         border: none;
         text-align: center;
         caret-color: transparent;
@@ -150,26 +162,36 @@ header.site-header {
         @include searchBarInput;
         &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
             @include searchBarInput;
+            animation: pulseOpacity 1s ease infinite;
+
           }
           &::-moz-placeholder { /* Firefox 19+ */
             @include searchBarInput;
+            animation: pulseOpacity 1s ease infinite;
+
           }
           &:-ms-input-placeholder { /* IE 10+ */
             @include searchBarInput;
+            animation: pulseOpacity 1s ease infinite;
+
           }
           &:-moz-placeholder { /* Firefox 18- */
             @include searchBarInput;
+            animation: pulseOpacity 1s ease infinite;
+
           }
     }
     .input-sizer {
         @include searchBarInput;
     }
     button.search-bar__submit {
-        width: 0;
+        width: 2ch;
         padding: 0;
+        margin-left: -2ch;
         position: relative;
         font-size: 22px;
         @include baseSofia;
+        padding-bottom: $spacer;
     }
 }
 
@@ -223,10 +245,7 @@ header.site-header {
     }
 }
 
-.site-nav--has-dropdown .site-nav__dropdown {
-    z-index: 1000;
-    background: $white;
-}
+
 
 .predictive-search {
     background: $white; 
@@ -299,6 +318,9 @@ header.site-header {
 }
 
 @media (max-width: $nav-bp) {
+    .site-header__menu {
+        display: block;
+    }
     $mobile-header-height: 50px;
     .site-header {
         position: relative;
@@ -311,6 +333,9 @@ header.site-header {
         .site-logo {
             grid-column: 2 / 3;
             max-width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .site-nav {
             border: 0;
@@ -398,6 +423,10 @@ header.site-header {
         .site-header__cart-count {
             display: flex;
             align-items: center;
+            min-width: auto;
+            width: auto;
+            height: auto;
+            top: 0;
             span.cart-count {
                 text-decoration: none;
                 font-size: 14px;
@@ -437,4 +466,83 @@ header.site-header {
 
 .site-nav__label {
     white-space: nowrap;
+}
+
+
+// dropdowns
+.site-nav--has-dropdown:hover .site-nav__dropdown,
+.site-nav__dropdown {
+    display: none;
+}
+.site-nav__dropdown li {
+    padding: $spacer/2 $spacer*2;
+}
+.site-nav__dropdown .site-nav__link {
+    padding: 0;
+}
+
+#SiteNavLabel-shop {
+    width: 100%;
+    text-align: center;
+    padding: 0;
+    padding-bottom: 7px;
+}
+
+@media (min-width: $nav-bp) {
+    .site-nav--has-dropdown {
+        position: relative;
+        display: flex;
+        align-items: center;
+        height: 100%;
+        .site-nav__dropdown {
+            position: absolute;
+        }
+    }
+    
+    .site-nav--has-dropdown:hover .site-nav__dropdown {
+        display: block;
+    }
+    
+    .site-nav__dropdown {
+        top: $section-spacer/2;
+        z-index: 100;
+        background: $white;
+    }
+}
+
+
+// mobile fixes
+@media only screen and (max-width: 749px) {
+    .site-header__logo {
+        padding-left: 0;
+        text-align: center;
+    }
+}
+
+
+@media (min-width: $nav-bp) {
+    .search-icon {
+        display: none;
+    }
+}
+
+
+@media (max-width: $nav-bp) {
+    .search-text {
+        display: none;
+    }
+}
+
+
+
+
+.search-bar {
+    z-index: 899;
+}
+
+
+.search-bar.drawer {
+    @media (max-width: $bp-sm) {
+        grid-column: 1 / 4;
+    }
 }

@@ -35,6 +35,10 @@
     @include baseSofia;
     font-size: 20px;
     color: $color;
+    @media (max-width: $bp-sm) {
+        font-size: 16px;
+        line-height: 24px;
+    }
 }
 
 @mixin pSmallStyle($color: $slate) {
@@ -48,26 +52,47 @@
     @include baseFreight;
     font-size: 48px;
     line-height: 60px;
+    letter-spacing: .44px;
     color: $color;
+    @media (max-width: $bp-sm) {
+        font-size: 36px;
+        line-height: 44px;
+    }
 }
 
 @mixin h2Style($color: $slate) {
     @include baseFreight;
     font-size: 44px;
+    letter-spacing: .44px;
+
     color: $color;
+    @media (max-width: $bp-sm) {
+        font-size: 36px;
+    }
 }
 
 @mixin h3Style($color: $slate) {
     @include baseFreight;
     font-size: 36px;
     color: $color;
+    letter-spacing: .44px;
+
+    @media (max-width: $bp-sm) {
+        font-size: 24px;
+    }
 }
 
 
 @mixin h4Style($color: $slate) {
     @include baseSofia;
     font-size: 44px;
+    letter-spacing: .44px;
+
     color: $color;
+    @media (max-width: $bp-sm) {
+        font-size: 24px;
+        line-height: 30px;
+    }
 }
 
 @mixin buttonBase($color: $slate) {

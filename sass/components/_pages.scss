@@ -17,6 +17,13 @@
 }
 .feature-row__image-wrapper {
     margin: 0;
+    max-width: 100% !important;
+    max-height: unset !important;
+
+    img {
+        max-width: 100% !important;
+        max-height: unset !important;
+    }
 }
 
 /* general text banners */
@@ -73,22 +80,29 @@
 
 /* general hero */
 
-  
+#Hero-swap-hero-1,
+.hero {
+    background-position: center bottom !important;
+}  
 .hero {
     position: relative;
     @media only screen and (min-width: 750px) {
         &.hero--x-large {
             height: 775px;
-            height: 83vh;
+            height: 90vh;
         }
     }
 
     .grid-container {
         .hero-text {
-            grid-column: 1 / 4;
+            grid-column: 1 / 5;
         }
         .hero-caption {
             grid-column: 5 / 7;
+            @media (min-width: $bp-sm) {
+                max-width: 330px;
+                text-align: left;
+            }
         }
     }
 
@@ -118,6 +132,8 @@
         color: $white;
         p {
             @include pSmallStyle($white);
+            font-size: 10px;
+            line-height: 14px;
             a {
                 @include lightLink;
             }
@@ -135,9 +151,18 @@
     min-height: 50vh;
     > *:first-child {
         padding-top:  $section-spacer;
+        @media (max-width: $bp-sm) {
+            padding-top: $section-spacer/2;
+        }
+    }
+    &.corporate-template > *:first-child {
+        padding-top: $section-spacer/2;
     }
     > *:last-child {
         padding-bottom:  $section-spacer;
+        @media (max-width: $bp-sm) {
+            padding-bottom: $section-spacer/2;
+        }
     }
     // padding: $section-spacer 0;
     .corporate-section,
@@ -145,16 +170,23 @@
     .story-section {
         display: block;
         padding-bottom: $section-spacer;
-        // &:last-child {
-        //     padding-bottom: 0;
-        // }
+        @media (min-width: $bp-sm) {
+            padding-bottom: $section-spacer/2;
+        }
     } 
 }
 .index-section + .index-section {
-    margin-top: $section-spacer;
+    margin-top: $section-spacer/2;
+    @media (min-width: $bp-sm) {
+        margin-top: $section-spacer;
+    }
   }
 
-
+@media (max-width: $bp-sm) {
+    .index-section {
+        padding: 0;
+    }
+}
 /* STORY PAGE */
 
 .st-section-1.feature-row {
@@ -232,6 +264,12 @@
 
 /* CORPORATE PAGE */
 
+.co-section-1 {
+    padding-top: 50px;
+    @media (max-width: $bp-sm) {
+        height: 50vh; // fixed height so animation doesn't jump the page 
+    }
+}
 .co-section-1.feature-row {
     .text-wrapper {
         position: relative;
@@ -242,14 +280,20 @@
         flex-direction: column;
         justify-content: flex-start;
         height: 100%;
-        padding-top: 140px;
-
+        @media (min-width: $bp-sm) {
+            padding-top: 300px;
+            padding-left: $col-width/2;
+        }
     }
     .image-wrapper {
         position: relative;
         z-index: 8;
         grid-column: 1 / 5;
-        grid-row: 1 / 2;
+        grid-row: 1 / 2;        
+        @media (max-width: $bp-sm) {
+            padding: 0;
+            flex: 0;
+        }
     }
 
     .anim-text-swap {
@@ -280,6 +324,9 @@
 
 .co-row {
     display: flex;
+    @media (max-width: $bp-sm) {
+        flex-direction: column;
+    }
     .corporate-section {
         padding-top: 0;
         padding-bottom: 0;
@@ -288,10 +335,18 @@
         @media (min-width: $site-width) {
             width: $site-width/2;
         }
-        flex: 0 0 50%;
-        padding: 0;
-        margin-top: $section-spacer;
-        border: $border;
+        @media (min-width: $bp-sm) {
+            flex: 0 0 50%;
+            padding: 0;
+            margin-top: $section-spacer;
+            border: $border;
+        }
+        @media (max-width: $bp-sm) {
+            &:first-child { border-top: $border; }
+            &:last-child { border-top: $border; border-bottom: $border; }
+        }
+        
+
         &:first-child {
             border-right: none;
         }
@@ -305,11 +360,17 @@
     h2 {
         padding-left: $spacer*2;
         @include h1Style($sand);
+        @media (max-width: $bp-sm) {
+            padding-top: $spacer*2;
+            padding-bottom: $spacer*2;
+        }
     }
 }
 .co-section-3 {
     .logo-grid {
-        padding: $section-spacer/2 $section-spacer;
+        @media (min-width: $bp-sm) {
+            padding: $section-spacer/2 $section-spacer;
+        }
         display: grid;
         grid-template-columns: repeat(3,1fr);
         grid-template-rows: repeat(2, auto);
@@ -318,6 +379,7 @@
                 height: 150px;
                 object-fit: contain;
                 padding: $spacer*3;
+                @include bwImage;
             }            
         }
     }
@@ -332,7 +394,9 @@
     .quotes-slider {
         display: block;
         width: 100%;
-        max-width: 50vw;
+        @media (min-width: $bp-sm) {
+            max-width: 50vw;
+        }
         height: 100%;
     }
 
@@ -420,9 +484,21 @@
 
 
 .co-section-5.feature-row {
+    padding-top: $section-spacer/2;
+    @media (min-width: $bp-sm) {
+        padding-bottom: $section-spacer*2;
+    }
     .text-wrapper {
         grid-column: 1 / 4;
-        padding: $col-width/1.9;
+        @media (min-width: $bp-sm) {
+            padding: $col-width/1.9;
+        }
+        .title {
+            margin-bottom: $spacer*4;
+        }
+        @media (max-width: $bp-sm) {
+            margin-bottom: $spacer*2;
+        }
     }
     .image-wrapper {
         grid-column: 4 / 7;
@@ -432,7 +508,9 @@
 .co-section-6.feature-row {
     .text-wrapper {
         grid-column: 3 / span 3;
-        padding: $col-width/1.9;
+        @media (min-width: $bp-sm) {
+            padding: $col-width/1.9;
+        }
     }
     .image-wrapper {
         grid-column: 1 / 3;
@@ -465,6 +543,50 @@
        }
    }
 }
+
+// mobile version of hero 
+
+@media (max-width: $bp-sm) {
+    #shopify-section-hero-1 {
+        padding-top: 0;
+    }
+    .box {
+        background-color: $white;
+    }
+    .hero {
+        height: 50vh !important;
+        .hero-text {
+            text-align: center;
+            .btn {
+                color: $black;
+                display: inline-block;
+                border: 0;
+                border-bottom: $border;
+                padding: 2px 0;
+            }
+        }
+        .hero-caption {
+            text-align: left;
+            position: relative;
+            p, p a, p a:hover {
+                color: $gray;
+            }
+        }
+        background-image: none !important;
+        
+        .image-hover-swap {
+            opacity: 1 !important;
+        }
+
+        .hero__inner {
+            padding: 0;
+            padding-top: 50vh;
+            .grid-container {
+                flex-direction: column-reverse;
+            }
+        }
+    }
+}
   // this selects the div right under the hero :) 
   #shopify-section-hero-1 + div {
     .grid-container {
@@ -472,10 +594,10 @@
         grid-column: 2 / span 2;
         @media (min-width: $site-width) {
             width: 50%;
+            padding: 0;
         }
         width: 70%;
         margin: 0 auto;
-        padding: 0;
         .h3 {
           @include capsSofia;
           font-size: 15px;
@@ -491,6 +613,10 @@
   }
 
   .home-featured-products {
+    .price dd,
+    .price__regular, .price__sale {
+        margin: 0;
+    }
     .section-footer,
     .section-header {
         &.grid-container {
@@ -508,7 +634,7 @@
     }
     .featured-products-grid {
         &.grid-container {
-            margin: $spacer*3 auto;
+            margin: $spacer*6 auto;
         }
     }
     .product-item {
@@ -518,11 +644,11 @@
         }
         grid-column: span 2;
         display: grid;
-        grid-template-columns: repeat(2,1fr);
+        grid-template-columns: .75fr .25fr;
         grid-template-rows: auto auto auto;
         position: relative;
         .product-text {
-            padding: $spacer;
+            padding: $spacer*3;
             grid-row: 1 / 2;
             grid-column: 1 / 3;
             position: relative;
@@ -533,6 +659,15 @@
                 @include baseSofia;
                 font-size: 12px;
             }
+            h3 {
+                padding-right: $spacer*3;
+                width: 75%;
+            }
+            .price-item {
+                width: 25%;
+                align-items: flex-end;
+                color: $slate;
+            }
         }
         .product-image {
             grid-row: 1 / 4;
@@ -541,7 +676,7 @@
             z-index: 9;
         }
         .product-hover-overlay {
-            padding: 0 $spacer;
+            padding: 0 $spacer*3;
             opacity: 0;
             grid-row: 2 / 3;
             grid-column: 1 / 3;
@@ -550,22 +685,30 @@
             transition: .3s ease-out opacity;
             display: flex;
             justify-content: space-between;
-            > * {
-                flex: 0 0 48%;
-            }
+            overflow: hidden;
+            // > * {
+            //     flex: 0 0 48%;
+            // }
             .description *,
             .description {
                 @include baseSofia;
                 font-size: 10px;
             }
+            .description {
+                flex: 0 0 75%;
+                padding-right: $spacer*3;
+            }
             .btn {
-                margin-top: $spacer*3;
+                flex: 0 0 25%;
+                margin: 0;
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 background: $white;
                 border: none;
                 color: $black;
+                font-size: 14px;
+                @include capsSofia;
             }
         }
         &:hover {
@@ -588,9 +731,41 @@
 
     .btn-text-link {
         font-size: 22px;
+        color: $slate;
     }
   }
-  
+
+    // hold on to grid a little longer 
+  @media (min-width: 527px) and (max-width: $bp-sm) {
+    .home-featured-products {
+        .featured-products-grid.grid-container {
+            width: 90%;
+            width: 90vw;
+            max-width: 90%;
+            max-width: 90vw;
+            margin: 0 auto;
+            margin-top: $spacer*3;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            grid-template-rows: 1fr;  
+            grid-gap: $col-gutter;
+        }
+    }
+  }
+
+
+  @media (max-width: $bp-sm) {
+    .home-featured-products {
+        .grid-container {
+            > * {
+                margin-bottom: $spacer*3;
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+  }
   
   .animated-banner {
     h2 {
@@ -679,7 +854,7 @@
 // general pages
 .page-wrapper {
     .page-content {
-        margin-top: $section-spacer;
+        margin-top: $spacer*3;
     }
     
     &.grid-container {
@@ -687,4 +862,8 @@
             grid-column: 2 / 6;
         }
     }
+}
+
+.main-content .shopify-challenge__container {
+    padding-top: $section-spacer;
 }

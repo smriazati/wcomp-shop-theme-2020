@@ -1,2 +1,5 @@
 @import 'colors.scss';
 
+@mixin bwImage() {
+    filter: grayscale(80%);
+}

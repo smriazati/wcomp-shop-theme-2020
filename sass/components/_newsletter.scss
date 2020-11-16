@@ -1,0 +1,149 @@
+@import '../settings/_settings.scss';
+
+
+// newsletter form
+
+form.flodesk-newsletter {
+    &:focus,
+    *:focus {
+      outline: 0;
+    }
+    max-width: 100%;
+    .ff__grid {
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      &.fd-has-error {
+        flex-wrap: wrap;
+      }
+      margin-top: $spacer;
+      .newsletter-email,
+      .newsletter-submit {
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid $white;
+        @include baseFreight;
+        font-size: 24px;
+        margin: 0;
+        display: inline-block;
+        color: $white;
+      }
+      .newsletter-email {
+        width: 75%;
+        padding: 0;
+        border-radius: 0;
+        &::placeholder {
+          color: $white;
+        }
+      }
+      .newsletter-submit {
+        span {
+          color: #707070;
+        }
+      }
+    }
+    .fd-form-feedback {
+      margin-top: $spacer;
+    }
+    input:focus {
+      outline: none;
+    }
+  
+    .ff__success {
+      display: none;
+    }
+  
+  
+  }
+
+  
+
+// modal
+// #home-page-newsletter-popup {
+//   display: block;
+// }
+// .fd-modal {
+//    // display: none;
+//     &.fd-is-open {
+//         display: flex;
+//     }
+// }
+// .fd-modal {
+//     position: fixed;
+//     top: 15vh;
+//     /* background: white; */
+//     width: 100%;
+//     height: 100%;
+//     align-items: center;
+//     justify-content: center;
+//     z-index: 9999;
+//   .fd-modal__dialog {
+//     &:focus,
+//     *:focus {
+//         outline: 0; 
+//     }
+//     margin: 0 auto;
+//     margin-top: 15vh;
+//     width: 435px;
+//     border: $border;
+//     background: $white;
+//     padding: $spacer*3;
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+//     .ff__title {
+//         @include baseFreight;
+//         color: $gray;
+//         font-size: 36px;
+//     }
+//     .ff__subtitle {
+//         font-size: 22px;
+//         line-height: 30px;
+//         margin-bottom: $spacer*4;
+//     }
+
+//     .fd-success {
+//         display: none;
+//     }
+//     .fd-form-group {
+//         margin: $spacer*2 0;
+//     }
+//     .fd-form-group input,
+//     .ff__button {
+//         height: 53px;
+//     }
+//     .fd-form-group input {
+//         border: $border;
+//         border-radius: 0;
+//         width: 100%;
+//     }
+//     .ff__button {
+//         @include buttonBase;
+//         background: $black;
+//         text-transform: uppercase;
+//         color: $white;
+//         width: 100%;
+//         display: flex;
+//         align-items: center;
+//         justify-content: center;
+//     }
+
+//     .fd-modal__content {
+//         position: relative;
+//     }
+//     .fd-modal__close {
+//         position: absolute;
+//         right: 0;
+//         top: 0;
+//     }
+//   }
+
+
+// } // end modal
+ 
+
+.site-footer {
+  form.flodesk-newsletter .ff__grid {
+    justify-content: center;
+  }
+}

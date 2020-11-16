@@ -1,21 +1,27 @@
 <div class="page-width {% if section.settings.mini %} feature-row__mini {%  endif %}">
   {% capture image_layout %}
   <div class="image-wrapper">
-      {% if section.settings.image != blank %}
-        {% include 'image-feature-row', image: section.settings.image, height: 545, id: section.id %}
-      {% else %}
-        {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
-      {% endif %}
-    </div>
+    {% if section.settings.button_link != blank %}
+      <a href="{{ section.settings.button_link }}">
+    {% endif %}
+    {% if section.settings.image != blank %}
+      {% include 'image-feature-row', image: section.settings.image, height: 545, id: section.id %}
+    {% else %}
+      {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+    {% endif %}
+    {% if section.settings.button_link != blank %}
+      </a>
+  {% endif %}
+  </div>
   {% endcapture %}
-
+  
   <div class="feature-row grid-container">
 
     {% if section.settings.layout == 'left' %}
       {{ image_layout }}
     {% endif %}
 
-    <div class="feature-row__item feature-row__text feature-row__text--{{ section.settings.layout }}">
+    <div class="text-wrapper feature-row__item feature-row__text feature-row__text--{{ section.settings.layout }}">
       {% if section.settings.title != blank %}
         <h2 class="h3">{{ section.settings.title | escape }}</h2>
       {% endif %}
