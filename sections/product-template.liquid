@@ -141,9 +141,9 @@
 
           <div class="product__price">
             {% if current_variant == null %}
-            {% include 'product-price', variant: current_variant, show_vendor: false %}
+              {% include 'product-price', variant: current_variant, show_vendor: false %}
             {% else %}
-            {% include 'product-price', variant:  product.selected_or_first_available_variant, show_vendor: false %}
+              {% include 'product-price', variant:  product.selected_or_first_available_variant, show_vendor: false %}
             {% endif %}
           </div>
 
@@ -229,7 +229,15 @@
 
 
                     {% if current_variant == null %}
-                      {{ 'products.product.unavailable' | t }}
+                        {% if product.available %}
+                          {{ 'products.product.unavailable' | t }}
+                        {% else %}
+                          {% if product.tags contains '_Coming Soon' %}
+                            Coming Soon 
+                          {% else %}
+                            Sold Out
+                          {% endif %}
+                        {% endif %}
                     {% elsif current_variant.available %}
                       {{ 'products.product.add_to_cart' | t }}
                     {% else %}
@@ -274,23 +282,18 @@
           {{ product.description }}
         </div>
 
-
-        {% for tag in product.tags %}
-          {% unless tag contains 'theme-hide-product-cta' %}
-            {% if settings.product_cta_text %}
-              {% if settings.product_cta_url %}
-                <div class="product-cta">
-                  <a class="btn-text-link product-cta-link" href="{{ settings.product_cta_url }}">{{ settings.product_cta_text }}</a>
-                </div> 
-              {% else %}
-                {{ settings.product_cta_text }}
-              {% endif %}
+        {% if product.tags contains '_Hide Product Page CTA' %}
+        {% else %}
+          {% if settings.product_cta_text %}
+            {% if settings.product_cta_url %}
+              <div class="product-cta">
+                <a class="btn-text-link product-cta-link" href="{{ settings.product_cta_url }}">{{ settings.product_cta_text }}</a>
+              </div> 
+            {% else %}
+              {{ settings.product_cta_text }}
             {% endif %}
-          {% endunless %}
-          {% break %}
-        {% endfor %}
-
-
+          {% endif %}
+        {% endif %}
 
     </div>
   </div>
