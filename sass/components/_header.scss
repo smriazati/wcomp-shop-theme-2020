@@ -106,6 +106,16 @@ header.site-header {
     }
 }  
 
+.template-index {
+    header.site-header {
+        @media (min-width: $nav-bp) {
+            .site-nav {
+                border-bottom: none;
+            }  
+        }
+    }    
+}
+
 .site-nav .site-nav--active a {
     color: $slate;
 }
@@ -157,7 +167,7 @@ header.site-header {
         min-height: 44px;
         border: none;
         text-align: center;
-        caret-color: transparent;
+        // caret-color: transparent;
 
         @include searchBarInput;
         &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
@@ -187,11 +197,9 @@ header.site-header {
     button.search-bar__submit {
         width: 2ch;
         padding: 0;
-        margin-left: -2ch;
         position: relative;
         font-size: 22px;
         @include baseSofia;
-        padding-bottom: $spacer;
     }
 }
 
@@ -543,6 +551,7 @@ header.site-header {
 
 .search-bar.drawer {
     @media (max-width: $bp-sm) {
+        border-top: $border;
         grid-column: 1 / 4;
     }
 }

@@ -157,6 +157,7 @@
     }
     &.corporate-template > *:first-child {
         padding-top: $section-spacer/2;
+        padding-bottom: $section-spacer;
     }
     > *:last-child {
         padding-bottom:  $section-spacer;
@@ -165,7 +166,7 @@
         }
     }
     // padding: $section-spacer 0;
-    .corporate-section,
+    // .corporate-section,
     .gad-section,
     .story-section {
         display: block;
@@ -174,6 +175,18 @@
             padding-bottom: $section-spacer/2;
         }
     } 
+
+    .corporate-section {
+        @media (max-width: $bp-sm) {
+            padding-bottom: $section-spacer;       
+        }
+    }
+    
+    .corporate-section:first-child {
+        @media (max-width: $bp-sm) {
+            padding-bottom: 0;
+        } 
+    }
 }
 .index-section + .index-section {
     margin-top: $section-spacer/2;
@@ -264,25 +277,45 @@
 
 /* CORPORATE PAGE */
 
-.co-section-1 {
-    padding-top: 50px;
-    @media (max-width: $bp-sm) {
-        height: 50vh; // fixed height so animation doesn't jump the page 
-    }
-}
+
 .co-section-1.feature-row {
+    overflow: hidden;
+    @media (min-width: $nav-bp) {
+        height: 75vh;
+    }
+    @media (min-width: $bp-sm) and (max-width: $nav-bp) {
+        height: 60vh;
+    }
     .text-wrapper {
         position: relative;
         z-index: 9;
+        text-align: left;
+        width: 100%;
+        h1 {
+            width: 100%;
+        }
         grid-column: 4 / 6;
+        @media only screen and (max-width: 1100px) {
+            grid-column: 4 / 7;
+        } 
         grid-row: 1 / 2;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
         height: 100%;
-        @media (min-width: $bp-sm) {
+
+        @media only screen and (min-width: $nav-bp) {
             padding-top: 300px;
             padding-left: $col-width/2;
+        }
+        @media only screen and (min-width: $bp-sm) and (max-width: $nav-bp) {
+            padding-top: $section-spacer;
+            padding-left: $col-width/3;
+        }
+        @media only screen and (max-width: $bp-sm) {
+            padding: $spacer*3 0; 
+            height: 300px;
+            height: 20vh; // fixed height so animation doesn't jump the page 
         }
     }
     .image-wrapper {
@@ -316,6 +349,9 @@
 .co-section-2.feature-row {
     .text-wrapper {
         grid-column: 2 / 4;
+        @media (max-width: $bp-sm) {
+            padding-bottom: $spacer*3;
+        } 
     }
     .image-wrapper {
         grid-column: 5 / 7;
@@ -378,7 +414,7 @@
             img {
                 height: 150px;
                 object-fit: contain;
-                padding: $spacer*3;
+                padding: 10px;
                 @include bwImage;
             }            
         }
@@ -486,7 +522,7 @@
 .co-section-5.feature-row {
     padding-top: $section-spacer/2;
     @media (min-width: $bp-sm) {
-        padding-bottom: $section-spacer*2;
+        padding-bottom: $section-spacer;
     }
     .text-wrapper {
         grid-column: 1 / 4;
@@ -866,4 +902,27 @@
 
 .main-content .shopify-challenge__container {
     padding-top: $section-spacer;
+}
+
+
+
+.shopify-policy__container {
+    max-width: 100% !important;
+    padding: 0;
+    @include basicGrid;
+    grid-auto-rows: auto;
+    > * {
+        grid-column: 2 / 6;
+        .rte {
+            @include pStyle($slate);
+            strong {
+                text-transform: uppercase;
+                display: inline-block;
+                margin-bottom: 10px;
+            }
+        }
+        &.shopify-policy__title {
+            text-align: left;
+        }
+    }
 }

@@ -781,14 +781,16 @@ slate.Variants = (function() {
      */
     _updateImages: function(variant) {
       var variantImage = variant.featured_image || {};
-      var currentVariantImage = this.currentVariant.featured_image || {};
-
-      if (
-        !variant.featured_image ||
-        variantImage.src === currentVariantImage.src
-      ) {
-        return;
+      // var currentVariantImage = this.currentVariant.featured_image || {};
+      if( this.currentVariant != undefined ) {
+        var currentVariantImage = this.currentVariant.featured_image || {};
       }
+      // if (
+      //   !variant.featured_image ||
+      //   variantImage.src === currentVariantImage.src
+      // ) {
+      //   return;
+      // }
 
       this.container.dispatchEvent(
         new CustomEvent('variantImageChange', {
@@ -808,12 +810,12 @@ slate.Variants = (function() {
      * @return {event} variantPriceChange
      */
     _updatePrice: function(variant) {
-      if (
-        variant.price === this.currentVariant.price &&
-        variant.compare_at_price === this.currentVariant.compare_at_price
-      ) {
-        return;
-      }
+      // if (
+      //   variant.price === this.currentVariant.price &&
+      //   variant.compare_at_price === this.currentVariant.compare_at_price
+      // ) {
+      //   return;
+      // }
 
       this.container.dispatchEvent(
         new CustomEvent('variantPriceChange', {
@@ -833,8 +835,13 @@ slate.Variants = (function() {
      * @return {event} variantSKUChange
      */
     _updateSKU: function(variant) {
-      if (variant.sku === this.currentVariant.sku) {
-        return;
+      // if (variant.sku === this.currentVariant.sku) {
+      //   return;
+      // }
+      if (this.currentVariant != undefined ) {
+        if (variant.sku === this.currentVariant.sku) {
+          return;
+        }
       }
 
       this.container.dispatchEvent(
@@ -6124,7 +6131,6 @@ theme.Zoom = (function() {
     this.url = container.dataset.zoom;
 
     this._cacheSelectors();
-
     if (!this.cache.sourceImage) return;
 
     this._duplicateImage();
@@ -7807,7 +7813,7 @@ theme.Product = (function() {
       namespace: '.slideshow-' + sectionId,
       sectionId: sectionId,
       sliderActive: false,
-      zoomEnabled: false
+      zoomEnabled: true
     };
 
     this.selectors = {
@@ -9641,5 +9647,24 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 
+// https://shopify.dev/tutorials/customize-theme-how-to-add-a-pick-an-option-to-drop-downs
+(function() {
+  if( typeof(productOptions ) != "undefined" ){
+    for(i=0; i < productOptions.length; i++) {
+      var select = document.getElementById('SingleOptionSelector-' + i );
+      select.filter = function () {
+        return this.find('option').length > 1
+      }
+      var option = new Option('Select', '');
+      select.add(option, select.firstChild);
+      select.selectedIndex = 0;
+    }
+  }
+})();
 
 
+function openSlideCartHQ() {
+  window.SLIDECART_OPEN()
+}
+
+document.getElementById('showCartPopup').addEventListener("click", openSlideCartHQ);

@@ -14,6 +14,10 @@
     assign compare_at_price = variant.compare_at_price
     assign price = variant.price
     assign available = variant.available
+  elsif product.title 
+    assign compare_at_price = product.compare_at_price
+    assign price = product.price
+    assign available = product.available
   else
     assign compare_at_price = 1999
     assign price = 1999
@@ -22,7 +26,6 @@
 
   assign money_price = price | money
 -%}
-
 <dl class="price
   {% if available == false %} 
     {% if product.tags contains '_Coming Soon' %}
@@ -86,16 +89,6 @@
     <div class="price__badges">
       <span class="price__badge price__badge--sale" aria-hidden="true">
         <span>{{ 'products.product.on_sale' | t }}</span>
-      </span>
-      <span class="price__badge price__badge--sold-out">
-        {% unless product.tags contains '_Coming Soon' %}
-          <span>{{ 'products.product.sold_out' | t }}</span>
-        {% endunless %}
-      </span>
-      <span class="price__badge price__badge--coming-soon">
-        {% if product.tags contains '_Coming Soon' %}
-          <span>Coming Soon</span>
-        {% endif %}
       </span>
     </div>
   </div>

@@ -6,24 +6,28 @@
   data-ajax-enabled="{{ settings.enable_ajax }}"
 >
   {% comment %}
-    Get first variant, or deep linked one
+  https://shopify.dev/tutorials/customize-theme-how-to-add-a-pick-an-option-to-drop-downs
   {% endcomment %}
-  {%- assign current_variant = product.selected_or_first_available_variant -%}
+  {% if product.variants.size > 1 %}
+    {% assign current_variant = product.selected_variant %}
+  {% else %}
+    {% assign current_variant = product.first_available_variant %}
+  {% endif %}
+
   {%- assign product_image_zoom_size = '1024x1024' -%}
   {%- assign product_image_scale = '2' -%}
-  {%- assign enable_image_zoom = true-%}
+  {%- assign enable_image_zoom = true -%}
   {%- assign compare_at_price = current_variant.compare_at_price -%}
   {%- assign price = current_variant.price -%}
 
   {%- assign product_media_width = '' -%}
   {%- assign product_description_width = '' -%}
   {%- assign height = 1090 -%}
-  {%- assign enable_image_zoom = false -%}
 
   
   <div class="grid-container product-single product-single--full-media">
     <div class="image-wrapper grid__item product-single__media-group {{ product_media_width }}product-single__media-group--full" data-product-single-media-group>
-      {%- assign featured_media = product.selected_or_first_available_variant.featured_media | default: product.featured_media -%}
+      {%- assign featured_media = current_variant.featured_media | default: product.featured_media -%}
 
       {%- for media in product.media -%}
         {% include 'media', media: media, featured_media: featured_media, height: height, enable_image_zoom: enable_image_zoom, image_zoom_size: product_image_zoom_size, image_scale: product_image_scale %}
@@ -136,7 +140,11 @@
         <script>window.performance.mark('debut:product:title_visible');</script>
 
           <div class="product__price">
+            {% if current_variant == null %}
             {% include 'product-price', variant: current_variant, show_vendor: false %}
+            {% else %}
+            {% include 'product-price', variant:  product.selected_or_first_available_variant, show_vendor: false %}
+            {% endif %}
           </div>
 
           {%- if shop.taxes_included or shop.shipping_policy.body != blank -%}
@@ -169,7 +177,7 @@
                       data-index="option{{ forloop.index }}"
                     >
                       {% for value in option.values %}
-                        <option value="{{ value | escape }}"{% if option.selected_value == value %} selected="selected"{% endif %}>{{ value }}</option>
+                        <option value="{{ value | escape }}"{%- if variant == current_variant %} selected="selected" {%- endif -%}>{{ value }}</option>
                       {% endfor %}
                     </select>
                     <span class="select-menu-icon">+</span>
@@ -218,17 +226,20 @@
                   {% if settings.enable_ajax %}aria-haspopup="dialog"{% endif %}
                   data-add-to-cart>
                   <span data-add-to-cart-text>
-                    {% unless current_variant.available %}
-                            
-                    {% if product.tags contains '_Coming Soon' %}
-                    Coming Soon 
-                    {% else %}
-                    {{ 'products.product.sold_out' | t }} 
-                    {% endif %}
 
-                    {% else %}
+
+                    {% if current_variant == null %}
+                      {{ 'products.product.unavailable' | t }}
+                    {% elsif current_variant.available %}
                       {{ 'products.product.add_to_cart' | t }}
-                    {% endunless %}
+                    {% else %}
+                      {% if product.tags contains '_Coming Soon' %}
+                        Coming Soon 
+                      {% else %}
+                      {{ 'products.product.sold_out' | t }} 
+                      {% endif %}
+                    {% endif %}
+                    
                   </span>
                   <span class="hide icon-loading" data-loader>
                     {% include 'icon-spinner' %}
@@ -294,6 +305,15 @@
   </script>
 {% endunless %}
 
+
+<script>
+  var productOptions = [];
+    {% for option in product.options %}
+    var optionObj = {};
+    optionObj[ {{ forloop.index0 }} ] = "{{ product.options[forloop.index0] }}";
+    productOptions.push(optionObj);
+    {% endfor %}
+  </script>
 
 
 {% schema %}

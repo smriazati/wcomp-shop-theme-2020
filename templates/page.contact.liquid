@@ -2,8 +2,6 @@
 <div class="image-wrapper">
   {% if settings.contact_form_image != blank %}
     {% include 'image-feature-row', image: settings.contact_form_image, height: 545, id: section.id %}
-  {% else %}
-    {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
   {% endif %}
 </div>
 {% endcapture %}

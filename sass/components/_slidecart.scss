@@ -1,0 +1,56 @@
+@import '../settings/_settings.scss';
+
+
+#slidecarthq {
+    border: $border;
+}
+
+#slidecarthq .header button,
+#slidecarthq .footer,
+#slidecarthq .slidecarthq-overlay {
+    background-color: transparent !important;
+}
+
+
+#slidecarthq .cartEmpty .header{
+    border-bottom: $border !important;
+}
+
+#slidecarthq .header h2 {
+    font-size: 24px;
+    line-height: 30px;
+    @include baseFreight;
+    font-weight: 400 !important;
+}
+
+@media (min-width: 374px) {
+    html body #slidecarthq .footer-row span, html body #slidecarthq .footer-row strong, html body #slidecarthq .item .title, html body #slidecarthq .item .title a, html body #slidecarthq .item .price, html body #slidecarthq .upsell-text h3, html body #slidecarthq .upsell-text h3 a, html body #slidecarthq .upsell-options-header h2, html body #slidecarthq .upsell-options-header p.price, html body #slidecarthq .upsell-options-header p.compare-at, html body #slidecarthq .upsells-header h2 {
+        @include capsSofia;
+    }
+}
+
+#slidecarthq .header button svg path {
+    fill: $gray !important;
+}
+
+#slidecarthq .empty {
+    margin-top: $spacer*3 !important;
+}
+
+#slidecarthq .empty svg {
+    display: none;
+}
+#slidecarthq .empty p {
+    @include baseSofia;
+    font-size: 16px;
+    margin-top: $spacer*3;
+    color: $gray;
+}
+
+
+@media (min-width: 374px) {
+    #slidecarthq .header {
+        height: 84px;
+        padding: 0 $spacer*3 !important;
+    }
+}

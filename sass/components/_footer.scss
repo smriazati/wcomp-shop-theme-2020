@@ -61,7 +61,9 @@
 
 .site-footer__copyright-content {
   display: flex;
-  justify-content: center;
+  @media (max-width: $bp-sm) {
+    justify-content: center;
+  }
   align-items: center;
   > *:first-child {
     padding-right: $spacer/2;

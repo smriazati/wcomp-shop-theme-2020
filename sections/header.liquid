@@ -38,13 +38,13 @@
           </li>
           <li class="cart-nav-btn">
             {% comment %} START CART {% endcomment %}
-            <a href="{{ routes.cart_url }}" class="site-header__icon site-header__cart">
+            <button type="button" id="showCartPopup" class="site-header__icon site-header__cart">
               <span class="site-nav__label">Cart</span>
               <div id="CartCount" class="site-header__cart-count{% if cart.item_count == 0 %} hide{% endif %} critical-hidden" data-cart-count-bubble>
                 <span data-cart-count>{{ cart.item_count }}</span>
                 <span class="icon__fallback-text medium-up--hide">{{ 'layout.cart.items_count' | t: count: cart.item_count }}</span>
               </div>
-            </a>
+            </button>
             {% comment %} END CART {% endcomment %}
           </li>
           </ul>
@@ -79,7 +79,7 @@
     <div class="social-mobile-nav">
       <nav>
         <ul>
-          {%- assign socials = "Facebook Twitter Pinterest Instagram Tumblr Snapchat YouTube Vimeo" | split: ' ' -%}
+          {%- assign socials = "Instagram Pinterest Facebook Twitter Tumblr Snapchat YouTube Vimeo" | split: ' ' -%}
             {%- for social in socials -%}
             {%- assign social_link = social | prepend: 'social_' | append: '_link' | downcase -%}
             {%- if settings[social_link] != blank -%}

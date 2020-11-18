@@ -92,6 +92,7 @@
 
 }
 
+.grid-view-item,
 .grid-view-item__image-wrapper {
     margin: 0;
 }
@@ -134,9 +135,11 @@
     }
 }
 .filter-item select {
-    text-align: center;
-    text-align-last: center;
-    -moz-text-align-last: center;
+    @media (max-width: $bp-sm) {
+        text-align: center;
+        text-align-last: center;
+        -moz-text-align-last: center;
+    }
     outline: 0;
     padding: 0;
     height: auto;
@@ -261,4 +264,11 @@
 .product-card:hover .product-card__image-wrapper, 
 .product-card:focus-within .product-card__image-wrapper {
     opacity: .8;
+}
+
+.main-content.collection-template > *:first-child {
+    padding-top: 0;
+    .section-header {
+        padding-top: $section-spacer;
+    }
 }

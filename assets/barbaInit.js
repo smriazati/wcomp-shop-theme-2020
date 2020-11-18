@@ -181,10 +181,31 @@ function contactPageNewsletter(newDoc) {
 }
 
 function closeMobileMenu() {
-  console.log('close menu');
+  //console.log('close menu');
 }
 
+function isContactFormSubmitted() {
+  //console.log(newDoc);
+  const container = document.querySelector('.contact-form-container');
+  const success = container.querySelector(".form-message--success");
+  if (success) {
+    const hiddenClass = 'visually-hidden'
+    const desc = container.querySelector(".description");
+    desc.classList.add(hiddenClass);
 
+    const formElements = container.querySelector('form').elements;
+    console.log(formElements);
+    formElements.forEach( f => {
+      f.classList.add(hiddenClass);
+    });
+
+    const formLabels = container.querySelectorAll('form label');
+    formLabels.forEach( f => {
+      f.classList.add(hiddenClass);
+    });
+
+  }
+}
 
 // // initialize barba
 // document.addEventListener("DOMContentLoaded", function(){
@@ -231,7 +252,7 @@ barba.init({
           document.body.style.backgroundColor = '#D0CEC9';
           instafeedApp();
           contactPageNewsletter(data.next.container);
-
+          isContactFormSubmitted();
         },
         beforeLeave() {
           document.body.style.backgroundColor = '#fff'
@@ -251,6 +272,9 @@ barba.init({
         // if (data.next.namespace === 'index') {
         //   getFlodeskPopup();
         // }
+        if (data.next.namespace === 'contact') {
+          isContactFormSubmitted();
+        }
         preventBarbaIntoShop();
       },
       afterOnce(data) {
@@ -293,6 +317,7 @@ barba.init({
     prevent: ({ el }) => el.classList && el.classList.contains('prevent')
   });
 
+
   barba.hooks.enter((data) => {
     // console.log(data.current.container.offsetHeight);
     // console.log(data.next.namespace);
@@ -302,3 +327,32 @@ barba.init({
   });
 
 
+  barba.hooks.beforeEnter(({ current, next }) => {
+    // Set <body> classes for the 'next' page, switch template-index or template-page
+    if (current.container) {
+      let nextHtml = next.html;
+      // console.log('NEXT HTML', nextHtml);
+      let response = nextHtml.replace(
+        /(<\/?)body( .+?)?>/gi,
+        "$1notbody$2>",
+        nextHtml
+      );
+      let bodyClasses = $(response).filter("notbody").attr("class");
+      // console.log(bodyClasses);
+
+      const body = document.querySelector('body');
+      const nextNamespace = next.namespace;
+      const homeNamespace = 'index'
+      const homeClass = 'template-index';
+      const pageClass = 'template-page'
+      if (nextNamespace === homeNamespace) {
+        // console.log('going to home');
+        body.classList.remove(pageClass);
+        body.classList.add(homeClass);
+      } else {
+        // console.log('going somewhere else ');
+        body.classList.remove(homeClass);
+        body.classList.add(pageClass);
+      }
+    }
+  });

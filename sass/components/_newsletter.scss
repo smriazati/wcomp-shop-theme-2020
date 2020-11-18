@@ -144,6 +144,8 @@ form.flodesk-newsletter {
 
 .site-footer {
   form.flodesk-newsletter .ff__grid {
-    justify-content: center;
+    @media (max-width: $bp-sm) {
+      justify-content: center;
+    }
   }
 }
