@@ -125,15 +125,14 @@
 
 
         
-        {% for tag in product.tags %}
-
+        <!-- {% for tag in product.tags %}
           {%- assign firstCharacter = tag | slice: 0 -%}
-          {% unless firstCharacter contains '_' %}
+          {% unless firstCharacter contains '_' %} -->
             <div class="product-featured-tag">
-              <p>{{ tag }}</p>
+              <p><a class="no-line" href="/collections/vendors?q={{ product.vendor }}">{{ product.vendor }}</a></p>
             </div>
-          {% endunless %}
-        {% endfor %}
+          <!-- {% endunless %}
+        {% endfor %} -->
 
 
         <h1 class="product-single__title">{{ product.title }}</h1>
@@ -256,6 +255,9 @@
                 {{ form | payment_button }}
               </div>
             </div>
+
+            {% render 'ZooomyBackinStock' %}
+
           {% endform %}
         </div>
 

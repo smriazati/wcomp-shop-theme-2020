@@ -10,3 +10,20 @@ accessibility-position-bottom-left, .accessibility-position-bottom-right {
 #accessibility-menu-btn {
     background-color: $slate !important; 
 }
+
+
+#zooomybackinstock {
+    border: $border !important;
+    text-align: left !important;   
+    margin-top: 0 !important;
+    margin-bottom: $spacer*3 !important;
+}
+
+.zbackinstock__headings h3 {
+    text-align: left !important;   
+    margin: $spacer*2 0;
+}
+
+.zheading__text {
+    text-align: left !important;   
+}

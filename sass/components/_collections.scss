@@ -239,6 +239,7 @@
     to   { opacity: 1;}
 }
 .collections-grid.load-more-pagination-results {
+    margin-top: $spacer*3;
     animation: fadeInNewCollection 1s ease-out 1 forwards;
 }
 
