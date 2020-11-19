@@ -24,13 +24,12 @@
   assign money_price = price | money
 -%}
 
-<dl class="price price--listing
-{% if available == false %} 
-  {% if product.tags contains '_Coming Soon' %}
+<dl class="price price--listing {% if available == false %}
+  {%- if product.tags contains '_Coming Soon' -%}
     price--coming-soon
-  {% else %}
+  {%- else -%}
     price--sold-out 
-  {% endif %}  
+  {%- endif -%}  
 {% endif %}
   {%- if compare_at_price > price %} price--on-sale {% endif -%}
   {%- if product.price_varies == false and product.compare_at_price_varies %} price--compare-price-hidden {% endif -%}

@@ -63,7 +63,7 @@
     <nav class="mobile-secondary-header">
       <ul>
         <li class="cart-icon">
-          <a href="{{ routes.cart_url }}" class="site-header__icon site-header__cart">
+          <button type="button" id="showCartPopupMobile" class="site-header__icon site-header__cart">
             <div id="CartCount" class="site-header__cart-count critical-hidden" data-cart-count-bubble>
               {% if cart.item_count == 0 %}
                 {% include 'icon-cart' %}
@@ -71,7 +71,7 @@
                 <span class="cart-count">( {{ cart.item_count }} )</span>
               {% endif %} 
             </div>
-          </a>
+          </button>
         </li>
       </ul>
     </nav>

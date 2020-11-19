@@ -64,7 +64,7 @@
             .btn,
             .shopify-payment-button__button--unbranded {
                 @include buttonFlat;
-                flex: 0 0 50%;
+                margin: 0;
             }
             .shopify-payment-button__button--hidden {
                 display: none;
@@ -179,22 +179,22 @@
     }
 }
 
-.price__badges {
-    .price-badge,
-    .price__badge--sale,
-    .price__badge--sold-out {
-        border: 0;
-        background: $white;
-    }
-}
+// .price__badges {
+//     .price-badge,
+//     .price__badge--sale,
+//     .price__badge--sold-out {
+//         border: 0;
+//         background: $white;
+//     }
+// }
 
-.price--coming-soon {
-    .price__badge--coming-soon {
-       display: flex;
-       border: 0;
-       background: $white;
-    } 
-}
+// .price--coming-soon {
+//     .price__badge--coming-soon {
+//        display: flex;
+//        border: 0;
+//        background: $white;
+//     } 
+// }
 
 .return-link-wrapper {
     margin-bottom: $section-spacer;
@@ -262,3 +262,28 @@
         margin-bottom: $spacer*2;
     }
 }
+
+
+.product-single .image-wrapper {
+    position: relative;
+}
+.product-page-price-badge {
+    position: absolute;
+    top: 0;
+    right: $col-width / 2;
+    z-index: 800;
+    .price-badge {
+        background: $gray;
+        color: $white;
+        padding: $spacer*2 $spacer*3;
+        @include capsSofia;
+        font-size: 10px;
+    }
+}
+
+.product-form__item {
+    @media (min-width: $nav-bp) {
+        flex: 0 0 30%;
+    }
+}
+

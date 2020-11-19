@@ -38,10 +38,10 @@
 
       {% endif %}
       
-      {% if is_filter_by_available %}
       <div class="grid-container filters-toolbar-wrapper{% if is_filter_by_available %} filters-toolbar--has-filter{% endif %}">
         <div class="filters-toolbar">
           <p>Filter by</p>
+          {% if is_filter_by_available %}
               {% unless collection.all_tags.size == 0 %}
               <div class="filter-item filter-by-tags">
                 <label class="visually-hidden select-label" for="FilterTags">{{ 'collections.filters.title_tags' | t }}</label>
@@ -63,6 +63,7 @@
                   </select>
               </div>
               {% endunless %}
+            {% endif %}
 
                 <div class="filter-item filter-by-price">
                   {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
@@ -105,10 +106,9 @@
 
           </div>
         </div>
-    {% endif %}
   </header>
 
-  <div class="collections-grid">
+  <div class="collections-grid{% if is_filter_by_available == false%} no-filters {%- endif -%}">
       <ul class="grid-container">
         {% for product in collection.products %}
             <li class="grid__item grid__item--{{section.id}}">

@@ -9652,12 +9652,14 @@ document.addEventListener('DOMContentLoaded', function() {
   if( typeof(productOptions ) != "undefined" ){
     for(i=0; i < productOptions.length; i++) {
       var select = document.getElementById('SingleOptionSelector-' + i );
-      select.filter = function () {
-        return this.find('option').length > 1
+      if (select) {
+        select.filter = function () {
+          return this.find('option').length > 1
+        }
+        var option = new Option('Select', '');
+        select.add(option, select.firstChild);
+        select.selectedIndex = 0;
       }
-      var option = new Option('Select', '');
-      select.add(option, select.firstChild);
-      select.selectedIndex = 0;
     }
   }
 })();
@@ -9668,3 +9670,4 @@ function openSlideCartHQ() {
 }
 
 document.getElementById('showCartPopup').addEventListener("click", openSlideCartHQ);
+document.getElementById('showCartPopupMobile').addEventListener("click", openSlideCartHQ);

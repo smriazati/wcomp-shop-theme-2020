@@ -27,6 +27,21 @@
   
   <div class="grid-container product-single product-single--full-media">
     <div class="image-wrapper grid__item product-single__media-group {{ product_media_width }}product-single__media-group--full" data-product-single-media-group>
+      <div class="product-page-price-badge">
+        {% if product.available == false %} 
+          {% if product.tags contains '_Coming Soon' %}
+            <div class="price-badge">
+              Coming Soon
+            </div>
+          {% else %}
+            <div class="price-badge">
+              Sold Out
+            </div>
+          {% endif %}  
+        {% endif %} 
+      </div>
+
+
       {%- assign featured_media = current_variant.featured_media | default: product.featured_media -%}
 
       {%- for media in product.media -%}
