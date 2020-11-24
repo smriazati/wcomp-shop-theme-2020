@@ -79,7 +79,7 @@
     <div class="social-mobile-nav">
       <nav>
         <ul>
-          {%- assign socials = "Instagram Pinterest Facebook Twitter Tumblr Snapchat YouTube Vimeo" | split: ' ' -%}
+          {%- assign socials = "Instagram Pinterest Facebook Spotify Twitter Tumblr Snapchat YouTube Vimeo" | split: ' ' -%}
             {%- for social in socials -%}
             {%- assign social_link = social | prepend: 'social_' | append: '_link' | downcase -%}
             {%- if settings[social_link] != blank -%}

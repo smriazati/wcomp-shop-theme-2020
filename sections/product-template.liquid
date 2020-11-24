@@ -133,22 +133,18 @@
       {% endif %}
     </div>
 
+    {% comment %}
+  <script>console.log({{ product | json }});</script>
+    {% endcomment %}
+
     <div class="text-wrapper grid__item {{ product_description_width }}">
       <div class="product-single__meta">
 
         {%- assign product_media_width = '' -%}
 
-
-        
-        <!-- {% for tag in product.tags %}
-          {%- assign firstCharacter = tag | slice: 0 -%}
-          {% unless firstCharacter contains '_' %} -->
-            <div class="product-featured-tag">
-              <p><a class="no-line" href="/collections/vendors?q={{ product.vendor }}">{{ product.vendor }}</a></p>
-            </div>
-          <!-- {% endunless %}
-        {% endfor %} -->
-
+        <div class="product-featured-tag">
+          <p><a class="no-line" href="/collections/vendors?q={{ product.vendor }}">{{ product.vendor }}</a></p>
+        </div>
 
         <h1 class="product-single__title">{{ product.title }}</h1>
         <script>window.performance.mark('debut:product:title_visible');</script>

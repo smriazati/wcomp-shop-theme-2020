@@ -68,8 +68,8 @@
                 <label class="visually-hidden" for="{{ formId }}-inquiryType">corporate or retail?</label>
                 <select id="{{ formId }}-inquiryType" name="contact[{{ 'contact.form.inquiryType'}}]"                 aria-required="true">
                   <option value="{{ page.url }}" readonly="true" hidden="true" selected>corporate or retail?</option>
-                  <option value="Corporate">Corporate</option>
-                  <option value="Retail">Retail</option>
+                  <option value="Corporate">corporate</option>
+                  <option value="Retail">retail</option>
                 </select>
               </div>
               </div>
@@ -110,7 +110,7 @@
                     <h3>Social</h3>
                     <p>{{ settings.contact_form_socials_description }}</p>
 
-                    {%- assign socials = "Instagram Pinterest Facebook Twitter Tumblr Snapchat YouTube Vimeo" | split: ' ' -%}
+                    {%- assign socials = "Instagram Pinterest Facebook Spotify Twitter Tumblr Snapchat YouTube Vimeo" | split: ' ' -%}
                     <div class="socials">
                         <ul class="socials-list">
                           {%- for social in socials -%}

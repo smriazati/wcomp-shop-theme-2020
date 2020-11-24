@@ -5,11 +5,9 @@ function preventBarbaIntoShop() {
   const els2 = document.querySelectorAll("a[href^='/products/']");
   // console.log('preventing barba in shop... ', els);
   els2.forEach(el => el.classList.add('prevent'));
-
   const els3 = document.querySelectorAll("a[href^='/cart']");
   // console.log('preventing barba in shop... ', els);
   els3.forEach(el => el.classList.add('prevent'));
-
 }
 
 function initializeQuoteSlider(newDoc) {
@@ -33,7 +31,9 @@ function initializeQuoteSlider(newDoc) {
       next.innerHTML = '→';
     }
 }
-function animateFrom(elem) {
+
+/* page TRANSITIONS */
+function pageTransitionAnimateFrom(elem) {
   //console.log('gsap set animation')
   gsap.set(elem, 
       {
@@ -42,7 +42,7 @@ function animateFrom(elem) {
           opacity: 1
       });
 }
-function animateTo(elem) {
+function pageTransitionAnimateTo(elem) {
   // console.log('gsap to animation')
   gsap.to(elem, 
       {
@@ -52,7 +52,7 @@ function animateTo(elem) {
       })
 }
 
-function animateTo2(elem) {
+function pageTransitionAnimateTo2(elem) {
   // console.log('gsap to animation')
   gsap.to(elem, 
       {
@@ -62,7 +62,7 @@ function animateTo2(elem) {
       })
 }
 
-function colorChange(previousdivheight) {
+function homePageScrollColorChange(previousdivheight) {
   // console.log('hi gsap color change')
   const ref = document.querySelector('.gsap-bg-color-change');
   const endOffset = 150;
@@ -81,26 +81,26 @@ function colorChange(previousdivheight) {
         startPt = (elem.offsetTop - previousdivheight) - startSooner;
         endPt = (startPt + elem.offsetHeight + startSooner) - endOffset;
       } else {
-        startPt = (elem.offsetTop - previousdivheight) + ref.offsetHeight;
-        endPt = (startPt + elem.offsetHeight + startSooner) - endOffset;
+        startPt = ((elem.offsetTop - previousdivheight) + ref.offsetHeight) - 300;
+        endPt = ((startPt + elem.offsetHeight + startSooner));
       }
-      //console.log(startPt, endPt);
+      // console.log(startPt, endPt);
 
-      animateFrom(elem);
+      pageTransitionAnimateFrom(elem);
       ScrollTrigger.create({
           trigger: elem,
           // markers: true,
           start: startPt,
           end: endPt,
-          onEnter: function() { animateTo(elem) }, 
-          onEnterBack: function() { animateTo(elem) },
-          onLeave: function() { animateTo2(elem) }, 
-          onLeaveBack: function() { animateTo2(elem) }
+          onEnter: function() { pageTransitionAnimateTo(elem) }, 
+          onEnterBack: function() { pageTransitionAnimateTo(elem) },
+          onLeave: function() { pageTransitionAnimateTo2(elem) }, 
+          onLeaveBack: function() { pageTransitionAnimateTo2(elem) }
       });
   }
 }
 
-function textSwapAnimation() {
+function corporatePageTextSwapAnimation() {
   const atRef1 = document.getElementById('at-1');
   const atRef2 = document.getElementById('at-2');
   const atRef3 = document.getElementById('at-3');
@@ -146,7 +146,7 @@ function textSwapAnimation() {
 
 }
 
-function contactPageNewsletter(newDoc) {
+function addContactPageNewsletter(newDoc) {
   const inlineNewsletterHTML = `<div class="fd-ef-5fac562d76d8d645a6cf181f">
   <div class="ff__root">
     <div class="ff__container">
@@ -173,15 +173,11 @@ function contactPageNewsletter(newDoc) {
   </div>`
   
   const contactFormNewsletter = newDoc.querySelector('#contact-page-newsletter');
-  console.log(contactFormNewsletter);
+  // console.log(contactFormNewsletter);
   if (contactFormNewsletter) {
     // console.log('hi')
     contactFormNewsletter.innerHTML = inlineNewsletterHTML;
   }
-}
-
-function closeMobileMenu() {
-  //console.log('close menu');
 }
 
 function isContactFormSubmitted() {
@@ -203,7 +199,6 @@ function isContactFormSubmitted() {
     formLabels.forEach( f => {
       f.classList.add(hiddenClass);
     });
-
   }
 }
 
@@ -216,7 +211,7 @@ barba.init({
     views: [{
         namespace: 'index',
         beforeEnter(data) {
-          colorChange(data.current.container.offsetHeight);
+          homePageScrollColorChange(data.current.container.offsetHeight);
         },
         beforeOnce(data) {
           //console.log('here we go', data)
@@ -225,7 +220,7 @@ barba.init({
         namespace: 'corporate',
         beforeEnter(data) {
           initializeQuoteSlider(data.next.container);
-          textSwapAnimation();
+          corporatePageTextSwapAnimation();
         }
      }, {
         namespace: 'story',
@@ -251,7 +246,7 @@ barba.init({
         beforeEnter(data) {
           document.body.style.backgroundColor = '#D0CEC9';
           instafeedApp();
-          contactPageNewsletter(data.next.container);
+          addContactPageNewsletter(data.next.container);
           isContactFormSubmitted();
         },
         beforeLeave() {
@@ -262,20 +257,15 @@ barba.init({
       name: 'default-transition',
       once(data) {
         // console.log('once', data);
-        // data.next.container.querySelector('.flodesk-newsletter').blur();
         gsap.set(data.next.container, {
           opacity: 0,
           y: '-5vh'
         });
-
         window.scrollTo(0, 0);
-        // if (data.next.namespace === 'index') {
-        //   getFlodeskPopup();
-        // }
+        preventBarbaIntoShop();
         if (data.next.namespace === 'contact') {
           isContactFormSubmitted();
         }
-        preventBarbaIntoShop();
       },
       afterOnce(data) {
         // console.log('after once', data);
@@ -286,10 +276,10 @@ barba.init({
           duration: 1.1,
         });
         if (data.next.namespace === 'corporate') {
-          textSwapAnimation();
+          corporatePageTextSwapAnimation();
         }
         if (data.next.namespace === 'index') {
-          colorChange(0);
+          homePageScrollColorChange(0);
         }
       },
       leave(data) {
@@ -301,7 +291,6 @@ barba.init({
         });
       },
       enter(data) {
-        closeMobileMenu();
         // console.log(data.next.container);
         gsap.set(data.next.container, {
           opacity: 0,

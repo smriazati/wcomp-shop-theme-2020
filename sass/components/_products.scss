@@ -270,7 +270,10 @@
 .product-page-price-badge {
     position: absolute;
     top: 0;
-    right: $col-width / 2;
+    right: 0;
+    @media (min-width: $bp-sm) {
+        right: $col-width / 2;
+    }
     z-index: 800;
     .price-badge {
         background: $gray;
@@ -287,3 +290,6 @@
     }
 }
 
+.product-form--payment-button-no-variants {
+    max-width: 100%;
+}

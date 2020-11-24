@@ -186,7 +186,8 @@
   crossorigin="anonymous" />
    
   {{ content_for_header }} 
-  
+
+  <script async src="https://code.tidio.co/gvxxzvirfsy6nygpdxhvf9hbndt4yxbm.js"></script>
 
   {% if request.page_type == 'index' or template.name == 'index' %}
     <script>
@@ -252,11 +253,6 @@
   </ul>
 
 
-  {% comment %}
-animation scripts
-  {% endcomment %}
-  <!-- <script src="{{ 'gsapBgColorChange.js' | asset_url }}"></script> -->
-  <script src="{{ 'gsapSectionEnter.js' | asset_url }}"></script>
 
   {% comment %}
     barba.js
@@ -319,7 +315,6 @@ animation scripts
 {% endif %}
 
 
-<script src="https://code.tidio.co/gvxxzvirfsy6nygpdxhvf9hbndt4yxbm.js"></script>
 
 </body>
 

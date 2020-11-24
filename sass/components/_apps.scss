@@ -1,17 +1,5 @@
 @import '../settings/_settings.scss';
 
-accessibility-position-bottom-left, .accessibility-position-bottom-right {
-    bottom: 140px !important;
-    right: 21px !important;
-}
-
-
-.accessibility-box,
-#accessibility-menu-btn {
-    background-color: $slate !important; 
-}
-
-
 #zooomybackinstock {
     border: $border !important;
     text-align: left !important;   
@@ -26,4 +14,11 @@ accessibility-position-bottom-left, .accessibility-position-bottom-right {
 
 .zheading__text {
     text-align: left !important;   
+}
+
+
+@media (min-width: $bp-sm) {
+    #zooomybackinstock {
+        width: 50% !important;
+    }
 }

@@ -15,7 +15,11 @@
           {% if block.settings != blank %}
               <div class="product-text">
                 {% if product.title  != blank %}
-                  <h3>{{ product.title }}</h3>
+                  <h3>
+                    {% if product.vendor  != blank %}
+                      <span class="product-brand">{{ product.vendor }}</span>
+                  {% endif %}
+                    {{ product.title }}</h3>
                 {% endif %}
                 {% include 'product-price-listing', product: product, show_vendor: show_vendor %}
 
@@ -32,14 +36,9 @@
                   {% endif %}
               </div>
               <div class="product-hover-overlay">
-                {% if product.description  != blank %}
-                  <div class="description">
-                    {{ product.description | truncatewords: 25 }}
-                  </div>
-                {% endif %}
-                <p class="btn" href="{{ product.url }}">
+                <span class="btn">
                   Shop Now
-                </p>
+                </span>
               </div>
             {% endif %}
           </a>

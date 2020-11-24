@@ -1,0 +1,63 @@
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+<style type="text/css">
+  
+</style>
+<script type="text/javascript">
+  window.ORDERSIFY_BIS = window.ORDERSIFY_BIS || {};
+  window.ORDERSIFY_BIS.template = "{{ template }}";
+  window.ORDERSIFY_BIS.shop = "{{ shop.permanent_domain }}";
+  {% if customer %}
+    window.ORDERSIFY_BIS.customer = {
+      email: "{{ customer.email }}",
+      name: "{{ customer.name }}",
+      id: {{ customer.id }}
+    };
+  {% endif %}
+  window.ORDERSIFY_BIS.popupSetting = {
+    "font_family": "Poppins",
+    "font_size": 12,
+    "popup_border_radius": 0,
+    "popup_heading_color": "#49484C",
+    "popup_text_color": "#49484C",
+    "is_message_enable": false,
+    "is_sms_enable": false,
+    "is_accepts_marketing_enable": false,
+    "field_border_radius": 0,
+    "popup_button_color": "#ffffff",
+    "popup_button_bg_color": "#49484C",
+    "is_float_button": true,
+    "float_button_position": "right",
+    "float_button_top": 15,
+    "float_button_color": "#ffffff",
+    "float_button_bg_color": "#000000",
+    "is_inline_button": false,
+    "inline_button_color": "#ffffff",
+    "inline_button_bg_color": "#212b36",
+    "ignore_collection_ids": "",
+    "ignore_product_tags": "",
+    "ignore_product_ids": "",
+    "is_auto_translation": false,
+    "selector": "",
+    "selector_position": "right",
+    "is_ga": false,
+    "is_fp": false
+};
+  window.ORDERSIFY_BIS.product = {{ product | json }};
+  window.ORDERSIFY_BIS.currentVariant = {{ current_variant | json }};
+  window.ORDERSIFY_BIS.translations = {
+    en: {
+    "inline_button_text": "Notify me",
+    "float_button_text": "Notify when available",
+    "popup_heading": "Notify me when available",
+    "popup_description": "We will send you a notification as soon as this product is available again.",
+    "popup_button_text": "Notify me",
+    "popup_note": "We respect your privacy and don't share your email with anybody.",
+    "field_email_placeholder": "eg. username@example.com",
+    "field_message_placeholder": "Tell something about your requirements to shop",
+    "success_text": "You subscribed notification successfully",
+    "required_email": "Your email is required",
+    "invalid_email": "Your email is invalid",
+    "invalid_message": "Your message must be less then 255 characters"
+}
+  };
+</script>

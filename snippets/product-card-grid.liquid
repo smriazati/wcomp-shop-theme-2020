@@ -49,6 +49,9 @@
   </noscript>
 
   <div class="product-info">
+    {% if product.vendor %}
+      <div class="product-cart-vendor">{{ product.vendor }}</div>
+    {% endif %}
     <div class="grid-view-item__title product-card__title" aria-hidden="true"><p>{{ product.title }}</p></div>
     {% include 'product-price-listing', product: product, show_vendor: show_vendor %}
     {% if product.has_only_default_variant == false%}

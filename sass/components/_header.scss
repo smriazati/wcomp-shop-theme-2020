@@ -106,6 +106,7 @@ header.site-header {
     }
 }  
 
+// no border on home page
 .template-index {
     header.site-header {
         @media (min-width: $nav-bp) {
@@ -113,6 +114,7 @@ header.site-header {
                 border-bottom: none;
             }  
         }
+        border-bottom: none;
     }    
 }
 
@@ -239,6 +241,7 @@ header.site-header {
     @include italicFreight;
     padding: 0;
     margin: 0;
+    font-size: calc(((14) / (12)) * .8em);
 }
 
 
@@ -561,3 +564,51 @@ header.site-header {
         grid-column: 1 / 4;
     }
 }
+
+
+// dropdown on medium screens
+@media (min-width: $nav-bp) and (max-width: 1090px) {
+    #SiteNavLabel-shop {
+        min-width: 180px;
+        left: -32%;
+    }
+}
+@media (min-width: 1091px) and (max-width: 1200px) {
+    #SiteNavLabel-shop {
+        min-width: 180px;
+        left: -19%;
+    }
+}
+
+
+@media (min-width: 1201px) and (max-width: 1258px) {
+    #SiteNavLabel-shop {
+        min-width: 180px;
+        left: -10%;
+    }
+}
+
+
+@media (min-width: 1259px) and (max-width: 1300px) {
+    #SiteNavLabel-shop {
+        min-width: 180px;
+        left: -5%;
+    }
+}
+
+
+@media (min-width: 1301px) and (max-width: 1400px) {
+    #SiteNavLabel-shop {
+        min-width: 180px;
+        left: -15%;
+    }
+}
+
+
+@media (min-width: 1401px) and (max-width: 1500px) {
+    #SiteNavLabel-shop {
+        min-width: 180px;
+        left: -9%;
+    }
+}
+

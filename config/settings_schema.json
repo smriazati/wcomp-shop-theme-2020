@@ -486,6 +486,34 @@
       },
       {
         "type": "text",
+        "id": "social_spotify_link",
+        "label": {
+          "cs": "Spotify",
+          "da": "Spotify",
+          "de": "Spotify",
+          "en": "Spotify",
+          "es": "Spotify",
+          "fi": "Spotify",
+          "fr": "Spotify",
+          "hi": "Spotify",
+          "it": "Spotify",
+          "ja": "Spotify",
+          "ko": "Spotify",
+          "nb": "Spotify",
+          "nl": "Spotify",
+          "pl": "Spotify",
+          "pt-BR": "Spotify",
+          "pt-PT": "Spotify",
+          "sv": "Spotify",
+          "th": "Spotify",
+          "tr": "Spotify",
+          "vi": "Spotify",
+          "zh-CN": "Spotify",
+          "zh-TW": "Spotify"
+        }
+      },
+      {
+        "type": "text",
         "id": "social_tumblr_link",
         "label": {
           "cs": "Tumblr",

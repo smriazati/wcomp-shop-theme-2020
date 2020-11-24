@@ -1,42 +1,69 @@
 {
   "current": {
-    "social_facebook_link": "https:\/\/facebook.com\/shopify",
-    "social_pinterest_link": "https:\/\/pinterest.com\/shopify",
-    "social_instagram_link": "http:\/\/instagram.com\/shopify",
+    "contact_form_image": "shopify:\/\/shop_images\/W_Compliments-branded-notebooks.jpg",
+    "contact_form_title": "Contact Us",
+    "contact_form_description": "We would love to hear from you! Please fill out the form below or email us at hello@wcompliments.com. We will be in touch as soon as possible.",
+    "contact_form_submission_success": "",
+    "contact_form_newsletter_description": "Sign up for the W\/C newsletter for product recommendations, gift ideas, and a peek into what we’ve been up to.",
+    "contact_form_socials_description": "Follow us for an extra dose of inspiration on your feed:",
+    "contact_form_location_description": "Based in Raleigh, NC and connecting with you wherever you are.",
+    "product_cta_text": "Like this one? Contact us for bulk\/branded ordering options.",
+    "product_cta_url": "shopify:\/\/pages\/corporate",
+    "shop_all_page_title": "The Crème de la Crème",
+    "shop_all_page_description": "<p>We believe that the products you spend your money on should be the perfect blend of style, quality, practicality, and sustainability.<\/p>",
+    "predictive_search_enabled": false,
+    "share_facebook": false,
+    "share_twitter": false,
+    "share_pinterest": false,
+    "social_facebook_link": "https:\/\/www.facebook.com\/wcomplimentsllc\/",
+    "social_pinterest_link": "https:\/\/www.pinterest.com\/wcompliments",
+    "social_instagram_link": "https:\/\/www.instagram.com\/wcompliments",
+    "favicon": "shopify:\/\/shop_images\/icon.png",
+    "enable_ajax": false,
+    "checkout_logo_image": "shopify:\/\/shop_images\/logo.png",
+    "checkout_logo_position": "left",
+    "checkout_logo_size": "small",
+    "checkout_accent_color": "#000000",
+    "checkout_button_color": "#49484c",
+    "shop_all_page_tagline": "The Crème de la Crème",
+    "type_header_font": "baskerville_no_2_n4",
+    "type_base_font": "avenir_next_rounded_n4",
     "sections": {
       "header": {
         "type": "header",
         "settings": {
-          "logo": "shopify:\/\/shop_images\/placeholder-logo.png",
+          "logo": "shopify:\/\/shop_images\/logo.png",
           "main_linklist": "main-menu",
-          "message": false,
+          "shop_linklist": "shop-dropdown-menu",
+          "message": true,
           "home_page_only": true,
-          "message_text": "Announce something here",
-          "color_bg": "#3a3a3a",
-          "color_text": "#ffffff"
+          "message_text": "free shipping on orders over $250",
+          "message_link": "shopify:\/\/collections\/all"
         }
       },
       "hero-1": {
         "type": "hero",
         "settings": {
-          "image": "shopify:\/\/shop_images\/placeholder.jpg",
-          "button_1_text": "Shop",
+          "image": "shopify:\/\/shop_images\/W_Compliments-Hero_1d1abd39-8871-4098-b52c-56e144073ea1.jpg",
+          "image_hover_swap": "shopify:\/\/shop_images\/W_Compliments-Hero-yourlogohere.jpg",
+          "title": "Elevated goods curated just for you.",
+          "description": "<p>Description goes here.<\/p>",
+          "button_1_text": "Explore Our Shop",
           "button_1_link": "shopify:\/\/collections\/all",
-          "button_2_text": "Corporate",
+          "button_2_text": "Corporate Collaborations",
           "button_2_link": "shopify:\/\/pages\/corporate",
-          "product_link_text": "<p><a title=\"Test Product\" href=\"\/products\/test-product\">Link to the products<\/a> in the photo here.<\/p>",
+          "product_link_text": "<p>Pens (corporate collection),<a href=\"\/products\/hand-cream\" title=\"L:A Bruket Hand Cream\"> L:A Bruket Hand Cream<\/a>, <a href=\"\/products\/surf-shacks\" title=\"Surf Shacks\">Surf Shacks<\/a>, <a href=\"\/products\/leuchtturm-journals\" title=\"Leuchtturm Journals\">Leuchtturm1917 notebook<\/a>, Mug (corporate collection)<\/p>",
           "alignment": "center",
-          "hero_layout": "full_width",
           "hero_size": "x-large"
         }
       },
       "feature-row": {
         "type": "feature-row",
         "settings": {
-          "image": "shopify:\/\/shop_images\/a-hand-removes-a-sweater-from-a-clothing-rack.jpg",
+          "image": "shopify:\/\/shop_images\/W_Compliments-lunch-gifts.jpg",
           "layout": "right",
           "title": "Mission",
-          "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras pellentesque scelerisque maximus. Proin scelerisque mauris quis felis cursus, vel sollicitudin lorem dignissim. <\/p><p>Proin fringilla rhoncus mauris, eget lacinia diam aliquam sit amet. Aliquam tempus ex ut molestie iaculis. Nulla facilisi. Aliquam erat volutpat. Sed sed quam ac felis interdum aliquet.<\/p><p><br\/><\/p>",
+          "text": "<p>We connect thoughtful purchasers with the best products possible.<\/p><p>We are experts at sourcing goods that are beautiful, useful, and made to the highest standards, whether you’re shopping for yourself or your business. <\/p>",
           "button_label": "Read more",
           "button_link": "shopify:\/\/pages\/story",
           "mini": false
@@ -162,130 +189,364 @@
       },
       "footer": {
         "type": "footer",
+        "settings": {
+          "footer_copyright_text": "",
+          "footer_logo": "shopify:\/\/shop_images\/footer.png",
+          "footer_menu": "footer-menu"
+        }
+      },
+      "collection-template": {
+        "type": "collection-template",
+        "settings": {}
+      },
+      "1604028138f8a017b1": {
+        "type": "home-animated-banner",
         "blocks": {
-          "1a76ca91-9f3f-4f13-a6d9-1098efbe8b72": {
-            "type": "image_picker",
+          "93be4660-54d7-4c2f-9f0b-851b39ddf4f5": {
+            "type": "text_block",
             "settings": {
-              "footer_logo": "shopify:\/\/shop_images\/Screen_Shot_2020-10-20_at_11.07.44_AM.png"
+              "brand_name": "Lord Jones",
+              "brand_tagline": "Made in the USA"
             }
           },
-          "9ba2235f-f907-4ef8-8dab-81ebf57230d6": {
-            "type": "link_list",
+          "298a76f9-f647-4e50-a35e-1a46ab105522": {
+            "type": "text_block",
             "settings": {
-              "menu": "footer-menu"
+              "brand_name": "Bright Black",
+              "brand_tagline": "BIPOC Owned"
             }
           },
-          "ee55c6bd-af24-4086-a2b5-29edc96203e2": {
-            "type": "newsletter",
+          "99a9f280-9e97-4c3b-9002-a6e164f23c44": {
+            "type": "text_block",
             "settings": {
-              "title": "Newsletter"
+              "brand_name": "Patagonia",
+              "brand_tagline": "Sustainable"
+            }
+          },
+          "4e42ccc0-923e-4013-a9c2-9b02022cbb55": {
+            "type": "text_block",
+            "settings": {
+              "brand_name": "Corksicle",
+              "brand_tagline": "Socially Conscious"
+            }
+          },
+          "779109c9-97f2-467a-9849-e22b045a3baa": {
+            "type": "text_block",
+            "settings": {
+              "brand_name": "OAD New York",
+              "brand_tagline": "Women Owned"
+            }
+          },
+          "8f6c25da-0d9b-4aea-84b7-dbacd9e51154": {
+            "type": "text_block",
+            "settings": {
+              "brand_name": "Kinto",
+              "brand_tagline": "BIPOC Owned"
+            }
+          },
+          "5d252702-476c-487e-951d-56caf907811b": {
+            "type": "text_block",
+            "settings": {
+              "brand_name": "BAGGU",
+              "brand_tagline": "Women Owned"
+            }
+          },
+          "22deabb5-bb08-4f07-ba24-045c6d33f13a": {
+            "type": "text_block",
+            "settings": {
+              "brand_name": "Miir",
+              "brand_tagline": "Certified B-Corp"
+            }
+          },
+          "5f6378aa-c985-4500-b501-2e5f5a260bb3": {
+            "type": "text_block",
+            "settings": {
+              "brand_name": "Nike",
+              "brand_tagline": "Socially Conscious"
+            }
+          },
+          "0421d7cf-5cc7-4fb6-b099-bb062fd044c7": {
+            "type": "text_block",
+            "settings": {
+              "brand_name": "BELLA + CANVAS",
+              "brand_tagline": "Sustainable"
             }
           }
         },
         "block_order": [
-          "1a76ca91-9f3f-4f13-a6d9-1098efbe8b72",
-          "9ba2235f-f907-4ef8-8dab-81ebf57230d6",
-          "ee55c6bd-af24-4086-a2b5-29edc96203e2"
+          "93be4660-54d7-4c2f-9f0b-851b39ddf4f5",
+          "298a76f9-f647-4e50-a35e-1a46ab105522",
+          "99a9f280-9e97-4c3b-9002-a6e164f23c44",
+          "4e42ccc0-923e-4013-a9c2-9b02022cbb55",
+          "779109c9-97f2-467a-9849-e22b045a3baa",
+          "8f6c25da-0d9b-4aea-84b7-dbacd9e51154",
+          "5d252702-476c-487e-951d-56caf907811b",
+          "22deabb5-bb08-4f07-ba24-045c6d33f13a",
+          "5f6378aa-c985-4500-b501-2e5f5a260bb3",
+          "0421d7cf-5cc7-4fb6-b099-bb062fd044c7"
         ],
         "settings": {
-          "footer_copyright_text": "<p><a href=\"\/pages\/terms-and-conditions\" title=\"Terms and Conditions\">Terms and Conditions<\/a><\/p>"
+          "section_title_1": "We Believe In",
+          "text": "<p>quality \/ design \/ sustainability \/ craftsmanship \/ ethical sourcing \/ community involvement \/ social responsibility \/ equality \/ integrity<\/p>",
+          "section_title_2": "Some of Our Brands"
         }
       },
-      "1603141865d9cda69d": {
-        "type": "rich-text",
+      "product-template": {
+        "type": "product-template",
         "settings": {
-          "full_width": true,
-          "section_title": "We Believe In",
-          "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras pellentesque scelerisque maximus. <\/p>",
-          "text_size": "large"
+          "enable_video_looping": true
         }
       },
-      "16031425933f3aa514": {
-        "type": "feature-row",
+      "product-recommendations": {
+        "type": "product-recommendations",
         "settings": {
-          "image": "shopify:\/\/shop_images\/shop-local.jpg",
-          "layout": "left",
-          "title": "Image with text",
-          "text": "<p>Proin fringilla rhoncus mauris, eget lacinia diam aliquam sit amet. Aliquam tempus ex ut molestie iaculis. Nulla facilisi. Aliquam erat volutpat. Sed sed quam ac felis interdum aliquet.<\/p><p><br\/><\/p>",
-          "button_label": "Shop retail",
-          "button_link": "shopify:\/\/collections",
-          "mini": true
+          "heading": "Related Products"
         }
       },
-      "1603142703582a15d2": {
-        "type": "feature-row",
+      "co-section-1": {
+        "type": "co-section-1",
         "settings": {
-          "image": "shopify:\/\/shop_images\/couple-ready-to-surf.jpg",
-          "layout": "right",
-          "title": "Image with text",
-          "text": "<p>Proin fringilla rhoncus mauris, eget lacinia diam aliquam sit amet. Aliquam tempus ex ut molestie iaculis. Nulla facilisi. Aliquam erat volutpat. Sed sed quam ac felis interdum aliquet.<\/p><p><br\/><\/p>",
-          "button_label": "Shop corporate",
-          "button_link": "shopify:\/\/pages\/corporate",
-          "mini": true
+          "image": "shopify:\/\/shop_images\/W_Compliments-corporate-lunch-gifts.jpg",
+          "text": "Elevated gifts",
+          "text_animated_1": "that they will love.",
+          "text_animated_2": "that are thoughtfully sourced.",
+          "text_animated_3": "that add value to your brand."
         }
       },
-      "1603160847d0db095a": {
-        "type": "featured-products",
+      "co-section-2": {
+        "type": "co-section-2",
+        "settings": {
+          "image": "shopify:\/\/shop_images\/W_Compliments-travel-gifts_cacf97cc-3f7b-4c91-889c-7918d2dc43b6.jpg",
+          "text": "<p>We do things differently. We value quality over quantity. We believe in excellent craftsmanship and truly great design. We believe in thoughtful purchasing to maximize value and eliminate waste. We believe in carefully considering a company’s brand before putting their logo on a product. Most importantly, we believe it&#x27;s okay to say no to items that don&#x27;t resonate with your brand.<\/p><p>At W\/Compliments, we select products through a rigorous standard of quality and care that we’ve fine-tuned over the past 17 years sourcing and buying for retail, wholesale, and corporate markets globally.  Woman-owned and led, we know the impact our clients want to make, and we know the importance of making an impression through thoughtful, beautiful gifts.<\/p><p>We seek to understand your brand’s story and weave that narrative into the choices we present, whether through color, logo placement, theme, or ethos.<\/p><p><br\/><\/p>"
+        }
+      },
+      "co-section-3": {
+        "type": "co-section-3",
         "blocks": {
-          "1603160847d0db095a-0": {
-            "type": "text_block",
+          "b310c41d-f4fc-4b47-aea4-00cdb30933f2": {
+            "type": "image_pickre",
             "settings": {
-              "featured_product": "test-product"
+              "brand_logo": "shopify:\/\/shop_images\/BlueCrossBlueShieldNC.jpg",
+              "brand_name": ""
             }
           },
-          "1603160847d0db095a-1": {
-            "type": "text_block",
+          "29657aef-cc58-4264-af6b-5abc59c410af": {
+            "type": "image_pickre",
             "settings": {
-              "featured_product": "test-product"
+              "brand_logo": "shopify:\/\/shop_images\/CarolinaHurricanes.jpg",
+              "brand_name": ""
             }
           },
-          "1603160847d0db095a-2": {
-            "type": "text_block",
+          "2f252c08-1ec6-4d10-aa04-dad00fb89f13": {
+            "type": "image_pickre",
             "settings": {
-              "featured_product": "test-product"
+              "brand_logo": "shopify:\/\/shop_images\/OriginHotel.jpg",
+              "brand_name": ""
+            }
+          },
+          "cf2573ac-49ab-4325-b560-b014b5ded8db": {
+            "type": "image_pickre",
+            "settings": {
+              "brand_logo": "shopify:\/\/shop_images\/Grifols.jpg",
+              "brand_name": ""
+            }
+          },
+          "3c921abb-9215-453e-85f2-d5829c76629b": {
+            "type": "image_pickre",
+            "settings": {
+              "brand_logo": "shopify:\/\/shop_images\/AICPA.jpg",
+              "brand_name": ""
+            }
+          },
+          "4d1e736e-e148-457d-be68-0bca8df145b3": {
+            "type": "image_pickre",
+            "settings": {
+              "brand_logo": "shopify:\/\/shop_images\/Kingspan.jpg",
+              "brand_name": ""
             }
           }
         },
         "block_order": [
-          "1603160847d0db095a-0",
-          "1603160847d0db095a-1",
-          "1603160847d0db095a-2"
+          "b310c41d-f4fc-4b47-aea4-00cdb30933f2",
+          "29657aef-cc58-4264-af6b-5abc59c410af",
+          "2f252c08-1ec6-4d10-aa04-dad00fb89f13",
+          "cf2573ac-49ab-4325-b560-b014b5ded8db",
+          "3c921abb-9215-453e-85f2-d5829c76629b",
+          "4d1e736e-e148-457d-be68-0bca8df145b3"
         ],
         "settings": {
-          "title": "May We Suggest",
-          "button_label": "See More",
+          "headline": "Who We've Worked With"
+        }
+      },
+      "co-section-4": {
+        "type": "co-section-4",
+        "blocks": {
+          "4bdc5d1d-fa8a-4181-a4d4-9934208e825b": {
+            "type": "quote",
+            "settings": {
+              "quote": "<p>“I have worked with Shelley on a variety of projects over the past 5 years, but none bigger than our annual season ticket holder gift rewards program. Since the inception of the program she has sourced over 100 unique products from a multitude of vendors while managing the procurement and delivery of over 50,000 items in an incredibly seamless manner. Shelley’s greatest assets are her attention to detail and tireless work ethic; she was fantastic in both recommending and rejecting projects &amp; ideas and would respond at all hours in order to get the job done in the greatest manner possible. I can be a very difficult customer to work with......she handled it with grace! If you have any type of project where you need someone you can truly trust to manage it the way you’d want it managed, I recommend calling upon Shelley. The program I entrusted her with was perhaps one of the largest rewards programs of its kind in all of major league sports.&quot;<\/p>",
+              "author": "Former Director of Ticket Sales, NHL Hockey team"
+            }
+          },
+          "bfdb2a1c-afbc-4a84-92bc-7ca07b38659a": {
+            "type": "quote",
+            "settings": {
+              "quote": "<p>“Shelley is an absolute asset to any client with whom she works. She’s incredibly responsive, intuitive and dependable. In the realm of promotions, she made my life a breeze! I could always count on her to stay on top of the deliverables when things were hectic on my end. She was so knowledgeable of our brand that I often entrusted her to give first review of designs and make decisions. She’s professional and pleasant, creative and stylish, and a graceful multitasker. Shelley’s customer focus is tremendous, and I fully endorse her.”<\/p>",
+              "author": "Marketing VP, Financial"
+            }
+          },
+          "3021ea5d-3029-4619-a43e-cd45cf57dd30": {
+            "type": "quote",
+            "settings": {
+              "quote": "<p>“I cannot recommend Shelley enough overall. She goes beyond the giveaway to create brand value by understanding her client’s objectives and providing clean and aesthetically pleasing product offerings. The options she provides are functional which creates the staying power and ‘stickiness” beyond the event that Marketers like myself seek.”<\/p>",
+              "author": "Deputy Director, US Marketing (Global Healthcare Company)"
+            }
+          }
+        },
+        "block_order": [
+          "4bdc5d1d-fa8a-4181-a4d4-9934208e825b",
+          "bfdb2a1c-afbc-4a84-92bc-7ca07b38659a",
+          "3021ea5d-3029-4619-a43e-cd45cf57dd30"
+        ],
+        "settings": {
+          "title": "Kind Words"
+        }
+      },
+      "co-section-5": {
+        "type": "co-section-5",
+        "settings": {
+          "image": "shopify:\/\/shop_images\/W_Compliments-corporate-gifting-pens.jpg",
+          "title": "How We Work",
+          "text": "<p>We are adept at seeking out beautiful, high-quality, well-designed and thoughtful products that redefine corporate gifting and elevate your brand.  <\/p><p>We partner with our clients to offer custom gift and promotional options that go above and beyond the average corporate giveaway. We strive to tell our clients’ stories through the details, and ultimately weave these into thoughtful and well-loved products. <\/p><p>We do this through intentional choices in design, color, presentation, tasteful custom branding, and sourcing items from brands with shared values. From sustainable craftsmanship to handmade design, to supporting women-led or black-owned businesses, these details leave a lasting impression and can be done on any budget. <\/p>"
+        }
+      },
+      "co-section-6": {
+        "type": "co-section-6",
+        "settings": {
+          "image": "shopify:\/\/shop_images\/W_Compliments-corporate-branded-desk-gifts_8932db87-d655-4a8f-a6a5-420209e722e8.jpg",
+          "title": "Get Started",
+          "text": "<p>We take the guesswork out of gifting. We offer elevated gifting options for you and your company. <\/p><p>Let’s discuss and take your gifts to the next level.<\/p>",
+          "button_label": "Contact Us",
+          "button_link": "shopify:\/\/pages\/contact-us"
+        }
+      },
+      "st-section-1": {
+        "type": "st-section-1",
+        "settings": {
+          "image": "shopify:\/\/shop_images\/W_Compliments-corporate-tech-gifts.jpg",
+          "image_hover_swap": "shopify:\/\/shop_images\/W_Compliments-corporate-tech-gifts-yourlogohere.jpg",
+          "title": "Our Story",
+          "text": "<p>We believe that the products you purchase should be the perfect blend of design, quality, and practicality.  We value products that are made both sustainably and ethically by experts of their craft. We support businesses that are mindful in how they support their employees, their communities and the world around them, and we try to do the same.<\/p><p>As a woman-owned and led company, W\/Compliments was founded as a response to a need for elevated corporate goods for brands and businesses (re: products they will actually use). Our clients have looked to our company’s leadership over the last 17 years to thoughtfully source high quality gifts that are aligned with their overall aesthetic, corporate mission and values.  <\/p><p>We are based in Raleigh, NC and work closely with businesses and brands world-wide.<\/p>"
+        }
+      },
+      "st-section-2": {
+        "type": "st-section-2",
+        "settings": {
+          "image": "shopify:\/\/shop_images\/W_Compliments-skincare-products.jpg",
+          "title": "The Shop",
+          "text": "<p>We have never understood the perception of “corporate” and “retail” needing to be exclusive of one another. Simply put, our clients have great taste, and we are fortunate enough to work with them to provide unique and thoughtfully sourced products. Over the years it has become common for others to request many of these items on an individual basis, thus inspiring a new retail side of our business dedicated to a few of our favorite things.   <\/p>",
+          "button_label": "Shop our products",
           "button_link": "shopify:\/\/collections\/all"
         }
       },
-      "1603162055cf0dbf7f": {
-        "type": "our-brands",
+      "st-section-3": {
+        "type": "st-section-3",
+        "settings": {
+          "section_title": "Capabilities",
+          "text": "<p>Corporate Gifting \/ Promotional Products \/ Custom Products \/ Consulting \/ Client Gifts \/ Drop Ship Programs \/ Event Giveaways \/ Product Launch Campaigns \/ Employee Welcome Kits<\/p>"
+        }
+      },
+      "st-section-4": {
+        "type": "st-section-4",
+        "settings": {
+          "section_title": "Meet the Founder",
+          "text": "<p>Shelley Kimball-Dodge is a creative soul with a love of design, craftsmanship, and turning the everyday into the extraordinary. With a background in retail and over 17 years of experience in corporate gifting, she founded W\/Compliments to better meet the needs of businesses and brands globally. Shelley has used this platform to help connect local and global makers, support great causes, and give back to her community. <\/p>",
+          "button_label": "Get in touch",
+          "button_link": "shopify:\/\/pages\/contact-us"
+        }
+      },
+      "gad-section-1": {
+        "type": "gad-section-1",
+        "settings": {
+          "image": "shopify:\/\/shop_images\/W_Compliments-give-a-damn-by-mat-reding.jpg",
+          "title": "What Matters to Us",
+          "text": "<p>We believe that the products you spend your money on should be the perfect blend of design, quality, and practicality.  We value products that are made sustainably and ethically by experts of their craft. We support businesses that are thoughtful in how they support their communities and the world around them, and we try to do the same.<\/p>"
+        }
+      },
+      "gad-section-2": {
+        "type": "gad-section-2",
+        "settings": {
+          "title": "Community Efforts",
+          "text": "<p>We love to give back where it matters most, both globally and in our own backyard.  Below are just some of the organizations and events which we have been proud to support, partner with, and sponsor:<\/p>",
+          "list": "<p><a href=\"https:\/\/naacp.org\/\" title=\"https:\/\/naacp.org\/\" target=\"_blank\">NAACP <\/a><\/p><p><a href=\"https:\/\/blacklivesmatter.com\/\" title=\"https:\/\/blacklivesmatter.com\/\" target=\"_blank\">Black Lives Matter<\/a><\/p><p><a href=\"https:\/\/durhamfreelunch.com\/\" title=\"https:\/\/durhamfreelunch.com\/\" target=\"_blank\">The Durham Neighbors<\/a><\/p><p><a href=\"https:\/\/nationalcasagal.org\/\" title=\"https:\/\/nationalcasagal.org\/\" target=\"_blank\">CASA<\/a><\/p><p><a href=\"https:\/\/healing-transitions.org\/\" title=\"https:\/\/healing-transitions.org\/\" target=\"_blank\">Healing Transitions<\/a><\/p><p><a href=\"https:\/\/wearealight.org\/\" title=\"https:\/\/wearealight.org\/\" target=\"_blank\">American Refugee Committee<\/a><\/p><p><a href=\"https:\/\/tableraleigh.org\/\" title=\"https:\/\/tableraleigh.org\/\" target=\"_blank\">A Place at the Table<\/a><\/p><p><a href=\"https:\/\/www.classy.org\/event\/the-virtual-carolina-brain-aneurysm-5k-and-fun-run\/e272035\" title=\"https:\/\/www.classy.org\/event\/the-virtual-carolina-brain-aneurysm-5k-and-fun-run\/e272035\" target=\"_blank\">Ellie Helton Memorial<\/a><\/p><p><a href=\"https:\/\/www.kidznotes.org\/\" title=\"https:\/\/www.kidznotes.org\/\" target=\"_blank\">KidzNotes<\/a><\/p><p><a href=\"https:\/\/www.lls.org\/\" title=\"Leukemia &amp; Lymphoma Society\" target=\"_blank\">Leukemia &amp; Lymphoma Society<\/a><\/p><p><a href=\"https:\/\/www.stbaldricks.org\/\" title=\"https:\/\/www.stbaldricks.org\/\" target=\"_blank\">St. Baldrick&#x27;s<\/a><\/p><p><a href=\"https:\/\/ww5.komen.org\/\" title=\"https:\/\/ww5.komen.org\/\" target=\"_blank\">Susan G. Komen Breast Cancer Foundation<\/a><\/p><p><a href=\"https:\/\/www.thesatoproject.org\/\" title=\"https:\/\/www.thesatoproject.org\/\" target=\"_blank\">The Sato Project<\/a><\/p><p><a href=\"https:\/\/viequeslove.org\/\" title=\"https:\/\/viequeslove.org\/\" target=\"_blank\">Vieques Love<\/a> (Hurricane Maria Relief)<\/p><p><a href=\"http:\/\/www.vinoforvasculitis.com\/\" title=\"http:\/\/www.vinoforvasculitis.com\/\" target=\"_blank\">Vino for Vasculitis<\/a><\/p><p><a href=\"https:\/\/www.facebook.com\/TheRaleighTee\/\" title=\"https:\/\/www.facebook.com\/TheRaleighTee\/\" target=\"_blank\">The Raleigh Tee<\/a><\/p><p><a href=\"https:\/\/www.shawu.edu\/\" title=\"https:\/\/www.shawu.edu\/\" target=\"_blank\">Shaw University<\/a><\/p>"
+        }
+      },
+      "gad-section-3": {
+        "type": "gad-section-3",
+        "settings": {
+          "title": "Friends of W\/Compliments",
+          "text": "<p>We love our community of fellow brands, artisans, and businesses who provide excellence in their craft, stand up for what they believe, and are a delight to work with.<\/p>",
+          "list": "<p><a href=\"https:\/\/www.otherlove.co\/\" title=\"Otherlove \" target=\"_blank\"><span style=\"text-decoration:underline\">Otherlove<\/span><\/a><\/p><p><a href=\"http:\/\/peppertrainjewelry.com\/\" title=\"Peppertrain\" target=\"_blank\"><span style=\"text-decoration:underline\">Peppertrain<\/span><\/a><\/p><p><a href=\"http:\/\/featureflora.com\/\" title=\"Feature Flora\" target=\"_blank\"><span style=\"text-decoration:underline\">Feature Flora<\/span><\/a><\/p><p><a href=\"https:\/\/www.agangofthree.com\/\" title=\"A Gang of Three\" target=\"_blank\"><span style=\"text-decoration:underline\">A Gang of Three<\/span><\/a><\/p><p><a href=\"http:\/\/whitakerandatlantic.com\/\" title=\"Whitaker &amp; Atlantic\" target=\"_blank\"><span style=\"text-decoration:underline\">Whitaker &amp; Atlantic<\/span><\/a><\/p><p><a href=\"http:\/\/susanwoodard.com\/\" title=\"Susan &amp; Daniel Kelly\" target=\"_blank\"><span style=\"text-decoration:underline\">Susan &amp; Daniel Kelly<\/span><\/a><\/p><p><a href=\"http:\/\/caitlincary.com\/\" title=\"Caitlin Cary\" target=\"_blank\"><span style=\"text-decoration:underline\">Caitlin Cary<\/span><\/a><\/p><p><a href=\"http:\/\/thecrawlspacepress.com\/\" title=\"Skillet Gilmore\" target=\"_blank\"><span style=\"text-decoration:underline\">Skillet Gilmore<\/span><\/a><\/p><p><a href=\"http:\/\/sarahkfaucette.com\/\" title=\"Sarah Faucette\" target=\"_blank\"><span style=\"text-decoration:underline\">Sarah Faucette<\/span><\/a><\/p><p><a href=\"http:\/\/graykeith.com\/\" title=\"Gray Keith\" target=\"_blank\"><span style=\"text-decoration:underline\">Gray Keith<\/span><\/a><\/p><p><a href=\"http:\/\/juniperbaymetals.com\/\" title=\"Juniper Bay Metals\" target=\"_blank\"><span style=\"text-decoration:underline\">Juniper Bay Metals<\/span><\/a><\/p><p><a href=\"http:\/\/www.sylvioland.com\/\" title=\"Sylvio Lynch\" target=\"_blank\"><span style=\"text-decoration:underline\">Sylvio Lynch<\/span><\/a><\/p><p><a title=\"https:\/\/www.isaacsphoto.com\/index\" href=\"https:\/\/www.isaacsphoto.com\/index\" target=\"_blank\"><span style=\"text-decoration:underline\">Keith Isaacs Photography<\/span><\/a><\/p><p><a href=\"https:\/\/www.thevernonprattproject.com\/\" title=\"The Vernon Pratt Project\" target=\"_blank\"><span style=\"text-decoration:underline\">The Vernon Pratt Project<\/span><\/a><\/p><p><a href=\"http:\/\/www.modestmodern.net\/\" title=\"Modest Modern\" target=\"_blank\"><span style=\"text-decoration:underline\">Modest Modern<\/span><\/a><\/p><p><a title=\"Raleigh Vintage\" href=\"https:\/\/raleighvintage.com\/\" target=\"_blank\"><span style=\"text-decoration:underline\">Raleigh Vintage<\/span><\/a><\/p><p><a href=\"https:\/\/www.butchandsundancek9.com\/\" title=\"Butch &amp; Sundance K9 Training\" target=\"_blank\"><span style=\"text-decoration:underline\">Butch &amp; Sundance K9 Training<\/span><\/a><\/p><p><a href=\"https:\/\/www.paletteandparlor.com\/\" title=\"Palette &amp; Parlour\" target=\"_blank\"><span style=\"text-decoration:underline\">Palette &amp; Parlour<\/span><\/a><\/p><p><a href=\"http:\/\/marthaclippinger.com\/\" title=\"Martha Clippinger\" target=\"_blank\"><span style=\"text-decoration:underline\">Martha Clippinger<\/span><\/a><\/p><p><a href=\"https:\/\/www.guesthouseraleigh.com\/\" title=\"Guest House Raleigh\" target=\"_blank\"><span style=\"text-decoration:underline\">Guest House Raleigh<\/span><\/a><\/p><p><a href=\"http:\/\/cmc-events.com\/\" title=\"CMC Events &amp; Travel\" target=\"_blank\"><span style=\"text-decoration:underline\">CMC Events &amp; Travel<\/span><\/a><\/p><p><a href=\"https:\/\/www.murphyayala.com\/\" title=\"Murphy Ayala\" target=\"_blank\"><span style=\"text-decoration:underline\">Murphy Ayala<\/span><\/a><\/p><p><a href=\"https:\/\/www.instagram.com\/lukebuch\/?hl=en\" title=\"Luke Buchanan\" target=\"_blank\"><span style=\"text-decoration:underline\">Luke Buchanan<\/span><\/a><\/p><p><a href=\"https:\/\/www.nickosetek.com\/\" title=\"Nick Osetek\" target=\"_blank\"><span style=\"text-decoration:underline\">Nick Osetek<\/span><\/a><\/p><p><a href=\"https:\/\/www.fatherandsonraleigh.com\/\" title=\"Father &amp; Son\" target=\"_blank\"><span style=\"text-decoration:underline\">Father &amp; Son<\/span><\/a><\/p><p><a title=\"Modern Prolific\" href=\"https:\/\/www.instagram.com\/modernprolific\/\" target=\"_blank\"><span style=\"text-decoration:underline\">Modern Prolific<\/span><\/a><\/p><p><a href=\"https:\/\/www.hair-healer.com\/\" title=\"Rebecca Hair Healer\" target=\"_blank\"><span style=\"text-decoration:underline\">Rebecca Hair Healer<\/span><\/a><\/p><p><a href=\"https:\/\/wylde.co\/\" title=\"https:\/\/wylde.co\/\" target=\"_blank\">Wylde<\/a><\/p>"
+        }
+      },
+      "160459499777f952ff": {
+        "type": "home-featured-products",
         "blocks": {
-          "5b6a0465-f55a-4d20-a1f8-cd8fd84325d2": {
+          "f4816ed5-2b1b-4a35-83de-656297e4cd91": {
             "type": "text_block",
             "settings": {
-              "brand-name": "Brand 1",
-              "brand-tagline": "Tagline 1"
+              "featured_product": "lord-jones-old-prickly-pear-hemp-derived-cbd-gum-drops"
             }
           },
-          "0f93e677-e1bc-4c07-b229-bcffee939f2a": {
+          "aa11f142-cd9c-4977-8463-7adc030ef6d6": {
             "type": "text_block",
             "settings": {
-              "brand-name": "Brand 2",
-              "brand-tagline": "Tagline 2"
+              "featured_product": "kinto-travel-tumbler-large"
             }
           },
-          "663aa764-92e0-49cb-88df-06b116b110ea": {
+          "e76c830d-4d71-49a2-9d18-dd5b0c0af988": {
             "type": "text_block",
             "settings": {
-              "brand-name": "Brand 3",
-              "brand-tagline": "Tagline 3"
+              "featured_product": "hand-cream"
             }
           }
         },
         "block_order": [
-          "5b6a0465-f55a-4d20-a1f8-cd8fd84325d2",
-          "0f93e677-e1bc-4c07-b229-bcffee939f2a",
-          "663aa764-92e0-49cb-88df-06b116b110ea"
+          "f4816ed5-2b1b-4a35-83de-656297e4cd91",
+          "aa11f142-cd9c-4977-8463-7adc030ef6d6",
+          "e76c830d-4d71-49a2-9d18-dd5b0c0af988"
+        ],
+        "settings": {
+          "title": "May we suggest",
+          "button_label": "See more",
+          "button_link": "shopify:\/\/collections\/all"
+        }
+      },
+      "160461111117251ff8": {
+        "type": "home-cta",
+        "blocks": {
+          "1e348584-1fe7-4f11-b498-76b0e6a578a6": {
+            "type": "text",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/W_Compliments-kinto-bottle-candle.jpg",
+              "text": "<p>Want to peruse our collection of tried-and-true favorites that are unique, modern, and sustainable?<\/p>",
+              "button_label": "Shop Our Products",
+              "button_link": "shopify:\/\/collections\/all"
+            }
+          },
+          "0ebbacf1-5bf1-4c4f-b158-27853800afd0": {
+            "type": "text",
+            "settings": {
+              "image": "shopify:\/\/shop_images\/W_Compliments-travel-gifts.jpg",
+              "text": "<p>Are you a company interested in providing elevated gifts that people will love and actually use, and that you will be proud of?<\/p>",
+              "button_label": "Explore Corporate Gifting",
+              "button_link": "shopify:\/\/pages\/corporate"
+            }
+          }
+        },
+        "block_order": [
+          "1e348584-1fe7-4f11-b498-76b0e6a578a6",
+          "0ebbacf1-5bf1-4c4f-b158-27853800afd0"
         ],
         "settings": {}
       }
@@ -293,11 +554,9 @@
     "content_for_index": [
       "hero-1",
       "feature-row",
-      "1603160847d0db095a",
-      "1603141865d9cda69d",
-      "1603162055cf0dbf7f",
-      "16031425933f3aa514",
-      "1603142703582a15d2"
+      "160459499777f952ff",
+      "1604028138f8a017b1",
+      "160461111117251ff8"
     ]
   },
   "presets": {

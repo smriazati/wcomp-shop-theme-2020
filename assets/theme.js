@@ -9671,3 +9671,4 @@ function openSlideCartHQ() {
 
 document.getElementById('showCartPopup').addEventListener("click", openSlideCartHQ);
 document.getElementById('showCartPopupMobile').addEventListener("click", openSlideCartHQ);
+

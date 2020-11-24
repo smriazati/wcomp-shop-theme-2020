@@ -681,7 +681,7 @@
         grid-column: span 2;
         display: grid;
         grid-template-columns: .75fr .25fr;
-        grid-template-rows: auto auto auto;
+        grid-template-rows: 1fr;
         position: relative;
         .product-text {
             padding: $spacer*3;
@@ -691,6 +691,11 @@
             z-index: 10;
             display: flex;
             justify-content: space-between;
+            .product-brand {
+                @include boldSofia;
+                color: #000;
+                padding-right: $spacer;
+            }
             h3, .price-item {
                 @include baseSofia;
                 font-size: 12px;
@@ -706,7 +711,7 @@
             }
         }
         .product-image {
-            grid-row: 1 / 4;
+            grid-row: 1 / 2;
             grid-column: 1 / 3;
             position: relative;
             z-index: 9;
@@ -714,7 +719,7 @@
         .product-hover-overlay {
             padding: 0 $spacer*3;
             opacity: 0;
-            grid-row: 2 / 3;
+            grid-row: 1 / 2;
             grid-column: 1 / 3;
             position: relative;
             z-index: 11;
@@ -722,21 +727,12 @@
             display: flex;
             justify-content: space-between;
             overflow: hidden;
-            // > * {
-            //     flex: 0 0 48%;
-            // }
-            .description *,
-            .description {
-                @include baseSofia;
-                font-size: 10px;
-            }
-            .description {
-                flex: 0 0 75%;
-                padding-right: $spacer*3;
-            }
+            display: flex;
+            justify-content: center;
+            align-items: center;
             .btn {
-                flex: 0 0 25%;
-                margin: 0;
+                // flex: 0 0 25%;
+                // margin: 0;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -845,6 +841,7 @@
             h4 {
                 @include baseSofia;
                 font-size: 10px;
+                padding: 0 $spacer;
             }
             &:last-child {
                 margin-right: 0;
@@ -914,7 +911,8 @@
     > * {
         grid-column: 2 / 6;
         .rte {
-            @include pStyle($slate);
+            @include baseSofia;
+            color: $slate;
             strong {
                 text-transform: uppercase;
                 display: inline-block;
@@ -926,3 +924,44 @@
         }
     }
 }
+
+
+
+// mobile image hover swap - show base image
+
+#shopify-section-hero-1 #Hero-swap-hero-1 {
+    @media (max-width: $bp-sm) {
+        display: none;
+    }  
+}
+
+.mobile-image-hover-base {
+    @media (min-width: $bp-sm) {
+        display: none;
+    }
+}
+.mobile-image-hover-base .lazyloaded {
+    @media (max-width: $bp-sm) {
+        height: 100%;
+        width: 100%;
+        background-size: cover;
+    }
+}
+
+.shopify-policy__container,
+.page-content {
+    font-size: 16px;
+    p, ul, ol, table {
+        font-size: 16px;
+    }
+}
+.shopify-policy__body {
+    h1, h2, h3, h4 {
+        font-size: 16px;
+        line-height: 24px;
+        @include capsSofia;
+    }
+}
+
+
+

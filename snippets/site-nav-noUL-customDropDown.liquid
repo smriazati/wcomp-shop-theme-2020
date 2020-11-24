@@ -11,7 +11,7 @@
 
     {% if link.links != blank %}
       <li class="site-nav--has-dropdown{% if link.active %} site-nav--active{% endif %}" data-has-dropdowns>
-
+        
         <a href="{{ link.url }}"
             class="site-nav-dropdown-parent site-nav__link site-nav__link--main
             {% if link.active %} site-nav__link--active{% endif %}"
@@ -23,10 +23,6 @@
                 {{ link.title | escape }}
             </span>
         </a>
-
-        <!-- <button href="{{ link.url }}" class="site-nav-dropdown-parent site-nav__link site-nav__link--main site-nav__link--button{% if link.child_active %} site-nav__link--active{% endif %}" type="button" aria-expanded="false" aria-controls="SiteNavLabel-{{ child_list_handle }}">
-          <span class="site-nav__label">{{ link.title | escape }}</span>
-        </button> -->
 
         <div class="site-nav__dropdown critical-hidden" id="SiteNavLabel-{{ child_list_handle }}">
             <ul>

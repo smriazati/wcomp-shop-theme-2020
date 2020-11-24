@@ -5,7 +5,7 @@
 
         <div class="image-wrapper">
           {% if block.settings.button_link != blank %}
-            <a href="{{ section.settings.button_link }}">
+            <a href="{{ block.settings.button_link }}">
           {% endif %}
             {% if block.settings.image != blank %}
               {% include 'image-feature-row', image: block.settings.image, height: 545, id: block.id %}
