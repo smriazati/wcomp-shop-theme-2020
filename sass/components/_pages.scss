@@ -26,6 +26,31 @@
     }
 }
 
+/* image hovers */
+
+
+.image-hover-swap {
+    position: relative;
+    > * {
+        position: relative;
+    }
+    > .image-hover-swap-img-wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transition: .3s ease opacity;
+    }
+}
+.image-wrapper:hover {
+    .image-hover-swap > .image-hover-swap-img-wrapper {
+        opacity: 1;
+    }
+}
+
+
 /* general text banners */
 
 .text-banner {
@@ -206,26 +231,6 @@
         .text-wrapper,
         .image-wrapper {
             grid-column: 2 / 5;
-        }
-        .image-hover-swap {
-            position: relative;
-            > * {
-                position: relative;
-            }
-            > .image-hover-swap-img-wrapper {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                opacity: 0;
-                transition: .3s ease opacity;
-            }
-        }
-        .image-wrapper:hover {
-            .image-hover-swap > .image-hover-swap-img-wrapper {
-                opacity: 1;
-            }
         }
     }
 

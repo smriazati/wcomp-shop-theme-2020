@@ -1,7 +1,16 @@
 {% capture image_layout %}
 <div class="image-wrapper">
   {% if section.settings.image != blank %}
-    {% include 'image-feature-row', image: section.settings.image, height: 545, id: section.id %}
+    {% if section.settings.image != blank and section.settings.image_hover_swap != blank %}
+      <div class="image-hover-swap">
+        {% include 'image-feature-row', image: section.settings.image, height: 545, id: section.id %}
+        <div class="image-hover-swap-img-wrapper">
+          {% include 'image-feature-row', image: section.settings.image_hover_swap, height: 545, id: 'image-hover-swap-logo-img' %}
+        </div>
+      </div>
+    {% else %}
+      {% include 'image-feature-row', image: section.settings.image, height: 545, id: section.id %}
+    {% endif %}
   {% else %}
     {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
   {% endif %}
@@ -29,6 +38,11 @@
         "type": "image_picker",
         "id": "image",
         "label": "Image"
+      },
+      {
+        "type":"image_picker",
+        "id":"image_hover_swap",
+        "label":"Image Hover Swap"
       },
       {
         "type": "richtext",
