@@ -237,7 +237,6 @@
                   data-add-to-cart>
                   <span data-add-to-cart-text>
 
-
                     {% if current_variant == null %}
                         {% if product.available %}
                           {{ 'products.product.unavailable' | t }}
@@ -254,7 +253,7 @@
                       {% if product.tags contains '_Coming Soon' %}
                         Coming Soon 
                       {% else %}
-                      {{ 'products.product.sold_out' | t }} 
+                        {{ 'products.product.sold_out' | t }} 
                       {% endif %}
                     {% endif %}
                     

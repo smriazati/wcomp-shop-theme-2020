@@ -293,3 +293,9 @@
 .product-form--payment-button-no-variants {
     max-width: 100%;
 }
+
+
+.product-single__media-wrapper:focus,
+.product-single__media-wrapper:focus-within {
+    outline: 0;
+}

@@ -92,8 +92,10 @@
             }
         }
         .list {
+            column-count: 2;
             p {
                 @include boldSofia;
+                margin-top: 0;
                 a,
                 span {
                     text-decoration: none !important;
@@ -429,13 +431,20 @@
     }
 }
 .co-section-3 {
+    width: 100%;
     .logo-grid {
         @media (min-width: $bp-sm) {
+            max-width: 800px;
+            margin: 0 auto;
             padding: $section-spacer/2 $section-spacer;
         }
+        width: 100%;
         display: grid;
         grid-template-columns: repeat(3,1fr);
         grid-template-rows: repeat(2, auto);
+        .image-wrapper {
+            text-align: center;
+        }
         .image-container {
             img {
                 height: 150px;

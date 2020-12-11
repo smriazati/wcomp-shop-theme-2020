@@ -8,7 +8,7 @@
   <meta name="theme-color" content="#000">
 
   <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
-  <link rel="preconnect" href="https://fonts.shopify.com" crossorigin>
+  <!-- <link rel="preconnect" href="https://fonts.shopify.com" crossorigin> -->
   <link rel="preconnect" href="https://monorail-edge.shopifysvc.com">
 
   <link rel="preload" href="{{ 'theme.css' | asset_url }}" as="style">
@@ -26,9 +26,9 @@
   GSAP & ScrollTrigger
   {% endcomment %}
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/CSSRulePlugin.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/ScrollTrigger.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/CSSRulePlugin.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/ScrollTrigger.min.js"></script>
 
 
   {% comment %}
@@ -187,8 +187,6 @@
    
   {{ content_for_header }} 
 
-  <script async src="https://code.tidio.co/gvxxzvirfsy6nygpdxhvf9hbndt4yxbm.js"></script>
-
   {% if request.page_type == 'index' or template.name == 'index' %}
     <script>
       (function(w, d, t, s, n) {
@@ -211,7 +209,7 @@
 
   {%- else -%}
 
-    <script src="https://assets.flodesk.com/form.js?v=1605129829966"></script>
+  <script src="https://assets.flodesk.com/form.js?v=1605129829966"></script>
 
   {%- endif -%}
 
@@ -311,7 +309,7 @@
 
 
 {% if request.page_type == 'collection' %}
-  <script src="{{ 'gsapCollection.js' | asset_url }}"></script>
+  <script defer src="{{ 'gsapCollection.js' | asset_url }}"></script>
 {% endif %}
 
 

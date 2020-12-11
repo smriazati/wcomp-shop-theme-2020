@@ -567,16 +567,23 @@ header.site-header {
 
 
 // dropdown on medium screens
-@media (min-width: $nav-bp) and (max-width: 1090px) {
+@media (min-width: $nav-bp) and (max-width: 1040px) {
     #SiteNavLabel-shop {
         min-width: 180px;
         left: -32%;
     }
 }
-@media (min-width: 1091px) and (max-width: 1200px) {
+@media (min-width: 1041px) and (max-width: 1150px) {
     #SiteNavLabel-shop {
         min-width: 180px;
         left: -19%;
+    }
+}
+
+@media (min-width: 1151px) and (max-width: 1200px) {
+    #SiteNavLabel-shop {
+        min-width: 180px;
+        left: -11%;
     }
 }
 

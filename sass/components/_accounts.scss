@@ -1,0 +1,65 @@
+@import '../settings/_settings.scss';
+
+.template-customers-register,
+.template-customers-login {
+    background: #f5f5f5;
+}
+.accounts-grid {
+    h1 {
+        margin-bottom: $spacer*2;
+        outline: 0;
+        border: 0;
+    }
+    .text-wrapper {
+        grid-column: 1 / span 3;
+        .btn,
+        .btn a {
+            // height: 100%;
+            color: $slate;
+            transition: .3s ease color;
+            border-radius: 0;
+            display: block;
+            background: $white;
+            border: 0;
+            text-transform: uppercase;
+            text-decoration: none;
+            &:hover {
+                color: $gray;
+            }
+        }
+    }
+    .image-wrapper {
+        grid-column: 5 / 7;
+    }
+
+    input::placeholder {
+        color: $slate;
+        text-transform: lowercase;
+        opacity: 1;
+    }
+}
+
+.form-buttons-flex {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: $spacer*6;
+    > * {
+        margin-right: $spacer*3;
+    }
+}
+
+.option-or {
+    padding: 0 $spacer*3;
+    display: flex;
+    align-items: center;
+}
+
+#LoginHeading,
+#RecoverHeading {
+    outline: 0;
+    border: 0;
+}
+
+.form-vertical input, .form-vertical select, .form-vertical .disclosure__toggle, .form-vertical textarea {
+    margin-bottom: $spacer*4;
+}

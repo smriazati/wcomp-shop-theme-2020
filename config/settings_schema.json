@@ -8,6 +8,21 @@
     "theme_support_url": "https:\/\/support.shopify.com\/"
   },
   {
+    "name": "Customer Account Pages",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "account_login_image",
+        "label": "Login Page Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "account_register_image",
+        "label": "Create Account Page Image"
+      }
+    ]
+  },
+  {
     "name": "Contact Page",
     "settings": [
       {

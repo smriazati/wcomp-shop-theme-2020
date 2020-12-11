@@ -8,6 +8,10 @@ function preventBarbaIntoShop() {
   const els3 = document.querySelectorAll("a[href^='/cart']");
   // console.log('preventing barba in shop... ', els);
   els3.forEach(el => el.classList.add('prevent'));
+
+  const els4 = document.querySelectorAll("a[href^='/account']");
+  els4.forEach(el => el.classList.add('prevent'));
+  
 }
 
 function initializeQuoteSlider(newDoc) {
@@ -203,9 +207,9 @@ function isContactFormSubmitted() {
 }
 
 // // initialize barba
-// document.addEventListener("DOMContentLoaded", function(){
+document.addEventListener("DOMContentLoaded", function(){
 //   // Handler when the DOM is fully loaded
-// });
+
 
 barba.init({
     views: [{
@@ -242,12 +246,17 @@ barba.init({
         once() {
           document.body.style.backgroundColor = '#D0CEC9'
           //console.log(document);
+          // console.log('once')
         },
         beforeEnter(data) {
           document.body.style.backgroundColor = '#D0CEC9';
-          instafeedApp();
+          // console.log('before enter contact');
           addContactPageNewsletter(data.next.container);
           isContactFormSubmitted();
+          instafeedApp();
+        },
+        afterEnter() {
+          // console.log('after enter contact');
         },
         beforeLeave() {
           document.body.style.backgroundColor = '#fff'
@@ -301,6 +310,7 @@ barba.init({
           duration: 1.1,
           y: 0
         });
+
       }
     }],
     prevent: ({ el }) => el.classList && el.classList.contains('prevent')
@@ -316,7 +326,22 @@ barba.init({
   });
 
 
+  // barba.hooks.after((data) => {
+  //   console.log('after', data)
+  //   if (data.next.namespace === 'contact') {
+  //     console.log('after contact');
+  //     instafeedApp();
+  //   }
+  // });
+
+
   barba.hooks.beforeEnter(({ current, next }) => {
+    console.log('transition enter', next.namespace);
+    // if (next.namespace === 'contact') {
+    //   console.log('hi');
+    //   // instafeedApp();
+    // }
+
     // Set <body> classes for the 'next' page, switch template-index or template-page
     if (current.container) {
       let nextHtml = next.html;
@@ -345,3 +370,5 @@ barba.init({
       }
     }
   });
+
+});

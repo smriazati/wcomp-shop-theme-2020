@@ -85,3 +85,62 @@ main {
 a.no-line {
   text-decoration: none;
 }
+
+
+// forms
+
+
+label,
+select,
+input,
+.cf-input::-webkit-input-placeholder {
+    color: $slate;
+    @include baseSofia;
+    font-size: 15px;
+    opacity: 1;
+}
+label,
+.cf-input::-webkit-input-placeholder {
+    text-transform: lowercase;
+}
+select,
+input {
+    background: transparent;
+    border: 0;
+    border-bottom: $border;
+    color: $slate;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+textarea {
+    background: transparent;
+    border: $border;
+    width: 100%;
+}
+select, input:not([type="submit"]) {
+    width: 100%;
+}
+
+input[type="submit"] {
+    background: $white;
+    border: 0;
+    text-transform: uppercase;
+    padding: $spacer*2 $spacer*4;
+}
+
+
+.mb-0 {
+  margin-bottom: 0 !important;
+}
+
+.form-subdued {
+  a {
+      color: $gray;
+      &:hover {
+          color: $black;
+      }
+  }
+  text-align: left;
+  font-size: 16px;
+}
