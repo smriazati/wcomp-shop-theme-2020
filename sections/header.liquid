@@ -17,24 +17,39 @@
 
 {% comment %} START HEADER {% endcomment %}
   <header class="site-header" role="banner">
-    <div class="site-logo">
-      {% if section.settings.logo != blank %}
-        {% include 'site-logo', logo: section.settings.logo %}
-        <h1 class="visually-hidden">w/ compliments</h1>
-      {% else %}
-        <h1 class="visually-hidden">w/ compliments</h1>
-      {% endif %}
-    </div>
     <div class="site-nav">
       <nav id="AccessibleNav" class="site-header__primary-links mobile-nav-wrapper" role="navigation">
         <ul id="MobileNav">
           {% include 'site-nav-noUL-noDropdown', linklist: section.settings.main_linklist %}
+          <li class="show-nav-bp-only">
+            <a href="/collections/all">Shop</a>
+          </li>
+          <li class="show-nav-bp-only">
+            <a href="/account/login">Login</a>
+          </li>
+        </ul>
+      </nav>
+      <div class="site-logo">
+        {% if section.settings.logo != blank %}
+        <div class="logo-image">
+          {% include 'site-logo', logo: section.settings.logo %}          
+        </div>
+          <h1 class="visually-hidden">w/ compliments</h1>
+        {% else %}
+          <h1 class="visually-hidden">w/ compliments</h1>
+        {% endif %}
+      </div>
+      <nav id="AccessibleNav2" class="site-header__primary-links mobile-nav-wrapper" role="navigation">
+        <ul id="MobileNav2">
           {% include 'site-nav-noUL-customDropDown', linklist: section.settings.shop_linklist %}
           <li class="search-nav-btn">
             <button type="button" class="btn--link site-header__icon site-header__search-toggle js-drawer-open-top" data-predictive-search-open-drawer>
               <span class="search-text">Search</span> 
               <span class="search-icon">{% include 'icon-search' %}</span>
             </button>
+          </li>
+          <li class="login-nav-btn">
+            <a href="/account/login">Login</a>
           </li>
           <li class="cart-nav-btn">
             {% comment %} START CART {% endcomment %}
@@ -47,9 +62,10 @@
             </button>
             {% comment %} END CART {% endcomment %}
           </li>
-          </ul>
+        </ul>
       </nav>
-    </div> <!-- / .site-nav -->
+    </div>
+    
 
     {% include 'search-drawer' %}
     

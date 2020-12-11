@@ -10,7 +10,7 @@
     {%- assign child_list_handle = link.title | handleize -%}
 
     {% if link.links != blank %}
-      <li class="site-nav--has-dropdown{% if link.active %} site-nav--active{% endif %}" data-has-dropdowns>
+      <li class="site-nav--has-dropdown{% if link.active %} site-nav--active{% endif %}" data-has-dropdowns id="shopDropdownTrigger">
         
         <a href="{{ link.url }}"
             class="site-nav-dropdown-parent site-nav__link site-nav__link--main
@@ -24,7 +24,7 @@
             </span>
         </a>
 
-        <div class="site-nav__dropdown critical-hidden" id="SiteNavLabel-{{ child_list_handle }}">
+        <div class="site-nav__dropdown critical-hidden site-nav__dropdown--centered" id="SiteNavLabel-{{ child_list_handle }}">
             <ul>
               {% for childlink in link.links %}
                 <li>

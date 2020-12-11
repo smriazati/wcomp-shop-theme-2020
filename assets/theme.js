@@ -9672,3 +9672,17 @@ function openSlideCartHQ() {
 document.getElementById('showCartPopup').addEventListener("click", openSlideCartHQ);
 document.getElementById('showCartPopupMobile').addEventListener("click", openSlideCartHQ);
 
+
+// center the dang dropdown in the nav 
+
+function centerNav() {
+  const dd_width = 180; 
+  const dd_trigger_width = document.getElementById('shopDropdownTrigger').offsetWidth;
+  const dd_offset = (dd_width - dd_trigger_width) / 2;
+  const dd_item = document.getElementById('SiteNavLabel-shop');
+  // console.log(dd_width, dd_trigger_width, dd_item, dd_offset);
+  dd_item.style.left = `-${dd_offset}px`
+}
+
+centerNav();
+window.onresize = centerNav;

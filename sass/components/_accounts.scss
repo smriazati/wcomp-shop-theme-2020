@@ -63,3 +63,9 @@
 .form-vertical input, .form-vertical select, .form-vertical .disclosure__toggle, .form-vertical textarea {
     margin-bottom: $spacer*4;
 }
+
+@media (max-width: $bp-sm) {
+    .accounts-grid .image-wrapper {
+        margin-top: $spacer*3;
+    }
+}
